@@ -8,7 +8,7 @@ import javax.persistence.Id;
  * Created by Administrator on 2017/5/12.
  */
 @Entity
-public class Teacher {
+public class Student {
     @Id
     @GeneratedValue
     private Long id;
@@ -19,8 +19,7 @@ public class Teacher {
     private int age;
     private String phone;
     private String address;
-    private String school;
-    private String dec;
+    private String required;
 
     public Long getId() {
         return id;
@@ -86,20 +85,12 @@ public class Teacher {
         this.address = address;
     }
 
-    public String getSchool() {
-        return school;
+    public String getRequired() {
+        return required;
     }
 
-    public void setSchool(String school) {
-        this.school = school;
-    }
-
-    public String getDec() {
-        return dec;
-    }
-
-    public void setDec(String dec) {
-        this.dec = dec;
+    public void setRequired(String required) {
+        this.required = required;
     }
 
 }

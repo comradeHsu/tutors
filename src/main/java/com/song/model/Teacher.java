@@ -14,7 +14,7 @@ public class Teacher {
     private Long id;
     private String name;
     private String pwd;
-    private String realName;
+    private String realname;
     private String sex;
     private int age;
     private String phone;
@@ -47,11 +47,11 @@ public class Teacher {
     }
 
     public String getRealName() {
-        return realName;
+        return realname;
     }
 
     public void setRealName(String realName) {
-        this.realName = realName;
+        this.realname = realName;
     }
 
     public String getSex() {

@@ -14,13 +14,22 @@ public class Teacher {
     private Long id;
     private String name;
     private String pwd;
-    private String realname;
+    private String rname;
     private String sex;
-    private int age;
+    private Integer age;
     private String phone;
     private String address;
     private String school;
-    private String dec;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private String description;
 
     public Long getId() {
         return id;
@@ -46,12 +55,12 @@ public class Teacher {
         this.pwd = pwd;
     }
 
-    public String getRealName() {
-        return realname;
+    public String getRname() {
+        return rname;
     }
 
-    public void setRealName(String realName) {
-        this.realname = realName;
+    public void setRname(String rname) {
+        this.rname = rname;
     }
 
     public String getSex() {
@@ -94,12 +103,6 @@ public class Teacher {
         this.school = school;
     }
 
-    public String getDec() {
-        return dec;
-    }
 
-    public void setDec(String dec) {
-        this.dec = dec;
-    }
 
 }

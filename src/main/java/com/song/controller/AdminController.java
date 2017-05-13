@@ -24,4 +24,4 @@ public class AdminController {
             model.addAttribute("msg", "账号或密码不正确！");//不懂
         return "/user/index";//adminlogin.ftl应该建错了
     }
-}nnnnnnnnnnnn
+}

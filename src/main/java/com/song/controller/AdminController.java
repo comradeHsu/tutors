@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class AdminController {
     @Autowired
-    AdminService adminService;
+    AdminService adminService;//
 
     @RequestMapping(value = "/adminlogin", method = RequestMethod.POST)
     public String login(Model model, String name, String pwd, HttpServletRequest request) {

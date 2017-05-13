@@ -7,23 +7,23 @@
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3" />
     <meta http-equiv="description" content="This is my page" />
 
-    <link href="<%=path %>/css/layout.css" type="text/css" rel="stylesheet" />
+    <link href="${request.contextPath}/css/layout.css" type="text/css" rel="stylesheet" />
 
-    <script language="JavaScript" src="<%=path %>/js/public.js" type="text/javascript"></script>
+    <script language="JavaScript" src="${request.contextPath}/js/public.js" type="text/javascript"></script>
     <script type="text/javascript">
 
     </script>
 </head>
 
 <body>
-<jsp:include flush="true" page="/qiantai/inc/incTop.jsp"></jsp:include>
+<#include "incTop.ftl">
 <div class="page_row">
     <div class="page_main_msg left">
         <div class="left_row">
             <div class="list pic_news">
                 <div class="list_bar">
                     <span style="float:left">最新注册教员</span>
-                    <span style="float:right"><a href="<%=path %>/jiaoyuanAll.action">更多>></a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span style="float:right"><a href="${request.contextPath}/jiaoyuanAll.action">更多>></a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </div>
                 <div id="tw" class="list_content" style="height: 200px;">
                     <table width="99%" border="0" cellpadding="2" cellspacing="1" bgcolor="#FFFFFF" align="center" style="margin-top:8px">
@@ -35,16 +35,16 @@
                             <td width="30%">可辅导科目</td>
                             <td width="10%">详细信息</td>
                         </tr>
-                        <s:iterator value="#request.jiaoyuanList" id="jiaoyuan">
+                        <#list list as l>
                             <tr align='center' bgcolor="#FFFFFF" height="22">
-                                <td><s:property value="#jiaoyuan.name"/></td>
+                                <td>${l.name!}</td>
                                 <td><s:property value="#jiaoyuan.sex"/></td>
                                 <td><s:property value="#jiaoyuan.age"/></td>
                                 <td><s:property value="#jiaoyuan.xueli"/></td>
                                 <td><s:property value="#jiaoyuan.kefudaokemu"/></td>
-                                <td><a href="<%=path %>/jiaoyuanDetail_qian.action?id=<s:property value="#jiaoyuan.id"/>">详细信息</a></td>
+                                <td><a href="${request.contextPath}/jiaoyuanDetail_qian.action?id=<s:property value="#jiaoyuan.id"/>">详细信息</a></td>
                             </tr>
-                        </s:iterator>
+                        </#list>
                     </table>
                 </div>
             </div>
@@ -52,7 +52,7 @@
             <div class="list pic_news">
                 <div class="list_bar">
                     <span style="float:left">最新注册学员</span>
-                    <span style="float:right"><a href="<%=path %>/xueyuanAll.action">更多>></a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span style="float:right"><a href="${request.contextPath}/xueyuanAll.action">更多>></a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </div>
                 <div id="tw" class="list_content" style="height: 200px;">
                     <table width="99%" border="0" cellpadding="2" cellspacing="1" bgcolor="#FFFFFF" align="center" style="margin-top:8px">
@@ -71,7 +71,7 @@
                                 <td><s:property value="#xueyuan.age"/></td>
                                 <td><s:property value="#xueyuan.address"/></td>
                                 <td><s:property value="#xueyuan.fudaokemu"/></td>
-                                <td><a href="<%=path %>/xueyuanDetail_qian.action?id=<s:property value="#xueyuan.id"/>">详细信息</a></td>
+                                <td><a href="${request.contextPath}/xueyuanDetail_qian.action?id=<s:property value="#xueyuan.id"/>">详细信息</a></td>
                             </tr>
                         </s:iterator>
                     </table>

@@ -38,10 +38,10 @@
                         <#list list as l>
                             <tr align='center' bgcolor="#FFFFFF" height="22">
                                 <td>${l.name!}</td>
-                                <td><s:property value="#jiaoyuan.sex"/></td>
-                                <td><s:property value="#jiaoyuan.age"/></td>
-                                <td><s:property value="#jiaoyuan.xueli"/></td>
-                                <td><s:property value="#jiaoyuan.kefudaokemu"/></td>
+                                <td>${l.sex!}</td>
+                                <td>${l.age!}</td>
+                                <td>${l.xueli!}</td>
+                                <td>${l.kefudaokemu!}</td>
                                 <td><a href="${request.contextPath}/jiaoyuanDetail_qian.action?id=<s:property value="#jiaoyuan.id"/>">详细信息</a></td>
                             </tr>
                         </#list>
@@ -64,16 +64,18 @@
                             <td width="30%">要求辅导科目</td>
                             <td width="10%">详细信息</td>
                         </tr>
-                        <s:iterator value="#request.xueyuanList" id="xueyuan">
+                        <#list list as x>
+                       <!-- <s:iterator value="#request.xueyuanList" id="xueyuan">-->
                             <tr align='center' bgcolor="#FFFFFF" height="22">
-                                <td><s:property value="#xueyuan.name"/></td>
-                                <td><s:property value="#xueyuan.sex"/></td>
-                                <td><s:property value="#xueyuan.age"/></td>
-                                <td><s:property value="#xueyuan.address"/></td>
-                                <td><s:property value="#xueyuan.fudaokemu"/></td>
+                                <td>${x.name!}</td>
+                                <td>${x.sex!}</td>
+                                <td>${x.age!}</td>
+                                <td>${x.address!}</td>
+                                <td>${x.fudaokemu!}</td>
                                 <td><a href="${request.contextPath}/xueyuanDetail_qian.action?id=<s:property value="#xueyuan.id"/>">详细信息</a></td>
                             </tr>
-                        </s:iterator>
+                        <!--</s:iterator>-->
+                        </#list>
                     </table>
                 </div>
             </div>
@@ -82,7 +84,8 @@
 
     <!-- 右边的用户登录。留言。投票 -->
     <div class="page_other_msg right">
-        <div class="left_row">
+        <div class="left_row
+">
             <div class="list">
                 <div class="list_bar">用户登录</div>
                 <div class="list_content">
@@ -107,6 +110,7 @@
                 <div class="list_bar">日历表</div>
                 <div class="list_content">
                     <jsp:include flush="true" page="/qiantai/rili/rili.jsp"></jsp:include>
+                    <#include >
                 </div>
             </div>
         </div>

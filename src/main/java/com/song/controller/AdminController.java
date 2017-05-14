@@ -23,6 +23,6 @@ public class AdminController {
             model.addAttribute("admin", request.getSession().getAttribute("user"));
         else
             model.addAttribute("msg", "账号或密码不正确！");//不懂
-        return "/user/index";//adminlogin.ftl应该建错了
+        return "/user/index";//adminlogin.ftl应该建错了ba
     }
 }

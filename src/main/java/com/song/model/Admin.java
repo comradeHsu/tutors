@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity//这个注解标明这是一个实体类
+@Entity//这个注解标明这是一个实体类。
 public class Admin {
     @Id//表示这个属性是主键
     @GeneratedValue//表示是自增

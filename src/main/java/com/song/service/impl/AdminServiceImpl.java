@@ -15,7 +15,7 @@ public class AdminServiceImpl implements AdminService{
     @Resource//依赖注入
     AdminRepository adminRepository;
 
-    @Override//这是一个
+    @Override//这是
     public boolean login(HttpServletRequest request, String name, String pwd) {
         boolean rs = false;
         Admin admin = adminRepository.findByName(name);

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created by Administrator on 2017/5/13 0013.
  */
+@Controller
 public class AdminController {
     @Autowired
     AdminService adminService;//
@@ -24,4 +25,4 @@ public class AdminController {
             model.addAttribute("msg", "账号或密码不正确！");//不懂
         return "/user/index";//adminlogin.ftl应该建错了
     }
-}nnnnnnnnnn
+}

@@ -19,7 +19,7 @@ public class AdminServiceImpl implements AdminService{
     public boolean login(HttpServletRequest request, String name, String pwd) {
         boolean rs = false;
         Admin admin = adminRepository.findByName(name);
-        if(Admin == null || !pwd.equals(admin.getPwd()))
+        if(admin == null || !pwd.equals(admin.getPassword()))
             return rs;
         rs = true;
         HttpSession session = request.getSession();

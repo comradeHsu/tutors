@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
  */
 @Service
 public class AdminServiceImpl implements AdminService{
-    @Resource
+    @Resource//依赖注入
     AdminRepository adminRepository;
 
     @Override

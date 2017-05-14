@@ -42,7 +42,7 @@
                                 <td>${l.age!}</td>
                                 <td>${l.school!}</td>
                                 <td>${l.description!}</td>
-                                <td><a href="${request.contextPath}/jiaoyuanDetail_qian.action?id=<s:property value="#jiaoyuan.id"/>">详细信息</a></td>
+                                <td><a href="${request.contextPath}/">详细信息</a></td>
                             </tr>
                         </#list>
                     </table>
@@ -72,7 +72,7 @@
                                 <td>${x.age!}</td>
                                 <td>${x.address!}</td>
                                 <td>${x.required!}</td>
-                                <td><a href="${request.contextPath}/xueyuanDetail_qian.action?id=<s:property value="#xueyuan.id"/>">详细信息</a></td>
+                                <td><a href="${request.contextPath}/">详细信息</a></td>
                             </tr>
                         <!--</s:iterator>-->
                         </#list>
@@ -109,7 +109,7 @@
             <div class="list">
                 <div class="list_bar">日历表</div>
                 <div class="list_content">
-
+                    <iframe width="300" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=5"></iframe>
                 </div>
             </div>
         </div>

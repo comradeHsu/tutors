@@ -15,7 +15,7 @@
     <script type="text/javascript">
         function reg_xueyuan()
         {
-            var url="<%=path %>/qiantai/userinfo/reg_xueyuan.jsp";
+            var url="${request.contextPath}/reg/regStudent";
             var n="";
             var w="550px";
             var h="600px";
@@ -24,7 +24,7 @@
         }
         function reg_jiaoyuan()
         {
-            var url="<%=path %>/qiantai/userinfo/reg_jiaoyuan.jsp";
+            var url="${request.contextPath}/reg/regTeacher";
             var n="";
             var w="550px";
             var h="600px";

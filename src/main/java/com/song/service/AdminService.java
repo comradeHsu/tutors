@@ -6,4 +6,4 @@ import javax.servlet.http.HttpServletRequest;
 public interface AdminService {
 
     boolean login(HttpServletRequest request, String name, String pwd);
-}
+}nn

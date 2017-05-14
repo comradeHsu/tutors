@@ -40,8 +40,8 @@
                                 <td>${l.name!}</td>
                                 <td>${l.sex!}</td>
                                 <td>${l.age!}</td>
-                                <td>${l.xueli!}</td>
-                                <td>${l.kefudaokemu!}</td>
+                                <td>${l.school!}</td>
+                                <td>${l.description!}</td>
                                 <td><a href="${request.contextPath}/jiaoyuanDetail_qian.action?id=<s:property value="#jiaoyuan.id"/>">详细信息</a></td>
                             </tr>
                         </#list>
@@ -64,14 +64,14 @@
                             <td width="30%">要求辅导科目</td>
                             <td width="10%">详细信息</td>
                         </tr>
-                        <#list list as x>
+                        <#list stu as x>
                        <!-- <s:iterator value="#request.xueyuanList" id="xueyuan">-->
                             <tr align='center' bgcolor="#FFFFFF" height="22">
                                 <td>${x.name!}</td>
                                 <td>${x.sex!}</td>
                                 <td>${x.age!}</td>
                                 <td>${x.address!}</td>
-                                <td>${x.fudaokemu!}</td>
+                                <td>${x.required!}</td>
                                 <td><a href="${request.contextPath}/xueyuanDetail_qian.action?id=<s:property value="#xueyuan.id"/>">详细信息</a></td>
                             </tr>
                         <!--</s:iterator>-->
@@ -90,7 +90,7 @@
                 <div class="list_bar">用户登录</div>
                 <div class="list_content">
                     <div id="div">
-                        <#include "login.ftl">
+                       <#include "login.ftl">
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                 <div class="list_bar">网站公告</div>
                 <div class="list_content">
                     <div id="div">
-                        <s:action name="gonggaoQian5" executeResult="true" flush="true"></s:action>
+
                     </div>
                 </div>
             </div>
@@ -109,8 +109,7 @@
             <div class="list">
                 <div class="list_bar">日历表</div>
                 <div class="list_content">
-                    <jsp:include flush="true" page="/qiantai/rili/rili.jsp"></jsp:include>
-                    <#include >
+
                 </div>
             </div>
         </div>
@@ -119,7 +118,7 @@
 </div>
 
 <div class="foot">
-    <jsp:include flush="true" page="/qiantai/inc/incFoot.jsp"></jsp:include>
+    <#include "incFoot.ftl">
 </div>
 </body>
 </html>

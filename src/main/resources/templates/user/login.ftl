@@ -1,10 +1,3 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -13,11 +6,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="expires" content="0">
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
-    <script language="JavaScript" src="<%=path %>/js/public.js" type="text/javascript"></script>
+    <script language="JavaScript" src="${request.contextPath}/js/public.js" type="text/javascript"></script>
 
-    <script type='text/javascript' src='<%=path %>/dwr/interface/loginService.js'></script>
-    <script type='text/javascript' src='<%=path %>/dwr/engine.js'></script>
-    <script type='text/javascript' src='<%=path %>/dwr/util.js'></script>
+    <script type='text/javascript' src='${request.contextPath}/dwr/interface/loginService.js'></script>
+    <script type='text/javascript' src='${request.contextPath}/dwr/engine.js'></script>
+    <script type='text/javascript' src='${request.contextPath}/dwr/util.js'></script>
 
     <script type="text/javascript">
         function reg_xueyuan()
@@ -80,8 +73,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
-<s:if test="#session.userType==null || #session.userType==0">
-    <form action="<%=path %>/userLogin.action" name="userLogin" method="post">
+
+
+    <form action="${request.contextPath}/userLogin.action" name="userLogin" method="post">
         <table cellspacing="0" cellpadding="0" width="98%" align="center" border="0">
             <tr>
                 <td align="center" colspan="2" height="10"></td>
@@ -102,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <option value="1">教员</option>
                         <option value="2">学员</option>
                     </select>
-                    <img id="indicator" src="<%=path %>/img/loading.gif" style="display:none"/>
+                    <img id="indicator" src="${request.contextPath}/img/loading.gif" style="display:none"/>
                 </td>
             </tr>
             <tr>
@@ -117,18 +111,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </tr>
         </table>
     </form>
-</s:if>
-<s:if test="#session.userType==1">
+    <#if type??>
+<#if type=="1">
     <br/><br/>
     欢迎您：<s:property value="#session.jiaoyuan.loginname"/>(教员) &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="<%=path %>/jiaoyuanLogout.action">安全退出</a> &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="${request.contextPath}/jiaoyuanLogout.action">安全退出</a> &nbsp;&nbsp;&nbsp;&nbsp;
     <br/><br/><br/>
-</s:if>
-<s:if test="#session.userType==2">
+</#if>
+<#if type=="2">
     <br/><br/>
     欢迎您：<s:property value="#session.xueyuan.loginname"/>(学员) &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="<%=path %>/xueyuanLogout.action">安全退出</a> &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="${request.contextPath}/xueyuanLogout.action">安全退出</a> &nbsp;&nbsp;&nbsp;&nbsp;
     <br/><br/><br/>
-</s:if>
+</#if>
+</#if>
 </body>
 </html>

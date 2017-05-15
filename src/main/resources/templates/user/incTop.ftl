@@ -169,7 +169,7 @@
                 <#--else if(myweekday == 6)-->
                     <#--weekday=" 星期六 ";-->
                 <#--document.write(year+"年"+mymonth+"月"+myday+"日 "+weekday);-->
-                <#--//&ndash;&gt;-->
+
             </script>
         </div>
         <div style="clear: both"></div>

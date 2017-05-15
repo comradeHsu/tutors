@@ -29,6 +29,9 @@
         function wodeyuyue(){
 
         }
+        function yuyuewode(){
+
+        }
         <#--{-->
         <#--<c:if test="${sessionScope.userType==null}">-->
                 <#--alert("请先登录");-->

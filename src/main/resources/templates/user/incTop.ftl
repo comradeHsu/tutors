@@ -26,6 +26,9 @@
                 openWin(url,n,w,h,s);
             }
         }
+        function wodeyuyue(){
+
+        }
         <#--{-->
         <#--<c:if test="${sessionScope.userType==null}">-->
                 <#--alert("请先登录");-->

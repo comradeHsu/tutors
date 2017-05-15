@@ -3,7 +3,29 @@
 <head>
     <script language="JavaScript" src="${request.contextPath}/js/popup_shuaxin_no.js" type="text/javascript"></script>
     <script type="text/javascript">
-//        function myxinxi()
+        function myxinxi(){
+            var type = '${Session["type"]}';
+            if(type=="" || type == null){
+                alert("您还没有登录");
+                return；
+            }
+            if(type == "1"){
+                var url="<%=path %>/qiantai/userinfo/xinxi_jiaoyuan.jsp";
+                var n="";
+                var w="550px";
+                var h="600px";
+                var s="resizable:no;help:no;status:no;scroll:yes";
+                openWin(url,n,w,h,s);
+            }
+            if(type == "2"){
+                var url="<%=path %>/qiantai/userinfo/xinxi_jiaoyuan.jsp";
+                var n="";
+                var w="550px";
+                var h="600px";
+                var s="resizable:no;help:no;status:no;scroll:yes";
+                openWin(url,n,w,h,s);
+            }
+        }
         <#--{-->
         <#--<c:if test="${sessionScope.userType==null}">-->
                 <#--alert("请先登录");-->
@@ -87,7 +109,7 @@
             <A href="${request.contextPath}/qiantai/default.jsp">网站首页</A>
         </li>
         <li class="thisclass">
-            <A href="${request.contextPath}/jiaoyuanAll.action">我要请家教</A>
+            <A href="${request.contextPath}/tea/allTea">我要请家教</A>
         </li>
         <li class="thisclass">
             <A href="${request.contextPath}/xueyuanAll.action">我要做家教</A>

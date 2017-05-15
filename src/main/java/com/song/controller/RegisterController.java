@@ -39,9 +39,15 @@ public class RegisterController {
         return view;
     }
 
-    @RequestMapping("/reg")
+    @RequestMapping("/regTeacher")
     public String regTeacher(){
 
         return "/user/regTeacher";
+    }
+
+    @RequestMapping("/regStudent")
+    public String regStudent(){
+
+        return "/user/regStudent";
     }
 }

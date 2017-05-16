@@ -206,7 +206,7 @@
         }
         $(".touxiang").click(function(){
             var input = '<input type="file" class="tximg">';
-            $(".sis").html(input);
+            $(".sis").html(input);//
         });
     </script>
 </head>

@@ -37,7 +37,7 @@
                 +'用户名：'
                 +'</td>'
                 +'<td width="80%" bgcolor="#FFFFFF"> &nbsp;'
-                +'<input type="text" name="name"/>'
+                +'<input type="text" id="name" name="name"/>'
                 +'</td>'
                 +'</tr>'
                 +'<tr>'
@@ -45,7 +45,7 @@
                 +' 密 码：'
                 +'</td>'
                 +' <td bgcolor="#FFFFFF"> &nbsp;'
-                +'<input type="password" name="pwd"/>'
+                +'<input type="password" id="pwd" name="pwd"/>'
                 +'</td>'
                 +'</tr>'
                 +'<tr>'
@@ -151,7 +151,7 @@
                 +'<td bgcolor="#FFFFFF">'
                 +' &nbsp;'
                 +'<input type="button" value="确定" onclick="check1();"/>'
-                +' <input type="button" class="layui-layer-close" value="取消" onclick="closeOpen()"/>'
+                +' <input type="button" class="layui-layer-close" id="close"value="取消" onclick="closeOpen()"/>'
                 +' </td>'
                 +' </tr>'
                 +'</table>'
@@ -167,28 +167,28 @@
             var s="resizable:no;help:no;status:no;scroll:yes";
             openWin(url,n,w,h,s);
         }
-        function login()
-        {
-            if(document.userLogin.userName.value=="")
-            {
-                alert("请输入用户名");
-                return;
-            }
-            if(document.userLogin.userPw.value=="")
-            {
-                alert("请输入密码");
-                return;
-            }
-
-            if(document.userLogin.userType.value==-1)
-            {
-                alert("请选择类型");
-                return;
-            }
-
-            document.getElementById("indicator").style.display="block";
-            loginService.login(document.userLogin.userName.value,document.userLogin.userPw.value,document.userLogin.userType.value,callback);
-        }
+//        function login()
+//        {
+//            if(document.userLogin.userName.value=="")
+//            {
+//                alert("请输入用户名");
+//                return;
+//            }
+//            if(document.userLogin.userPw.value=="")
+//            {
+//                alert("请输入密码");
+//                return;
+//            }
+//
+//            if(document.userLogin.userType.value==-1)
+//            {
+//                alert("请选择类型");
+//                return;
+//            }
+//
+//            document.getElementById("indicator").style.display="block";
+//            loginService.login(document.userLogin.userName.value,document.userLogin.userPw.value,document.userLogin.userType.value,callback);
+//        }
 
         function callback(data)
         {
@@ -208,13 +208,62 @@
             var input = '<input type="file" class="tximg">';
             $(".sis").html(input);//
         });
+        function check1() {
+            var name = $("#name").val();
+            var pwd = $("#pwd").val();
+            if(name == "" || name == null)
+            {
+                layer.alert("请输入用户名",{
+                    title:"提示"
+                });
+                return false;
+            }
+            if(pwd =="" || pwd == null)
+            {
+                layer.alert("请输入密码",{
+                    title:"提示"
+                });
+                return false;
+            }
+            var data = $("#from1").serialize();
+            $.ajax({
+                url:"${request.contextPath}/tea/reg",
+                type:"post",
+                data:data,
+                processData:false,
+                contentType:false,
+                success:function(data){
+                    layer.alert(data,{
+                        title:"提示",
+                    })
+                    if(data == "注册成功"){
+                        $('#close').click();
+                    }
+                },
+            });
+        }
+
+        function login(){
+            var type = $("#type").val();
+            if(type=="-1"){
+                layer.alert("请选择登录权限",{
+                    title:"提示",
+                })
+            }
+            if(type == "1"){
+                $("#login").attr("action","${request.contextPath}/stu/login");
+            }
+            if(type=="2"){
+                $("#login").attr("action","")
+            }
+        }
     </script>
 </head>
 
 <body>
 
 
-    <form action="${request.contextPath}/userLogin.action" name="userLogin" method="post">
+    <form action="" id="login" name="userLogin" method="post">
         <table cellspacing="0" cellpadding="0" width="98%" align="center" border="0">
             <tr>
                 <td align="center" colspan="2" height="10"></td>
@@ -230,7 +279,7 @@
             <tr>
                 <td align="right" height="30" style="font-size: 12px;">类　型：</td>
                 <td align="left">
-                    <select class="INPUT_text" name="userType" style="width: 120px;">
+                    <select class="INPUT_text" id="type" name="userType" style="width: 120px;">
                         <option value="-1">--请选择--</option>
                         <option value="1">教员</option>
                         <option value="2">学员</option>

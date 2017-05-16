@@ -46,4 +46,9 @@ public class TeacherController {
         }
         return msg.toString();
     }
+
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public String login(Model model,String name,String pwd){
+        return "/user/index";
+    }
 }

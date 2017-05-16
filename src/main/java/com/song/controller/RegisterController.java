@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,18 +26,16 @@ public class RegisterController {
     RegisterService registerService;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView regTeacher(@ModelAttribute Student user, HttpServletRequest request){
-        HttpSession session = request.getSession();
-        ModelAndView view = new ModelAndView();
+    @ResponseBody
+    public String regTeacher(@ModelAttribute Student user, HttpServletRequest request){
+        String msg = "";
         try {
             Student student = registerService.register(user);
-            session.setAttribute("user",user);
-            return new ModelAndView("redirect:/index");
+            msg = "注册成功";
         } catch (ServiceException e) {
-            view.addObject("msg",e.getMessage());
-            view.setViewName("/user/index");
+           msg = e.getMessage();
         }
-        return view;
+        return msg;
     }
 
     @RequestMapping("/regTeacher")

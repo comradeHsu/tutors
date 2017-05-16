@@ -2,109 +2,9 @@
 <html>
 <head>
     <script language="JavaScript" src="${request.contextPath}/js/popup_shuaxin_no.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        function myxinxi(){
-            var type = '${Session["type"]}';
-            if(type=="" || type == null){
-                alert("您还没有登录");
-                return；
-            }
-            if(type == "1"){
-                var url="<%=path %>/qiantai/userinfo/xinxi_jiaoyuan.jsp";
-                var n="";
-                var w="550px";
-                var h="600px";
-                var s="resizable:no;help:no;status:no;scroll:yes";
-                openWin(url,n,w,h,s);
-            }
-            if(type == "2"){
-                var url="<%=path %>/qiantai/userinfo/xinxi_jiaoyuan.jsp";
-                var n="";
-                var w="550px";
-                var h="600px";
-                var s="resizable:no;help:no;status:no;scroll:yes";
-                openWin(url,n,w,h,s);
-            }
-        }
-        function wodeyuyue(){
-
-        }
-        function yuyuewode(){
-
-        }
-        <#--{-->
-        <#--<c:if test="${sessionScope.userType==null}">-->
-                <#--alert("请先登录");-->
-        <#--</c:if>-->
-        <#--<c:if test="${sessionScope.userType==1}">-->
-            <#--var url="<%=path %>/qiantai/userinfo/xinxi_jiaoyuan.jsp";-->
-            <#--var n="";-->
-            <#--var w="550px";-->
-            <#--var h="600px";-->
-            <#--var s="resizable:no;help:no;status:no;scroll:yes";-->
-            <#--openWin(url,n,w,h,s);-->
-        <#--</c:if>-->
-        <#--<c:if test="${sessionScope.userType==2}">-->
-            <#--var url="<%=path %>/qiantai/userinfo/xinxi_xueyuan.jsp";-->
-            <#--var n="";-->
-            <#--var w="550px";-->
-            <#--var h="600px";-->
-            <#--var s="resizable:no;help:no;status:no;scroll:yes";-->
-            <#--openWin(url,n,w,h,s);-->
-        <#--</c:if>-->
-        <#--}-->
-
-        <#--function wodeyuyue()-->
-        <#--{-->
-        <#--<c:if test="${sessionScope.userType==null}">-->
-                <#--alert("请先登录");-->
-        <#--</c:if>-->
-
-        <#--<c:if test="${sessionScope.userType==1}">//教员-->
-            <#--var url="/jjw/wodeyuyue_jiaoyuan.action?jiaoyuan_id=${sessionScope.jiaoyuan.id}&type=toxueyuan";//我的预约-->
-            <#--var pop=new Popup({ contentType:1,isReloadOnClose:false,width:650,height:400});-->
-            <#--pop.setContent("contentUrl",url);-->
-            <#--pop.setContent("title","我的预约");-->
-            <#--pop.build();-->
-            <#--pop.show();-->
-        <#--</c:if>-->
-        <#--<c:if test="${sessionScope.userType==2}">//学员-->
-            <#--var url="/jjw/wodeyuyue_xueyuan.action?xueyuan_id=${sessionScope.xueyuan.id}&type=tojiaoyuan";//我的预约-->
-            <#--var pop=new Popup({ contentType:1,isReloadOnClose:false,width:650,height:400});-->
-            <#--pop.setContent("contentUrl",url);-->
-            <#--pop.setContent("title","我的预约");-->
-            <#--pop.build();-->
-            <#--pop.show();-->
-        <#--</c:if>-->
-        <#--}-->
-
-
-
-        <#--function yuyuewode()-->
-        <#--{-->
-        <#--<c:if test="${sessionScope.userType==null}">-->
-                <#--alert("请先登录");-->
-        <#--</c:if>-->
-
-        <#--<c:if test="${sessionScope.userType==1}">//教员-->
-            <#--var url="/jjw/yuyuewode_jiaoyuan.action?jiaoyuan_id=${sessionScope.jiaoyuan.id}&type=tojiaoyuan";//我的预约-->
-            <#--var pop=new Popup({ contentType:1,isReloadOnClose:false,width:650,height:400});-->
-            <#--pop.setContent("contentUrl",url);-->
-            <#--pop.setContent("title","我的预约");-->
-            <#--pop.build();-->
-            <#--pop.show();-->
-        <#--</c:if>-->
-        <#--<c:if test="${sessionScope.userType==2}">//学员-->
-            <#--var url="/jjw/yuyuewode_xueyuan.action?xueyuan_id=${sessionScope.xueyuan.id}&type=toxueyuan";//我的预约-->
-            <#--var pop=new Popup({ contentType:1,isReloadOnClose:false,width:650,height:400});-->
-            <#--pop.setContent("contentUrl",url);-->
-            <#--pop.setContent("title","我的预约");-->
-            <#--pop.build();-->
-            <#--pop.show();-->
-        <#--</c:if>-->
-        <#--}-->
-
-    </script>
+    <script language="JavaScript" src="${request.contextPath}/js/jquery.min.js" type="text/javascript"></script>
+    <script language="JavaScript" src="${request.contextPath}/js/layer.js" type="text/javascript"></script>
+    <script language="JavaScript" src="${request.contextPath}/js/layer_1.1.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -175,5 +75,116 @@
         <div style="clear: both"></div>
     </div>
 </form>
+<script type="text/javascript">
+    function myxinxi(){
+        var type = '${Session["type"]!}';
+        if(type=="" || type == null){
+            layer.alert("您还没有登录",{
+                title:"提示",
+            })
+            return;
+        }
+        if(type == "1"){
+            <#--var url="${request.contextPath}/tea/teaInfo";-->
+            <#--var n="";-->
+            <#--var w="550px";-->
+            <#--var h="600px";-->
+            <#--var s="resizable:no;help:no;status:no;scroll:yes";-->
+            <#--openWin(url,n,w,h,s);-->
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['340px', '245px'], //宽高
+                content:'teacherInfo.ftl'
+            });
+        }
+        if(type == "2"){
+            var url="${request.contextPath}/stu/stuInfo";
+            var n="";
+            var w="550px";
+            var h="600px";
+            var s="resizable:no;help:no;status:no;scroll:yes";
+            openWin(url,n,w,h,s);
+        }
+    }
+    function wodeyuyue(){
+
+    }
+    function yuyuewode(){
+
+    }
+    <#--{-->
+    <#--<c:if test="${sessionScope.userType==null}">-->
+    <#--alert("请先登录");-->
+    <#--</c:if>-->
+    <#--<c:if test="${sessionScope.userType==1}">-->
+    <#--var url="${request.contextPath}/qiantai/userinfo/xinxi_jiaoyuan.jsp";-->
+    <#--var n="";-->
+    <#--var w="550px";-->
+    <#--var h="600px";-->
+    <#--var s="resizable:no;help:no;status:no;scroll:yes";-->
+    <#--openWin(url,n,w,h,s);-->
+    <#--</c:if>-->
+    <#--<c:if test="${sessionScope.userType==2}">-->
+    <#--var url="${request.contextPath}/qiantai/userinfo/xinxi_xueyuan.jsp";-->
+    <#--var n="";-->
+    <#--var w="550px";-->
+    <#--var h="600px";-->
+    <#--var s="resizable:no;help:no;status:no;scroll:yes";-->
+    <#--openWin(url,n,w,h,s);-->
+    <#--</c:if>-->
+    <#--}-->
+
+    <#--function wodeyuyue()-->
+    <#--{-->
+    <#--<c:if test="${sessionScope.userType==null}">-->
+    <#--alert("请先登录");-->
+    <#--</c:if>-->
+
+    <#--<c:if test="${sessionScope.userType==1}">//教员-->
+    <#--var url="/jjw/wodeyuyue_jiaoyuan.action?jiaoyuan_id=${sessionScope.jiaoyuan.id}&type=toxueyuan";//我的预约-->
+    <#--var pop=new Popup({ contentType:1,isReloadOnClose:false,width:650,height:400});-->
+    <#--pop.setContent("contentUrl",url);-->
+    <#--pop.setContent("title","我的预约");-->
+    <#--pop.build();-->
+    <#--pop.show();-->
+    <#--</c:if>-->
+    <#--<c:if test="${sessionScope.userType==2}">//学员-->
+    <#--var url="/jjw/wodeyuyue_xueyuan.action?xueyuan_id=${sessionScope.xueyuan.id}&type=tojiaoyuan";//我的预约-->
+    <#--var pop=new Popup({ contentType:1,isReloadOnClose:false,width:650,height:400});-->
+    <#--pop.setContent("contentUrl",url);-->
+    <#--pop.setContent("title","我的预约");-->
+    <#--pop.build();-->
+    <#--pop.show();-->
+    <#--</c:if>-->
+    <#--}-->
+
+
+
+    <#--function yuyuewode()-->
+    <#--{-->
+    <#--<c:if test="${sessionScope.userType==null}">-->
+    <#--alert("请先登录");-->
+    <#--</c:if>-->
+
+    <#--<c:if test="${sessionScope.userType==1}">//教员-->
+    <#--var url="/jjw/yuyuewode_jiaoyuan.action?jiaoyuan_id=${sessionScope.jiaoyuan.id}&type=tojiaoyuan";//我的预约-->
+    <#--var pop=new Popup({ contentType:1,isReloadOnClose:false,width:650,height:400});-->
+    <#--pop.setContent("contentUrl",url);-->
+    <#--pop.setContent("title","我的预约");-->
+    <#--pop.build();-->
+    <#--pop.show();-->
+    <#--</c:if>-->
+    <#--<c:if test="${sessionScope.userType==2}">//学员-->
+    <#--var url="/jjw/yuyuewode_xueyuan.action?xueyuan_id=${sessionScope.xueyuan.id}&type=toxueyuan";//我的预约-->
+    <#--var pop=new Popup({ contentType:1,isReloadOnClose:false,width:650,height:400});-->
+    <#--pop.setContent("contentUrl",url);-->
+    <#--pop.setContent("title","我的预约");-->
+    <#--pop.build();-->
+    <#--pop.show();-->
+    <#--</c:if>-->
+    <#--}-->
+
+</script>
 </body>
 </html>

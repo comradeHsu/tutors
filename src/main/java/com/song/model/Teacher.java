@@ -20,6 +20,49 @@ public class Teacher {
     private String phone;
     private String address;
     private String school;
+    private String shenfen;
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    private String photo;
+
+    public String getKecheng() {
+        return kecheng;
+    }
+
+    public void setKecheng(String kecheng) {
+        this.kecheng = kecheng;
+    }
+
+    private String kecheng;
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getShenfen() {
+        return shenfen;
+    }
+
+    public void setShenfen(String shenfen) {
+        this.shenfen = shenfen;
+    }
+
+    public String getJianjie() {
+        return jianjie;
+    }
+
+    public void setJianjie(String jianjie) {
+        this.jianjie = jianjie;
+    }
+
+    private String jianjie;
 
     public String getDescription() {
         return description;

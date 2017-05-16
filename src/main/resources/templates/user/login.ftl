@@ -13,16 +13,152 @@
     <script type='text/javascript' src='${request.contextPath}/dwr/util.js'></script>
 
     <script type="text/javascript">
-        function reg_xueyuan()
-        {
-            var url="${request.contextPath}/reg/regStudent";
-            var n="";
-            var w="550px";
-            var h="600px";
-            var s="resizable:no;help:no;status:no;scroll:yes";
-            openWin(url,n,w,h,s);
-        }
         function reg_jiaoyuan()
+        {
+            <#--var url="${request.contextPath}/reg/regStudent";-->
+            <#--var n="center";-->
+            <#--var w="550px";-->
+            <#--var h="600px";-->
+            <#--var s="resizable:no;help:no;status:no;scroll:yes";-->
+            <#--window.open(url,n,w,h,s);-->
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['550px', '600px'], //宽高
+                content:'<form action="${request.contextPath}/jiaoyuanAdd.action" name="form1" method="post">'
+                +'<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
+                +'<tr>'
+                +'        <th height="40" colspan="2" bgcolor="#FFFFFF" class="f12b-red" style="font-size: 11px;">'
+                +'        教 员 注 册'
+                +'    </th>'
+                +'    </tr>'
+                +'   <tr>'
+                +'<td width="20%" height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                +'用户名：'
+                +'</td>'
+                +'<td width="80%" bgcolor="#FFFFFF"> &nbsp;'
+                +'<input type="text" name="name"/>'
+                +'</td>'
+                +'</tr>'
+                +'<tr>'
+                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                +' 密 码：'
+                +'</td>'
+                +' <td bgcolor="#FFFFFF"> &nbsp;'
+                +'<input type="password" name="pwd"/>'
+                +'</td>'
+                +'</tr>'
+                +'<tr>'
+                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                +'姓名：'
+                +'</td>'
+                +'<td bgcolor="#FFFFFF"> &nbsp;'
+                +'<input type="text" name="rname"/>'
+                +'</td>'
+                +'</tr>'
+                +' <tr>'
+                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                +'性别：'
+                +'</td>'
+                +'<td bgcolor="#FFFFFF">'
+                +' &nbsp;'
+                +'<input type="radio" name="sex" value="男" checked="checked"/>男'
+                +'&nbsp;&nbsp;&nbsp;&nbsp;'
+                +'<input type="radio" name="sex" value="女"/>女'
+                +' </td>'
+                +' </tr>'
+                +' <tr>'
+                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                +' 年龄：'
+                +'</td>'
+                +'<td bgcolor="#FFFFFF"> &nbsp;'
+                +'<input type="text" name="age"/>'
+                +'</td>'
+                +' </tr>'
+                +' <tr>'
+                +' <td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                +' 联系方式：'
+                +'</td>'
+                +'<td bgcolor="#FFFFFF"> &nbsp;'
+                +' <input type="text" name="phone"/>'
+                +'</td>'
+                +'</tr>'
+                +'<tr>'
+                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                +'住址：'
+                +' </td>'
+                +'<td bgcolor="#FFFFFF">'
+                +' &nbsp;'
+                +'<input type="text" name="address"/>'
+                +'</td>'
+                +'</tr>'
+                +' <tr>'
+                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                +' 身份：'
+                +'</td>'
+                +'<td bgcolor="#FFFFFF">'
+                +' &nbsp;'
+                +'<input type="radio" name="shenfen" value="学生" style="border: 0"/><font size="2">在校大学生(研究生)</font>'
+                +'<input type="radio" name="shenfen" value="老师" style="border: 0" checked="checked"/><font size="2">教师(在职/进修/离职/退休)</font>'
+
+                +'</td>'
+                +' </tr>'
+                +' <tr>'
+                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                +'学历：'
+                +' </td>'
+                +'<td bgcolor="#FFFFFF">'
+                +' &nbsp;'
+                +' <input type="text" name="school"/>'
+                +' </td>'
+                +'</tr>'
+                +' <tr>'
+                +' <td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                +' 可辅导科目：'
+                +'</td>'
+                +'<td bgcolor="#FFFFFF">'
+                +' &nbsp;'
+                +'<input type="text" name="kecheng"/>'
+                +'</td>'
+                +'</tr>'
+                +' <tr>'
+                +' <td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                +' 自我介绍：'
+                +'</td>'
+                +'<td bgcolor="#FFFFFF">'
+                +' &nbsp;'
+                +' <!--<FCK:editor instanceName="ziwojieshao"  basePath="/fckeditor" width="300" height="100" value="请输入内容" toolbarSet="Basic">'
+                +' </FCK:editor> -->'
+                +'<textarea rows="" cols="" style="width: 300px;height: 100px;" name="jieshao"></textarea>'
+                +'</td>'
+                +'</tr>'
+                +'<tr>'
+                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                +' 照片：'
+                +'</td>'
+                +'<td bgcolor="#FFFFFF">'
+                +'&nbsp;'
+                +'<div class="sis">'
+                +'<img class="touxiang"alt="" src="/supervise/static/image/17.jpg" >'
+                +'<input type="hidden" class="tximg">'
+                +'</div>'
+                +'</td>'
+                +'</tr>'
+                +'<tr>'
+                +'<td height="30" align="right" bgcolor="#F9F9F9">'
+                +' &nbsp;'
+                +'</td>'
+                +'<td bgcolor="#FFFFFF">'
+                +' &nbsp;'
+                +'<input type="button" value="确定" onclick="check1();"/>'
+                +' <input type="button" class="layui-layer-close" value="取消" onclick="closeOpen()"/>'
+                +' </td>'
+                +' </tr>'
+                +'</table>'
+                +'</form>'
+            });
+        }
+        function reg_xueyuan()
         {
             var url="${request.contextPath}/reg/regTeacher";
             var n="";
@@ -68,7 +204,10 @@
             }
 
         }
-
+        $(".touxiang").click(function(){
+            var input = '<input type="file" class="tximg">';
+            $(".sis").html(input);
+        });
     </script>
 </head>
 

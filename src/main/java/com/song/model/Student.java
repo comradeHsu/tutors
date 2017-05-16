@@ -21,6 +21,26 @@ public class Student {
     private String phone;
     private String address;
     private String required;
+    private String qingkuang;
+
+    public String getQingkuang() {
+        return qingkuang;
+    }
+
+    public void setQingkuang(String qingkuang) {
+        this.qingkuang = qingkuang;
+    }
+
+    public String getKecheng() {
+        return kecheng;
+    }
+
+    public void setKecheng(String kecheng) {
+        this.kecheng = kecheng;
+    }
+
+    private String kecheng;
+
 
     public Long getId() {
         return id;

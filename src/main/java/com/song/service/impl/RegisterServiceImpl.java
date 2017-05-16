@@ -16,9 +16,9 @@ import javax.annotation.Resource;
 public class RegisterServiceImpl implements RegisterService {
     @Resource
     StudentRepository studentRepository;
+
     @Override
-    @Transactional
-    public Student register(Student user) throws ServiceException {
+    @Transactional public Student register(Student user) throws ServiceException {
         String userName = user.getName();
         Student student = studentRepository.findByName(userName);
         if(student != null)

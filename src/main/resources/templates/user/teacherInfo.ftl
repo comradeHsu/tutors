@@ -7,50 +7,43 @@
     <meta http-equiv="expires" content="0" />
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3" />
     <meta http-equiv="description" content="This is my page" />
-    <script language="JavaScript" src="${request.contextPath}/js/jquery.min.js" type="text/javascript"></script>
-    <script language="JavaScript" src="${request.contextPath}/js/layer.js" type="text/javascript"></script>
+    <script type="text/javascript" src="${request.contextPath}/js/popup_shuaxin_no.js"></script>
     <script language="javascript">
         function closeOpen()
         {
             window.returnValue=false;
             window.close();
         }
-        function check1() {
-            var name = $("#name").val();
-            var pwd = $("#pwd").val();
-            if(name == "" || name == null)
+        function check1()
+        {
+            if(document.form1.loginname.value=="")
             {
                 alert("请输入用户名");
                 return false;
             }
-            if(pwd =="" || pwd == null)
+            if(document.form1.loginpw.value=="")
             {
                 alert("请输入密码");
                 return false;
             }
-            var data = $("#from1").serialize();
-            $.ajax({
-                url:"${request.contextPath}/reg/register",
-                type:"post",
-                data:data,
-                processData:false,
-                contentType:false,
-                success:function(data){
-                    layer.alert(data.msg,{
-                        title:"提示",
-                    })
-                    $("#ii").click();
-                },
-            });
+            document.form1.submit();
+        }
+        function up()
+        {
+            var pop=new Popup({ contentType:1,isReloadOnClose:false,width:400,height:200});
+            pop.setContent("contentUrl","${request.contextPath}/upload/upload.jsp");
+            pop.setContent("title","文件上传");
+            pop.build();
+            pop.show();
         }
     </script>
 </head>
 <body>
-<form action="${request.contextPath}/reg/register" id="form1" name="form1" method="post">
+<form action="${request.contextPath}/jiaoyuanEdit.action" name="form1" method="post">
     <table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
         <tr>
             <th height="40" colspan="2" bgcolor="#FFFFFF" class="f12b-red" style="font-size: 11px;">
-                学 员 注 册
+                我 的 信 息
             </th>
         </tr>
         <tr>
@@ -59,7 +52,7 @@
             </td>
             <td width="80%" bgcolor="#FFFFFF">
                 &nbsp;
-                <input type="text" id="name" name="name"/>
+                <input type="text" name="loginname" value="${session['user']!}" readonly="readonly"/>
             </td>
         </tr>
         <tr>
@@ -68,7 +61,7 @@
             </td>
             <td bgcolor="#FFFFFF">
                 &nbsp;
-                <input type="password" id="pwd" name="pwd"/>
+                <input type="password" name="loginpw" value="${sessionScope.jiaoyuan.loginpw }"/>
             </td>
         </tr>
         <tr>
@@ -77,7 +70,7 @@
             </td>
             <td bgcolor="#FFFFFF">
                 &nbsp;
-                <input type="text" name="realName"/>
+                <input type="text" name="name" value="${sessionScope.jiaoyuan.name }"/>
             </td>
         </tr>
         <tr>
@@ -97,7 +90,7 @@
             </td>
             <td bgcolor="#FFFFFF">
                 &nbsp;
-                <input type="text" name="age"/>
+                <input type="text" name="age" value="${sessionScope.jiaoyuan.age }"/>
             </td>
         </tr>
         <tr>
@@ -106,7 +99,7 @@
             </td>
             <td bgcolor="#FFFFFF">
                 &nbsp;
-                <input type="text" name="phone"/>
+                <input type="text" name="tel" value="${sessionScope.jiaoyuan.tel }"/>
             </td>
         </tr>
         <tr>
@@ -115,38 +108,57 @@
             </td>
             <td bgcolor="#FFFFFF">
                 &nbsp;
-                <input type="text" name="address"/>
+                <input type="text" name="address" value="${sessionScope.jiaoyuan.address }"/>
             </td>
         </tr>
         <tr>
             <td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">
-                辅导科目：
+                身份：
             </td>
             <td bgcolor="#FFFFFF">
                 &nbsp;
-                <input type="text" name="kecheng"/>
+                <input type="radio" name="shenfen" value="daxuesheng" style="border: 0"/><font size="2">在校大学生(研究生)</font>
+                <input type="radio" name="shenfen" value="laoshi" style="border: 0" checked="checked"/><font size="2">教师(在职/进修/离职/退休)</font>
+
             </td>
         </tr>
         <tr>
             <td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">
-                学员情况：
+                学历：
             </td>
             <td bgcolor="#FFFFFF">
                 &nbsp;
-               <!-- <FCK:editor instanceName="xueyuanqingkuang"  basePath="/fckeditor" width="300" height="100" value="请输入内容" toolbarSet="Basic">
-                </FCK:editor> -->
-                <textarea rows="" cols="" style="width: 300px;height: 100px;" name="qingkuang"></textarea>
+                <input type="text" name="xueli" value="${sessionScope.jiaoyuan.xueli }"/>
             </td>
         </tr>
         <tr>
             <td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">
-                教员要求：
+                可辅导科目：
             </td>
             <td bgcolor="#FFFFFF">
                 &nbsp;
-                <!--<FCK:editor instanceName="jiaoyuanyaoqiu"  basePath="/fckeditor" width="300" height="100" value="请输入内容" toolbarSet="Basic">
-                </FCK:editor> -->
-                <textarea rows="" cols="" style="width: 300px;height: 100px;" name="required"></textarea>
+                <input type="text" name="kefudaokemu" value="${sessionScope.jiaoyuan.kefudaokemu }"/>
+            </td>
+        </tr>
+        <tr>
+            <td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">
+                自我介绍：
+            </td>
+            <td bgcolor="#FFFFFF">
+                &nbsp;
+                <FCK:editor instanceName="ziwojieshao"  basePath="/fckeditor" width="300" height="100" value="${sessionScope.jiaoyuan.ziwojieshao }" toolbarSet="Basic">
+                </FCK:editor>
+            </td>
+        </tr>
+        <tr>
+            <td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">
+                照片：
+            </td>
+            <td bgcolor="#FFFFFF">
+                &nbsp;
+                <input type="text" name="fujian" id="fujian" size="30" readonly="readonly" value="${sessionScope.jiaoyuan.fujian }"/>
+                <input type="button" value="上传" onclick="up()"/>
+                <input type="hidden" name="fujianYuanshiming" id="fujianYuanshiming"/>
             </td>
         </tr>
         <tr>
@@ -155,6 +167,7 @@
             </td>
             <td bgcolor="#FFFFFF">
                 &nbsp;
+                <input type="hidden" name="id" value="${sessionScope.jiaoyuan.id }"/>
                 <input type="button" value="确定" onclick="check1();"/>
                 <input type="button" value="取消" onclick="closeOpen()"/>
             </td>

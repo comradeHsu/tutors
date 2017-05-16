@@ -8,8 +8,10 @@
     <meta http-equiv="description" content="This is my page" />
 
     <link href="${request.contextPath}/css/layout.css" type="text/css" rel="stylesheet" />
+    <link href="${request.contextPath}/css/layer.css" type="text/css" rel="stylesheet" />
 
     <script language="JavaScript" src="${request.contextPath}/js/public.js" type="text/javascript"></script>
+    <script language="JavaScript" src="${request.contextPath}/js/layer.js" type="text/javascript"></script>
     <script type="text/javascript">
 
     </script>

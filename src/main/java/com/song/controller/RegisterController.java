@@ -24,14 +24,14 @@ public class RegisterController {
     @Autowired
     RegisterService registerService;
 
-    @RequestMapping(value = "/registerLogin", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView regTeacher(@ModelAttribute Student user, HttpServletRequest request){
         HttpSession session = request.getSession();
         ModelAndView view = new ModelAndView();
         try {
             Student student = registerService.register(user);
             session.setAttribute("user",user);
-            view.setViewName("/user/index");
+            return new ModelAndView("redirect:/index");
         } catch (ServiceException e) {
             view.addObject("msg",e.getMessage());
             view.setViewName("/user/index");

@@ -18,7 +18,7 @@
             <A href="${request.contextPath}/tea/allTea">我要请家教</A>
         </li>
         <li class="thisclass">
-            <A href="${request.contextPath}/xueyuanAll.action">我要做家教</A>
+            <A href="${request.contextPath}/allStu">我要做家教</A>
         </li>
         <li class="thisclass">
             <A href="#" onclick="myxinxi()">我的信息</A>

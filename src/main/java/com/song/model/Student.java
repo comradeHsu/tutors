@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2017/5/12.
@@ -13,6 +15,8 @@ public class Student {
     @Id
     @GeneratedValue
     private Long id;
+    @NotNull
+    @Column(unique = true)
     private String name;
     private String pwd;
     private String realName;
@@ -22,6 +26,16 @@ public class Student {
     private String address;
     private String required;
     private String qingkuang;
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    private Date createDate;
 
     public String getQingkuang() {
         return qingkuang;

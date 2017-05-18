@@ -34,16 +34,16 @@
                             <td width="30%">要求辅导科目</td>
                             <td width="10%">详细信息</td>
                         </tr>
-                        <s:iterator value="#request.xueyuanList" id="xueyuan">
+                        <#list list as l>
                             <tr align='center' bgcolor="#FFFFFF" height="22">
-                                <td><s:property value="#xueyuan.name"/></td>
-                                <td><s:property value="#xueyuan.sex"/></td>
-                                <td><s:property value="#xueyuan.age"/></td>
-                                <td><s:property value="#xueyuan.address"/></td>
-                                <td><s:property value="#xueyuan.fudaokemu"/></td>
+                                <td>${l.realName!}</td>
+                                <td>${l.sex!}</td>
+                                <td>${l.age!}</td>
+                                <td>${l.address!}</td>
+                                <td>${l.kecheng!}</td>
                                 <td><a href="${request.contextPath}/xueyuanDetail_qian.action?id=<s:property value="#xueyuan.id"/>">详细信息</a></td>
                             </tr>
-                        </s:iterator>
+                        </#list>
                     </table>
                 </div>
             </div>

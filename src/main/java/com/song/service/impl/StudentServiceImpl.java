@@ -3,11 +3,13 @@ package com.song.service.impl;
 import com.song.dao.StudentRepository;
 import com.song.model.Student;
 import com.song.service.StudentService;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/5/13.
@@ -27,5 +29,10 @@ public class StudentServiceImpl implements StudentService{
         HttpSession session = request.getSession();
         session.setAttribute("user", student);
         return rs;
+    }
+
+    @Override
+    public List<Student> findAllSrudent() {
+        return studentRepository.findAll(new Sort(Sort.Direction.ASC,"createDate"));
     }
 }

@@ -25,7 +25,7 @@ public class RegisterController {
     @Autowired
     RegisterService registerService;
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
     @ResponseBody
     public String regTeacher(@ModelAttribute Student user, HttpServletRequest request){
         String msg = "";

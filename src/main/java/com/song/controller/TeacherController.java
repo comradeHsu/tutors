@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -34,13 +35,13 @@ public class TeacherController {
         return "/user/teacherInfo";
     }
 
-    @RequestMapping(value = "/reg",method = RequestMethod.POST)
+    @RequestMapping(value = "/reg",method = RequestMethod.GET)
     @ResponseBody
-    public String reg(@ModelAttribute Teacher user){
+    public String reg(Teacher da){
         StringBuilder msg = new StringBuilder();
         try {
-            Teacher teacher = teacherService.register(user);
-            msg.append("注册成功！");
+            Teacher teacher = teacherService.register(da);
+            msg.append("注册成功");
         } catch (ServiceException e) {
             msg.append(e.getMessage());
         }
@@ -48,7 +49,12 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(Model model,String name,String pwd){
+    public String login(Model model, String name, String pwd, HttpServletRequest request){
+        boolean rs = teacherService.login(request,name,pwd);
+        if(rs)
+            model.addAttribute("student",request.getSession().getAttribute("user"));
+        else
+            model.addAttribute("msg","账号或密码不正确！");
         return "/user/index";
     }
 }

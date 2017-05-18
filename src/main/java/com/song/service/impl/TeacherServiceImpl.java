@@ -2,12 +2,15 @@ package com.song.service.impl;
 
 import com.song.dao.TeacherRepoditory;
 import com.song.exception.ServiceException;
+import com.song.model.Student;
 import com.song.model.Teacher;
 import com.song.service.TeacherService;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -31,4 +34,18 @@ public class TeacherServiceImpl implements TeacherService{
             throw new ServiceException(1,"用户名已存在");
         return teacherRepoditory.save(user);
     }
+
+    @Override
+    public Boolean login(HttpServletRequest request, String name, String pwd) {
+        boolean rs = false;
+        Teacher student = teacherRepoditory.findByName(name);
+        if(student == null || !pwd.equals(student.getPwd()))
+            return rs;
+        rs = true;
+        HttpSession session = request.getSession();
+        session.setAttribute("user", student);
+        return rs;
+    }
+
+
 }

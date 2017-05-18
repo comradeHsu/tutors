@@ -25,7 +25,7 @@
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
                 area: ['550px', '600px'], //宽高
-                content:'<form action="${request.contextPath}/jiaoyuanAdd.action" name="form1" method="post">'
+                content:'<form action="${request.contextPath}/jiaoyuanAdd.action" id="form2" name="form1" method="post">'
                 +'<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
                 +'<tr>'
                 +'        <th height="40" colspan="2" bgcolor="#FFFFFF" class="f12b-red" style="font-size: 11px;">'
@@ -164,121 +164,122 @@
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
                 area: ['550px', '600px'], //宽高
-                content:+'<form action="${request.contextPath}/reg/register" id="form1" name="form1" method="post">'
-                +'<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
-                +'<tr>'
-                +'<th height="40" colspan="2" bgcolor="#FFFFFF" class="f12b-red" style="font-size: 11px;">'
-                +'学 员 注 册'
-                +'</th>'
-                +'</tr>'
-                +'<tr>'
-                +'<td width="20%" height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
-                +'用户名：'
-                +'</td>'
-                +'<td width="80%" bgcolor="#FFFFFF">'
-                +'&nbsp;'
-                +'<input type="text" id="name" name="name"/>'
-                +'</td>'
-                +'</tr>'
-                +'<tr>'
-                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
-                +'密 码：'
-                +'</td>'
-                +'<td bgcolor="#FFFFFF">'
-                +'&nbsp;'
-                +' <input type="password" id="pwd" name="pwd"/>'
-                +' </td>'
-                +'</tr>'
-                +'<tr>'
-                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
-                +'姓名：'
-                +'</td>'
-                +'<td bgcolor="#FFFFFF">'
-                +'&nbsp;'
-                +'<input type="text" name="realName"/>'
-                +'</td>'
-                +'</tr>'
-                +'<tr>'
-                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
-                +'性别：'
-                +'</td>'
-                +'<td bgcolor="#FFFFFF">'
-                +'&nbsp;'
-                +' <input type="radio" name="sex" value="男" checked="checked"/>男'
-                +'&nbsp;&nbsp;&nbsp;&nbsp;'
-                +'<input type="radio" name="sex" value="女"/>女'
-                +'</td>'
-                +'</tr>'
-                +'<tr>'
-                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
-                +'年龄：'
-                +'</td>'
-                +'<td bgcolor="#FFFFFF">'
-                +' &nbsp;'
-                +' <input type="text" name="age"/>'
-                +'</td>'
-                +'</tr>'
-                +'<tr>'
-                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
-                +'联系方式：'
-                +'</td>'
-                +'<td bgcolor="#FFFFFF">'
-                +' &nbsp;'
-                +'<input type="text" name="phone"/>'
-                +'</td>'
-                +'</tr>'
-                +'<tr>'
-                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
-                +'住址：'
-                +'</td>'
-                +'<td bgcolor="#FFFFFF">'
-                +'&nbsp;'
-                +'<input type="text" name="address"/>'
-                +'</td>'
-                +'</tr>'
-                +'<tr>'
-                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
-                +'辅导科目：'
-                +'</td>'
-                +'<td bgcolor="#FFFFFF">'
-                +' &nbsp;'
-                +'<input type="text" name="kecheng"/>'
-                +'</td>'
-                +'</tr>'
-                +'<tr>'
-                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
-                +'学员情况：'
-                +' </td>'
-                +'<td bgcolor="#FFFFFF">'
-                +' &nbsp;'
-                +'<!-- <FCK:editor instanceName="xueyuanqingkuang"  basePath="/fckeditor" width="300" height="100" value="请输入内容" toolbarSet="Basic">'
-                +'</FCK:editor> -->'
-                +'<textarea rows="" cols="" style="width: 300px;height: 100px;" name="qingkuang"></textarea>'
-                +'</td>'
-                +' </tr>'
-                +' <tr>'
-                +'<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
-                +' 教员要求：'
-                +' </td>'
-                +' <td bgcolor="#FFFFFF">'
-                +'&nbsp;'
-                +'<!--<FCK:editor instanceName="jiaoyuanyaoqiu"  basePath="/fckeditor" width="300" height="100" value="请输入内容" toolbarSet="Basic">'
-                +'</FCK:editor> -->'
-                +'<textarea rows="" cols="" style="width: 300px;height: 100px;" name="required"></textarea>'
-                +' </td>'
-                +'</tr>'
-                +' <tr>'
-                +'<td height="30" align="right" bgcolor="#F9F9F9">'
-                +' &nbsp;'
-                +'</td>'
-                +'<td bgcolor="#FFFFFF">'
-                +' &nbsp;'
-                +'  <input type="button" value="确定" onclick="check1();"/>'
-                +'<input type="button" value="取消" onclick="closeOpen()"/>'
-                +'</td>'
-                +' </tr>'
-                +' </table>'
-                +'</form>'
+                content: +'<form action="${request.contextPath}/reg/register" id="form1" name="form1" method="post">'
+                + '<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
+                + '<tr>'
+                + '<th height="40" colspan="2" bgcolor="#FFFFFF" class="f12b-red" style="font-size: 11px;">'
+                + '学 员 注 册'
+                + '</th>'
+                + '</tr>'
+                + '<tr>'
+                + '<td width="20%" height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                + '用户名：'
+                + '</td>'
+                + '<td width="80%" bgcolor="#FFFFFF">'
+                + '&nbsp;'
+                + '<input type="text" id="name" name="name"/>'
+                + '</td>'
+                + '</tr>'
+                + '<tr>'
+                + '<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                + '密 码：'
+                + '</td>'
+                + '<td bgcolor="#FFFFFF">'
+                + '&nbsp;'
+                + ' <input type="password" id="pwd" name="pwd"/>'
+                + ' </td>'
+                + '</tr>'
+                + '<tr>'
+                + '<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                + '姓名：'
+                + '</td>'
+                + '<td bgcolor="#FFFFFF">'
+                + '&nbsp;'
+                + '<input type="text" name="realName"/>'
+                + '</td>'
+                + '</tr>'
+                + '<tr>'
+                + '<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                + '性别：'
+                + '</td>'
+                + '<td bgcolor="#FFFFFF">'
+                + '&nbsp;'
+                + ' <input type="radio" name="sex" value="男" checked="checked"/>男'
+                + '&nbsp;&nbsp;&nbsp;&nbsp;'
+                + '<input type="radio" name="sex" value="女"/>女'
+                + '</td>'
+                + '</tr>'
+                + '<tr>'
+                + '<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                + '年龄：'
+                + '</td>'
+                + '<td bgcolor="#FFFFFF">'
+                + ' &nbsp;'
+                + ' <input type="text" name="age"/>'
+                + '</td>'
+                + '</tr>'
+                + '<tr>'
+                + '<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                + '联系方式：'
+                + '</td>'
+                + '<td bgcolor="#FFFFFF">'
+                + ' &nbsp;'
+                + '<input type="text" name="phone"/>'
+                + '</td>'
+                + '</tr>'
+                + '<tr>'
+                + '<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                + '住址：'
+                + '</td>'
+                + '<td bgcolor="#FFFFFF">'
+                + '&nbsp;'
+                + '<input type="text" name="address"/>'
+                + '</td>'
+                + '</tr>'
+                + '<tr>'
+                + '<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                + '辅导科目：'
+                + '</td>'
+                + '<td bgcolor="#FFFFFF">'
+                + ' &nbsp;'
+                + '<input type="text" name="kecheng"/>'
+                + '</td>'
+                + '</tr>'
+                + '<tr>'
+                + '<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                + '学员情况：'
+                + ' </td>'
+                + '<td bgcolor="#FFFFFF">'
+                + ' &nbsp;'
+                + '<!-- <FCK:editor instanceName="xueyuanqingkuang"  basePath="/fckeditor" width="300" height="100" value="请输入内容" toolbarSet="Basic">'
+                + '</FCK:editor> -->'
+                + '<textarea rows="" cols="" style="width: 300px;height: 100px;" name="qingkuang"></textarea>'
+                + '</td>'
+                + ' </tr>'
+                + ' <tr>'
+                + '<td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                + ' 教员要求：'
+                + ' </td>'
+                + ' <td bgcolor="#FFFFFF">'
+                + '&nbsp;'
+                + '<!--<FCK:editor instanceName="jiaoyuanyaoqiu"  basePath="/fckeditor" width="300" height="100" value="请输入内容" toolbarSet="Basic">'
+                + '</FCK:editor> -->'
+                + '<textarea rows="" cols="" style="width: 300px;height: 100px;" name="required"></textarea>'
+                + ' </td>'
+                + '</tr>'
+                + ' <tr>'
+                + '<td height="30" align="right" bgcolor="#F9F9F9">'
+                + ' &nbsp;'
+                + '</td>'
+                + '<td bgcolor="#FFFFFF">'
+                + ' &nbsp;'
+                + '  <input type="button" value="确定" onclick="reg()"/>'
+                + '<input type="button" class="layui-layer-close" value="取消" onclick="closeOpen()"/>'
+                + '</td>'
+                + ' </tr>'
+                + ' </table>'
+                + '</form>'
+            });
         }
 //        function login()
 //        {
@@ -338,10 +339,11 @@
                 });
                 return false;
             }
-            var data = $("#from1").serialize();
+            var data = $("#form2").serialize();
+            console.log(data);
             $.ajax({
                 url:"${request.contextPath}/tea/reg",
-                type:"post",
+                type:"get",
                 data:data,
                 processData:false,
                 contentType:false,
@@ -355,7 +357,40 @@
                 },
             });
         }
-
+        function reg() {
+            var name = $("#name").val();
+            var pwd = $("#pwd").val();
+            if(name == "" || name == null)
+            {
+                layer.alert("请输入用户名",{
+                    title:"提示"
+                });
+                return false;
+            }
+            if(pwd =="" || pwd == null)
+            {
+                layer.alert("请输入密码",{
+                    title:"提示"
+                });
+                return false;
+            }
+            var data = $("from").serialize();
+            $.ajax({
+                url:"${request.contextPath}/tea/register",
+                type:"get",
+                data:data,
+                processData:false,
+                contentType:false,
+                success:function(data){
+                    layer.alert(data,{
+                        title:"提示",
+                    })
+                    if(data == "注册成功"){
+                        $('#close').click();
+                    }
+                },
+            });
+        }
         function login(){
             var type = $("#type").val();
             if(type=="-1"){
@@ -367,7 +402,7 @@
                 $("#login").attr("action","${request.contextPath}/stu/login");
             }
             if(type=="2"){
-                $("#login").attr("action","")
+                $("#login").attr("action","${request.contextPath}/tea/login")
             }
         }
     </script>
@@ -385,6 +420,7 @@
                 <td align="right" width="31%" height="30" style="font-size: 12px;">用户名：</td>
                 <td align="left" width="69%"><input class="input" id="userName" title="用户名不能为空" style="width: 120px;" name="userName" type="text" /></td>
             </tr>
+            <tr>${msg!}</tr>
             <tr>
                 <td align="right" height="30" style="font-size: 12px;">密　码：</td>
                 <td align="left"><input class="input" title="密码不能为空" type="password" style="width: 120px;" name="userPw"/></td>

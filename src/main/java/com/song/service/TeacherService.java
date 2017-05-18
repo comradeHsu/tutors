@@ -2,6 +2,7 @@ package com.song.service;
 
 import com.song.exception.ServiceException;
 import com.song.model.Teacher;
+import org.springframework.data.domain.Page;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -15,4 +16,6 @@ public interface TeacherService {
     Teacher register(Teacher user) throws ServiceException;
 
     Boolean login(HttpServletRequest request, String name, String pwd);
+
+    Page<Teacher> getFive();
 }

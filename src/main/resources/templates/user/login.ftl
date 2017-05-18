@@ -399,18 +399,20 @@
                 })
             }
             if(type == "1"){
-                $("#login").attr("action","${request.contextPath}/stu/login");
+                $("#login").attr("action","${request.contextPath}/tea/login");
             }
             if(type=="2"){
-                $("#login").attr("action","${request.contextPath}/tea/login")
+                $("#login").attr("action","${request.contextPath}/stu/login")
             }
+            $("#login").submit();
         }
     </script>
 </head>
 
 <body>
 
-
+<#if Session["user"] ??>
+<#else>
     <form action="" id="login" name="userLogin" method="post">
         <table cellspacing="0" cellpadding="0" width="98%" align="center" border="0">
             <tr>
@@ -418,12 +420,12 @@
             </tr>
             <tr>
                 <td align="right" width="31%" height="30" style="font-size: 12px;">用户名：</td>
-                <td align="left" width="69%"><input class="input" id="userName" title="用户名不能为空" style="width: 120px;" name="userName" type="text" /></td>
+                <td align="left" width="69%"><input class="input" id="userName" title="用户名不能为空" style="width: 120px;" name="name" type="text" /></td>
             </tr>
             <tr>${msg!}</tr>
             <tr>
                 <td align="right" height="30" style="font-size: 12px;">密　码：</td>
-                <td align="left"><input class="input" title="密码不能为空" type="password" style="width: 120px;" name="userPw"/></td>
+                <td align="left"><input class="input" title="密码不能为空" type="password" style="width: 120px;" name="pwd"/></td>
             </tr>
             <tr>
                 <td align="right" height="30" style="font-size: 12px;">类　型：</td>
@@ -448,17 +450,18 @@
             </tr>
         </table>
     </form>
-    <#if type??>
-<#if type=="1">
+    </#if>
+    <#if Session["type"]??>
+<#if Session["type"]=="1">
     <br/><br/>
-    欢迎您：<s:property value="#session.jiaoyuan.loginname"/>(教员) &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="${request.contextPath}/jiaoyuanLogout.action">安全退出</a> &nbsp;&nbsp;&nbsp;&nbsp;
+    欢迎您：${Session["user"].rname!}(教员) &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="${request.contextPath}/loginOut">安全退出</a> &nbsp;&nbsp;&nbsp;&nbsp;
     <br/><br/><br/>
 </#if>
-<#if type=="2">
+<#if Session["type"]=="2">
     <br/><br/>
-    欢迎您：<s:property value="#session.xueyuan.loginname"/>(学员) &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="${request.contextPath}/xueyuanLogout.action">安全退出</a> &nbsp;&nbsp;&nbsp;&nbsp;
+    欢迎您：${Session["user"].realName!}(学员) &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="${request.contextPath}/loginOut">安全退出</a> &nbsp;&nbsp;&nbsp;&nbsp;
     <br/><br/><br/>
 </#if>
 </#if>

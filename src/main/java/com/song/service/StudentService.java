@@ -1,6 +1,7 @@
 package com.song.service;
 
 import com.song.model.Student;
+import org.springframework.data.domain.Page;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -11,5 +12,6 @@ import java.util.List;
 public interface StudentService {
 
     boolean login(HttpServletRequest request, String name, String pwd);
-    List<Student> findAllSrudent();
+    List<Student> findAllStudent();
+    Page<Student> getFive();
 }

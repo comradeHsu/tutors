@@ -3,6 +3,8 @@ package com.song.service.impl;
 import com.song.dao.StudentRepository;
 import com.song.model.Student;
 import com.song.service.StudentService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ import java.util.List;
  */
 @Service
 public class StudentServiceImpl implements StudentService{
+
     @Resource
     StudentRepository studentRepository;
 
@@ -28,11 +31,17 @@ public class StudentServiceImpl implements StudentService{
         rs = true;
         HttpSession session = request.getSession();
         session.setAttribute("user", student);
+        session.setAttribute("type", "2");
         return rs;
     }
 
     @Override
-    public List<Student> findAllSrudent() {
+    public List<Student> findAllStudent() {
         return studentRepository.findAll(new Sort(Sort.Direction.ASC,"createDate"));
+    }
+
+    @Override
+    public Page<Student> getFive() {
+        return studentRepository.findAll(new PageRequest(0,5));
     }
 }

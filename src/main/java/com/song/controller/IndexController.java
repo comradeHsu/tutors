@@ -12,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by Administrator on 2017/5/12.
  */
@@ -30,5 +33,12 @@ public class IndexController {
         model.addAttribute("list",list.getContent());
         model.addAttribute("stu",stu.getContent());
         return "/user/index";
+    }
+
+    @RequestMapping(value = "/loginOut",method = RequestMethod.GET)
+    public String loginOut(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "redirect:/index";
     }
 }

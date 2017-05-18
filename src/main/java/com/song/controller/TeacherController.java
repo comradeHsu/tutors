@@ -1,9 +1,12 @@
 package com.song.controller;
 
 import com.song.exception.ServiceException;
+import com.song.model.Student;
 import com.song.model.Teacher;
+import com.song.service.StudentService;
 import com.song.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +25,9 @@ import java.util.List;
 public class TeacherController {
     @Autowired
     TeacherService teacherService;
+
+    @Autowired
+    StudentService studentService;
 
     @RequestMapping("/allTea")
     public String allTea(Model model){
@@ -51,11 +57,15 @@ public class TeacherController {
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login(Model model, String name, String pwd, HttpServletRequest request){
         boolean rs = teacherService.login(request,name,pwd);
+        Page<Student> stu = studentService.getFive();
+        Page<Teacher> list = teacherService.getFive();
         if(rs) {
             model.addAttribute("student", request.getSession().getAttribute("user"));
-            model.addAttribute("type", "1");
-        }else
-            model.addAttribute("msg","账号或密码不正确！");
+        }else {
+            model.addAttribute("msg", "账号或密码不正确！");
+        }
+        model.addAttribute("list",list.getContent());
+        model.addAttribute("stu",stu.getContent());
         return "/user/index";
     }
 }

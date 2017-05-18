@@ -5,6 +5,8 @@ import com.song.exception.ServiceException;
 import com.song.model.Student;
 import com.song.model.Teacher;
 import com.song.service.TeacherService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +46,13 @@ public class TeacherServiceImpl implements TeacherService{
         rs = true;
         HttpSession session = request.getSession();
         session.setAttribute("user", student);
+        session.setAttribute("type", "1");
         return rs;
+    }
+
+    @Override
+    public Page<Teacher> getFive() {
+        return teacherRepoditory.findAll(new PageRequest(0,5));
     }
 
 

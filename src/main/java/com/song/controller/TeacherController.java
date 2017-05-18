@@ -51,9 +51,10 @@ public class TeacherController {
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login(Model model, String name, String pwd, HttpServletRequest request){
         boolean rs = teacherService.login(request,name,pwd);
-        if(rs)
-            model.addAttribute("student",request.getSession().getAttribute("user"));
-        else
+        if(rs) {
+            model.addAttribute("student", request.getSession().getAttribute("user"));
+            model.addAttribute("type", "1");
+        }else
             model.addAttribute("msg","账号或密码不正确！");
         return "/user/index";
     }

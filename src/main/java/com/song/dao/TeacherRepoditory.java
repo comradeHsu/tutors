@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface TeacherRepoditory extends JpaRepository<Teacher,Long> {
     Teacher findByName(String name);
+
 }

@@ -28,6 +28,22 @@
             <#--pop.build();-->
             <#--pop.show();-->
         <#--</c:if>-->
+            var type = '${Session["type"]!""}';
+            if(type=="" || type == null){
+                layer.alert("您还没有登录",{
+                    title:"提示",
+                })
+                return;
+            }
+            if(type == "1"){
+                layer.alert("很抱歉，您是教员，不能预约教员",{
+                    title:"提示",
+                })
+                return;
+            }
+            if(type == "2"){
+
+            }
         }
     </script>
 </head>
@@ -44,42 +60,42 @@
                 <div id="tw" class="list_content" style="height: 800px;">
                     <table width="100%" border="0" cellpadding="9" cellspacing="9">
                         <tr>
-                            <td align="left">照片：<img src="${request.contextPath}/${requestScope.jiaoyuan.fujian }" width="120" height="150"/></td>
+                            <td align="left">照片：<img src="${request.contextPath}/${teacher.photo!}" width="120" height="150"/></td>
                         </tr>
                         <tr>
-                            <td align="left">姓名：${requestScope.jiaoyuan.name }</td>
+                            <td align="left">姓名：${teacher.rname!}</td>
                         </tr>
                         <tr>
-                            <td align="left">性别：${requestScope.jiaoyuan.sex }</td>
+                            <td align="left">性别：${teacher.sex!}</td>
                         </tr>
                         <tr>
-                            <td align="left">年龄：${requestScope.jiaoyuan.age }</td>
+                            <td align="left">年龄：${teacher.age!}</td>
                         </tr>
                         <tr>
                             <td align="left">联系方式：***********</td>
                         </tr>
                         <tr>
-                            <td align="left">住址：${requestScope.jiaoyuan.address }</td>
+                            <td align="left">住址：${teacher.address!}</td>
                         </tr>
                         <tr>
                             <td align="left">
                                 身份：
-                                <c:if test="${requestScope.jiaoyuan.shenfen=='daxuesheng'}"><font size="2">在校大学生(研究生)</font></c:if>
-                                <c:if test="${requestScope.jiaoyuan.shenfen=='laoshi'}"><font size="2">教师(在职/进修/离职/退休)</font></c:if>
+                                <#if teacher.shenfen == "学生"><font size="2">在校大学生(研究生)</font></#if>
+                                <#if teacher.shenfen == "老师"><font size="2">教师(在职/进修/离职/退休)</font></#if>
                             </td>
                         </tr>
                         <tr>
-                            <td align="left">学历：${requestScope.jiaoyuan.xueli }</td>
+                            <td align="left">学历：${teacher.school!}</td>
                         </tr>
                         <tr>
-                            <td align="left">可辅导科目：${requestScope.jiaoyuan.kefudaokemu }</td>
+                            <td align="left">可辅导科目：${teacher.kecheng!}</td>
                         </tr>
                         <tr>
-                            <td align="left">自我介绍：${requestScope.jiaoyuan.ziwojieshao }</td>
+                            <td align="left">自我介绍：${teacher.jieshao!}</td>
                         </tr>
                         <tr>
                             <td align="center">
-                                <a href="#" onclick="yuyue_jiaoyuan(${requestScope.jiaoyuan.id })"><img src="<%=path %>/img/yuyue.jpg"/></a>
+                                <a href="#" onclick="yuyue_jiaoyuan(${teacher.id!})"><img src="${request.contextPath}/img/yuyue.jpg"/></a>
                             </td>
                         </tr>
                     </table>

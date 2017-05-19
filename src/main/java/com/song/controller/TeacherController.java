@@ -68,4 +68,11 @@ public class TeacherController {
         model.addAttribute("stu",stu.getContent());
         return "/user/index";
     }
+
+    @RequestMapping("/teaDetail")
+    public String teacherDetail(Model model,long id){
+        Teacher teacher = teacherService.getDetail(id);
+        model.addAttribute("teacher",teacher);
+        return "/user/teacherDetail";
+    }
 }

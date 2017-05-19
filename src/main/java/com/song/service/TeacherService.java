@@ -18,4 +18,6 @@ public interface TeacherService {
     Boolean login(HttpServletRequest request, String name, String pwd);
 
     Page<Teacher> getFive();
+
+    Teacher getDetail(Long id);
 }

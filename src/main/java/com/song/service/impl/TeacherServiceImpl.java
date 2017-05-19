@@ -55,5 +55,10 @@ public class TeacherServiceImpl implements TeacherService{
         return teacherRepoditory.findAll(new PageRequest(0,5));
     }
 
+    @Override
+    public Teacher getDetail(Long id) {
+        return teacherRepoditory.findOne(id);
+    }
+
 
 }

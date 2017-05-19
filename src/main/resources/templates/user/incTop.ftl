@@ -94,7 +94,7 @@
             layer.open({
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
-                area: ['340px', '245px'], //宽高
+                area: ['550px', '600px'], //宽高
                 content:'<form action="${request.contextPath}/jiaoyuanEdit.action" name="form1" method="post">'
                 +'<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
                 +'       <tr>'
@@ -108,7 +108,7 @@
                 +' </td>'
                 +'<td width="80%" bgcolor="#FFFFFF">'
                 +'    &nbsp;'
-                +'<input type="text" name="loginname" value="${(Session['user'].name)!}" readonly="readonly"/>'
+                +'<input type="text" name="name" value="${(Session['user'].name)!}" readonly="readonly"/>'
                 +'   </td>'
                 +'   </tr>'
                 +'   <tr>'
@@ -126,7 +126,7 @@
                 +' </td>'
                 +' <td bgcolor="#FFFFFF">'
                 +'   &nbsp;'
-                +'<input type="text" name="name" value="${(Session["user"].rname)!}"/>'
+                +'<input type="text" name="rname" value="${(Session["user"].rname)!}"/>'
                 +'   </td>'
                 +'   </tr>'
                 +'   <tr>'
@@ -135,9 +135,9 @@
                 +'</td>'
                 +'<td bgcolor="#FFFFFF">'
                 +'   &nbsp;'
-                +'<input type="radio" name="sex" value="男" checked="checked"/>男'
+                +'<input type="radio" name="sex" class="sex" value="男" checked="checked"/>男'
                 +'   &nbsp;&nbsp;&nbsp;&nbsp;'
-                +'<input type="radio" name="sex" value="女"/>女'
+                +'<input type="radio" name="sex" class="sex" value="女"/>女'
                 +'   </td>'
                 +'   </tr>'
                 +'   <tr>'
@@ -155,7 +155,7 @@
                 +'</td>'
                 +'<td bgcolor="#FFFFFF">'
                 +'    &nbsp;'
-                +'<input type="text" name="tel" value="${(Session["user"].phone)!}"/>'
+                +'<input type="text" name="phone" value="${(Session["user"].phone)!}"/>'
                 +'   </td>'
                 +'   </tr>'
                 +'   <tr>'
@@ -173,8 +173,8 @@
                 +'</td>'
                 +'<td bgcolor="#FFFFFF">'
                 +'    &nbsp;'
-                +'<input type="radio" name="shenfen" value="daxuesheng" style="border: 0"/><font size="2">在校大学生(研究生)</font>'
-                +'    <input type="radio" name="shenfen" value="laoshi" style="border: 0" checked="checked"/><font size="2">教师(在职/进修/离职/退休)</font>'
+                +'<input type="radio" name="shenfen" class="shenfen" value="学生" style="border: 0"/><font size="2">在校大学生(研究生)</font>'
+                +'    <input type="radio" name="shenfen" class="shenfen" value="老师" style="border: 0" checked="checked"/><font size="2">教师(在职/进修/离职/退休)</font>'
 
                 +'   </td>'
                 +'   </tr>'
@@ -184,7 +184,7 @@
                 +'</td>'
                 +'<td bgcolor="#FFFFFF">'
                 +'   &nbsp;'
-                +'<input type="text" name="xueli" value="${(Session["user"].school)!}"/>'
+                +'<input type="text" name="school" value="${(Session["user"].school)!}"/>'
                 +'   </td>'
                 +'   </tr>'
                 +'   <tr>'
@@ -226,18 +226,19 @@
                 +'   &nbsp;'
                 +'<input type="hidden" name="id" value=""/>'
                 +'   <input type="button" value="确定" onclick="check1();"/>'
-                +'   <input type="button" value="取消" onclick="closeOpen()"/>'
+                +'   <input type="button" class="layui-layer-close" value="取消" onclick="closeOpen()"/>'
                 +'    </td>'
                 +'    </tr>'
                 +'    </table>'
                 +'   </form>'
             });
+
         }
         if(type == "2"){
             layer.open({
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
-                area: ['340px', '245px'], //宽高
+                area: ['550px', '600px'], //宽高
                 content: '<form action="${request.contextPath}/xueyuanEdit.action" name="form1" method="post">'
                 + '<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
                 + '        <tr>'
@@ -251,7 +252,7 @@
                 + '</td>'
                 + '<td width="80%" bgcolor="#FFFFFF">'
                 + '    &nbsp;'
-                + ' <input type="text" name="loginname" value="${(Session["user"].name)!}" readonly="readonly"/>'
+                + ' <input type="text" name="name" value="${(Session["user"].name)!}" readonly="readonly"/>'
                 + '    </td>'
                 + '    </tr>'
                 + '    <tr>'
@@ -260,7 +261,7 @@
                 + ' </td>'
                 + '<td bgcolor="#FFFFFF">'
                 + '    &nbsp;'
-                + '<input type="password" name="loginpw" value="${(Session["user"].pwd)!}"/>'
+                + '<input type="password" name="pwd" value="${(Session["user"].pwd)!}"/>'
                 + '   </td>'
                 + '    </tr>'
                 + '    <tr>'
@@ -269,7 +270,7 @@
                 + ' </td>'
                 + '<td bgcolor="#FFFFFF">'
                 + '    &nbsp;'
-                + '<input type="text" name="name" value="${(Session["user"].realName)!}"/>'
+                + '<input type="text" name="realName" value="${(Session["user"].realName)!}"/>'
                 + '    </td>'
                 + '   </tr>'
                 + '   <tr>'
@@ -278,9 +279,9 @@
                 + '</td>'
                 + '<td bgcolor="#FFFFFF">'
                 + '    &nbsp;'
-                + ' <input type="radio" name="sex" value="男" checked="checked"/>男'
+                + ' <input type="radio" name="sex" class="sex" value="男" checked="checked"/>男'
                 + '    &nbsp;&nbsp;&nbsp;&nbsp;'
-                + '<input type="radio" name="sex" value="女"/>女'
+                + '<input type="radio" name="sex" class="sex" value="女"/>女'
                 + '   </td>'
                 + '    </tr>'
                 + '    <tr>'
@@ -298,7 +299,7 @@
                 + '</td>'
                 + '<td bgcolor="#FFFFFF">'
                 + '    &nbsp;'
-                + '<input type="text" name="tel" value="${(Session["user"].phone)!}"/>'
+                + '<input type="text" name="phone" value="${(Session["user"].phone)!}"/>'
                 + '    </td>'
                 + '    </tr>'
                 + '    <tr>'
@@ -316,7 +317,7 @@
                 + '</td>'
                 + '<td bgcolor="#FFFFFF">'
                 + '   &nbsp;'
-                + '<input type="text" name="fudaokemu" value="${(Session["user"].kecheng)!}"/>'
+                + '<input type="text" name="kecheng" value="${(Session["user"].kecheng)!}"/>'
                 + '   </td>'
                 + '   </tr>'
                 + '   <tr>'
@@ -347,7 +348,7 @@
                 + '    &nbsp;'
                 + '<input type="hidden" name="id" value="${(Session["user"].id)!}"/>'
                 + '    <input type="button" value="确定修改" onclick="check1();"/>'
-                + '    <input type="button" value="取消" onclick="closeOpen()"/>'
+                + '    <input type="button" class="layui-layer-close" value="取消" onclick="closeOpen()"/>'
                 + '    </td>'
                 + '    </tr>'
                 + '    </table>'
@@ -361,6 +362,16 @@
     function yuyuewode(){
 
     }
+    $(function(){
+        var sex = '${(Session["user"].sex)!}';
+        if(sex!=null || sex!=""){
+            $(".sex[value="+sex+"]").attr("checked","checked");
+        }
+        var shenfen = '${(Session["user"].shenfen)!}'
+        if(shenfen != null || shenfen !=""){
+            $(".shenfen[value="+shenfen+"]").attr("checked","checked");
+        }
+    });
     <#--{-->
     <#--<c:if test="${sessionScope.userType==null}">-->
     <#--alert("请先登录");-->

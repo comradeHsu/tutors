@@ -18,7 +18,7 @@
             <A href="${request.contextPath}/tea/allTea">我要请家教</A>
         </li>
         <li class="thisclass">
-            <A href="${request.contextPath}/allStu">我要做家教</A>
+            <A href="${request.contextPath}/stu/allStu">我要做家教</A>
         </li>
         <li class="thisclass">
             <A href="#" onclick="myxinxi()">我的信息</A>
@@ -95,7 +95,7 @@
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
                 area: ['550px', '600px'], //宽高
-                content:'<form action="${request.contextPath}/jiaoyuanEdit.action" name="form1" method="post">'
+                content:'<form action="${request.contextPath}/jiaoyuanEdit.action" name="form1" id="form" method="post" enctype="multipart/form-data">'
                 +'<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
                 +'       <tr>'
                 +'       <th height="40" colspan="2" bgcolor="#FFFFFF" class="f12b-red" style="font-size: 11px;">'
@@ -108,7 +108,7 @@
                 +' </td>'
                 +'<td width="80%" bgcolor="#FFFFFF">'
                 +'    &nbsp;'
-                +'<input type="text" name="name" value="${(Session['user'].name)!}" readonly="readonly"/>'
+                +'<input type="text" id="name" name="name" value="${(Session['user'].name)!}" readonly="readonly"/>'
                 +'   </td>'
                 +'   </tr>'
                 +'   <tr>'
@@ -117,7 +117,7 @@
                 +'</td>'
                 +'<td bgcolor="#FFFFFF">'
                 +'   &nbsp;'
-                +'<input type="password" name="pwd" value="${(Session["user"].pwd)!}"/>'
+                +'<input type="password" id="pwd" name="pwd" value="${(Session["user"].pwd)!}"/>'
                 +'   </td>'
                 +'   </tr>'
                 +'   <tr>'
@@ -204,7 +204,7 @@
                 +'    &nbsp;'
                 +'<!--<FCK:editor instanceName="ziwojieshao"  basePath="/fckeditor" width="300" height="100" value="" toolbarSet="Basic">'
                 +'   </FCK:editor>-->'
-                +'<textarea name="jieshao">${(Session["user"].jieshao)!}</textarea>'
+                +'<textarea name="jieshao" style="width: 300px;height: 100px;">${(Session["user"].jieshao)!}</textarea>'
                 +'</td>'
                 +'</tr>'
                 +'<tr>'
@@ -213,7 +213,10 @@
                 +'</td>'
                 +'<td bgcolor="#FFFFFF">'
                 +'    &nbsp;'
-                +'<input type="text" name="fujian" id="fujian" size="30" readonly="readonly" value=""/>'
+                +'<div class="sis">'
+                +'<img class="touxiang"alt="" src="${request.contextPath}${(Session["user"].photo)!}/" >'
+                +'<input type="hidden" class="tximg" name="image">'
+                +'</div>'
                 +'   <input type="button" value="上传" onclick="up()"/>'
                 +'   <input type="hidden" name="fujianYuanshiming" id="fujianYuanshiming"/>'
                 +'    </td>'
@@ -224,8 +227,8 @@
                 +'</td>'
                 +'<td bgcolor="#FFFFFF">'
                 +'   &nbsp;'
-                +'<input type="hidden" name="id" value=""/>'
-                +'   <input type="button" value="确定" onclick="check1();"/>'
+                +'<input type="hidden" name="id" value="${(Session["user"].id)!}"/>'
+                +'   <input type="button" value="确定" onclick="edit();"/>'
                 +'   <input type="button" class="layui-layer-close" value="取消" onclick="closeOpen()"/>'
                 +'    </td>'
                 +'    </tr>'
@@ -239,7 +242,7 @@
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
                 area: ['550px', '600px'], //宽高
-                content: '<form action="${request.contextPath}/xueyuanEdit.action" name="form1" method="post">'
+                content: '<form action="${request.contextPath}/xueyuanEdit.action" id="form" name="form1" method="post">'
                 + '<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
                 + '        <tr>'
                 + '        <th height="40" colspan="2" bgcolor="#FFFFFF" class="f12b-red" style="font-size: 11px;">'
@@ -326,8 +329,7 @@
                 + '</td>'
                 + '<td bgcolor="#FFFFFF">'
                 + '    &nbsp;'
-                + '<FCK:editor instanceName="xueyuanqingkuang"  basePath="/fckeditor" width="300" height="100" value="" toolbarSet="Basic">'
-                + '    </FCK:editor>'
+                + '<textarea rows="" cols="" style="width: 300px;height: 100px;" name="qingkuang">${(Session["user"].qingkuang)!}</textarea>'
                 + '</td>'
                 + '</tr>'
                 + '<tr>'
@@ -336,8 +338,7 @@
                 + '</td>'
                 + '<td bgcolor="#FFFFFF">'
                 + '    &nbsp;'
-                + '<FCK:editor instanceName="jiaoyuanyaoqiu"  basePath="/fckeditor" width="300" height="100" value="" toolbarSet="Basic">'
-                + '   </FCK:editor>'
+                + '<textarea rows="" cols="" style="width: 300px;height: 100px;" name="required">${(Session["user"].required)!}</textarea>'
                 + '</td>'
                 + '</tr>'
                 + '<tr>'
@@ -348,13 +349,18 @@
                 + '    &nbsp;'
                 + '<input type="hidden" name="id" value="${(Session["user"].id)!}"/>'
                 + '    <input type="button" value="确定修改" onclick="check1();"/>'
-                + '    <input type="button" class="layui-layer-close" value="取消" onclick="closeOpen()"/>'
+                + '    <input type="button" class="layui-layer-close" id="close"value="取消" onclick="closeOpen()"/>'
                 + '    </td>'
                 + '    </tr>'
                 + '    </table>'
                 + '    </form>'
             });
         }
+    }
+    function up(){
+        var input = '<input type="file" class="tximg" name="image">';
+        $(".sis").html(input);
+        $(".tximg").click();
     }
     function wodeyuyue(){
 
@@ -372,6 +378,40 @@
             $(".shenfen[value="+shenfen+"]").attr("checked","checked");
         }
     });
+    function edit() {
+        var name = $("#name").val();
+        var pwd = $("#pwd").val();
+        if(name == "" || name == null)
+        {
+            layer.alert("请输入用户名",{
+                title:"提示"
+            });
+            return false;
+        }
+        if(pwd =="" || pwd == null)
+        {
+            layer.alert("请输入密码",{
+                title:"提示"
+            });
+            return false;
+        }
+        var data = new FormData(document.getElementById("form"));
+        $.ajax({
+            url:"${request.contextPath}/tea/edit",
+            type:"post",
+            data:data,
+            processData:false,
+            contentType:false,
+            success:function(data){
+                layer.alert(data,{
+                    title:"提示",
+                })
+                if(data == "修改成功"){
+                    $('#close').click();
+                }
+            },
+        });
+    }
     <#--{-->
     <#--<c:if test="${sessionScope.userType==null}">-->
     <#--alert("请先登录");-->

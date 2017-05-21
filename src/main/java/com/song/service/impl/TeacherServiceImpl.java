@@ -59,6 +59,10 @@ public class TeacherServiceImpl implements TeacherService{
     public Teacher getDetail(Long id) {
         return teacherRepoditory.findOne(id);
     }
+    @Override
+    public Teacher update(Teacher teacher){
+        return teacherRepoditory.saveAndFlush(teacher);
+    }
 
 
 }

@@ -318,9 +318,10 @@
             }
 
         }
-        $(".touxiang").click(function(){
+        $(".sis").click(function(){
             var input = '<input type="file" class="tximg">';
             $(".sis").html(input);//
+            $(".tximg").click();
         });
         function check1() {
             var name = $("#name").val();

@@ -9,12 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.util.ClassUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -74,5 +77,24 @@ public class TeacherController {
         Teacher teacher = teacherService.getDetail(id);
         model.addAttribute("teacher",teacher);
         return "/user/teacherDetail";
+    }
+
+    @RequestMapping(value = "/edit",method = RequestMethod.POST)
+    @ResponseBody
+    public String edit(Teacher t, @RequestParam(value="image",required = false) MultipartFile image,HttpServletRequest request) throws IOException {
+        if(image != null){
+            String path =image.getOriginalFilename();
+            System.out.println(ClassUtils.getDefaultClassLoader().getResource("").getPath());
+            String base = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+            System.out.println( request.getServletContext().getRealPath(""));
+            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(base+"/static/upload/"+image.getOriginalFilename())));
+            out.write(image.getBytes());
+            out.flush();
+            out.close();
+            t.setPhoto("/upload/"+image.getOriginalFilename());
+        }
+        System.out.println(t);
+        teacherService.update(t);
+        return "修改成功";
     }
 }

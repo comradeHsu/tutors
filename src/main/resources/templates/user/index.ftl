@@ -43,8 +43,8 @@
                                 <td>${l.sex!}</td>
                                 <td>${l.age!}</td>
                                 <td>${l.school!}</td>
-                                <td>${l.description!}</td>
-                                <td><a href="${request.contextPath}/">详细信息</a></td>
+                                <td>${l.kecheng!}</td>
+                                <td><a href="${request.contextPath}/tea/teaDetail?id=${l.id!}">详细信息</a></td>
                             </tr>
                         </#list>
                     </table>
@@ -74,7 +74,7 @@
                                 <td>${x.age!}</td>
                                 <td>${x.address!}</td>
                                 <td>${x.required!}</td>
-                                <td><a href="${request.contextPath}/">详细信息</a></td>
+                                <td><a href="${request.contextPath}">详细信息</a></td>
                             </tr>
                         <!--</s:iterator>-->
                         </#list>

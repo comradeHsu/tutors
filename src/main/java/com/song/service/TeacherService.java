@@ -20,4 +20,6 @@ public interface TeacherService {
     Page<Teacher> getFive();
 
     Teacher getDetail(Long id);
+
+    Teacher update(Teacher teacher);
 }

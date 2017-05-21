@@ -42,7 +42,53 @@
                 return;
             }
             if(type == "2"){
-
+                layer.open({
+                    type: 1,
+                    skin: 'layui-layer-rim', //加上边框
+                    area: ['350px', '200px'], //宽高
+                    content: '<form action="/jjw/yuyue_jiaoyuan_add.action" name="form1" method="post">'
+                    +'<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
+                    +'<tr>'
+                    +'<td width="20%" height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                    +'预约教员ID：'
+                    +'</td>'
+                    +'<td width="80%" bgcolor="#FFFFFF">'
+                    +'   &nbsp;'
+                    +'<input type="text" name="jiaoyuan_id" readonly="readonly" value="<%=request.getParameter("jiaoyuan_id") %>"/>'
+                    +'</td>'
+                    +'</tr>'
+                    +'<tr>'
+                    +'<td width="20%" height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                    +'    你的联系方式：'
+                    +'</td>'
+                    +'<td width="80%" bgcolor="#FFFFFF">'
+                    +'    &nbsp;'
+                    +'<input type="text" name="yuyuezhe_tel" maxlength="50"/>'
+                    +'    </td>'
+                    +'    </tr>'
+                    +'    <tr>'
+                    +'    <td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                    +'    预约说明：'
+                    +'</td>'
+                    +'<td bgcolor="#FFFFFF">'
+                    +'    &nbsp;'
+                   +'<textarea ></textarea>'
+                    +'</td>'
+                    +'</tr>'
+                    +'<tr>'
+                    +'<td height="30" align="right" bgcolor="#F9F9F9">'
+                    +'   &nbsp;'
+                    +'</td>'
+                    +'<td bgcolor="#FFFFFF">'
+                    +'    &nbsp;'
+                    +'<input type="hidden" name="studentId" value="${(Session["user"].id)!}"/>'
+                    +'    <input type="button" value="确定"/>'
+                    +'<input type="button" class="layui-layer-close" value="取消"/>'
+                    +'    </td>'
+                    +'    </tr>'
+                    +'    </table>'
+                    +'   </form>'
+                })
             }
         }
     </script>
@@ -60,7 +106,7 @@
                 <div id="tw" class="list_content" style="height: 800px;">
                     <table width="100%" border="0" cellpadding="9" cellspacing="9">
                         <tr>
-                            <td align="left">照片：<img src="${request.contextPath}/${teacher.photo!}" width="120" height="150"/></td>
+                            <td align="left">照片：<img src="${request.contextPath}${teacher.photo!}" width="120" height="150"/></td>
                         </tr>
                         <tr>
                             <td align="left">姓名：${teacher.rname!}</td>

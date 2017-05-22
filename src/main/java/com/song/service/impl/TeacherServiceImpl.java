@@ -20,6 +20,7 @@ import java.util.List;
  */
 @Service
 public class TeacherServiceImpl implements TeacherService{
+
     @Resource
     TeacherRepoditory teacherRepoditory;
     @Override
@@ -64,5 +65,9 @@ public class TeacherServiceImpl implements TeacherService{
         return teacherRepoditory.saveAndFlush(teacher);
     }
 
+    @Override
+    public List<Teacher> search(String kecheng) {
+        return teacherRepoditory.findByKechengLike(kecheng);
+    }
 
 }

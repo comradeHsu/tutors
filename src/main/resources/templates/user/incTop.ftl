@@ -32,11 +32,11 @@
 
     </ul>
 </div>
-<form id="searchForm" action="${request.contextPath}/jiaoyuanSearch.action" method="post">
+<form id="searchForm" action="${request.contextPath}/tea/search" method="post">
     <div class="topsearch">
         <div class="title"></div>
         <div id="page_search_left">
-            按科目搜索教员：<input class="inputText" id="" size="16" onkeypress="if(event.keyCode==13){searchFormSubmit();return false;}" name="kefudaokemu" type="text" />
+            按科目搜索教员：<input class="inputText" id="" size="16" onkeypress="if(event.keyCode==13){searchFormSubmit();return false;}" name="kecheng" type="text" />
         </div>
         <div id="page_search_btn">
             <input type="submit" value="搜索">
@@ -204,7 +204,7 @@
                 +'    &nbsp;'
                 +'<!--<FCK:editor instanceName="ziwojieshao"  basePath="/fckeditor" width="300" height="100" value="" toolbarSet="Basic">'
                 +'   </FCK:editor>-->'
-                +'<textarea name="jieshao" style="width: 300px;height: 100px;">${(Session["user"].jieshao)!}</textarea>'
+                +'<textarea name="jianjie" style="width: 300px;height: 100px;">${(Session["user"].jianjie)!}</textarea>'
                 +'</td>'
                 +'</tr>'
                 +'<tr>'
@@ -214,7 +214,7 @@
                 +'<td bgcolor="#FFFFFF">'
                 +'    &nbsp;'
                 +'<div class="sis">'
-                +'<img class="touxiang"alt="" src="${request.contextPath}${(Session["user"].photo)!}/" >'
+                +'<img class="touxiang"alt="" src="${request.contextPath}${(Session["user"].photo)!}" >'
                 +'<input type="hidden" class="tximg" name="image">'
                 +'</div>'
                 +'   <input type="button" value="上传" onclick="up()"/>'

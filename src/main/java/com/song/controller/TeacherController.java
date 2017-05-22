@@ -44,9 +44,18 @@ public class TeacherController {
         return "/user/teacherInfo";
     }
 
-    @RequestMapping(value = "/reg",method = RequestMethod.GET)
+    @RequestMapping(value = "/reg",method = RequestMethod.POST)
     @ResponseBody
-    public String reg(Teacher da){
+    public String reg(Teacher da,@RequestParam(value="image",required = false) MultipartFile image) throws IOException {
+        if(image != null){
+            String path =image.getOriginalFilename();
+            String base = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(base+"/static/upload/"+path)));
+            out.write(image.getBytes());
+            out.flush();
+            out.close();
+            da.setPhoto("/upload/"+path);
+        }
         StringBuilder msg = new StringBuilder();
         try {
             Teacher teacher = teacherService.register(da);
@@ -84,9 +93,9 @@ public class TeacherController {
     public String edit(Teacher t, @RequestParam(value="image",required = false) MultipartFile image,HttpServletRequest request) throws IOException {
         if(image != null){
             String path =image.getOriginalFilename();
-            System.out.println(ClassUtils.getDefaultClassLoader().getResource("").getPath());
+//            System.out.println(ClassUtils.getDefaultClassLoader().getResource("").getPath());
             String base = ClassUtils.getDefaultClassLoader().getResource("").getPath();
-            System.out.println( request.getServletContext().getRealPath(""));
+//            System.out.println( request.getServletContext().getRealPath(""));
             BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(base+"/static/upload/"+image.getOriginalFilename())));
             out.write(image.getBytes());
             out.flush();
@@ -96,5 +105,12 @@ public class TeacherController {
         System.out.println(t);
         teacherService.update(t);
         return "修改成功";
+    }
+
+    @RequestMapping("/search")
+    public String search(Model model,String kecheng){
+        List<Teacher> list = teacherService.search(kecheng);
+        model.addAttribute("list",list);
+        return "/user/teacherSearch";
     }
 }

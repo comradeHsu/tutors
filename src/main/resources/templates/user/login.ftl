@@ -25,7 +25,7 @@
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
                 area: ['550px', '600px'], //宽高
-                content:'<form action="${request.contextPath}/jiaoyuanAdd.action" id="form2" name="form1" method="post">'
+                content:'<form action="" id="form2" name="form1" method="post" enctype="multipart/form-data">'
                 +'<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
                 +'<tr>'
                 +'        <th height="40" colspan="2" bgcolor="#FFFFFF" class="f12b-red" style="font-size: 11px;">'
@@ -129,7 +129,7 @@
                 +' &nbsp;'
                 +' <!--<FCK:editor instanceName="ziwojieshao"  basePath="/fckeditor" width="300" height="100" value="请输入内容" toolbarSet="Basic">'
                 +' </FCK:editor> -->'
-                +'<textarea rows="" cols="" style="width: 300px;height: 100px;" name="jieshao"></textarea>'
+                +'<textarea rows="" cols="" style="width: 300px;height: 100px;" name="jianjie"></textarea>'
                 +'</td>'
                 +'</tr>'
                 +'<tr>'
@@ -138,10 +138,7 @@
                 +'</td>'
                 +'<td bgcolor="#FFFFFF">'
                 +'&nbsp;'
-                +'<div class="sis">'
-                +'<img class="touxiang"alt="" src="/supervise/static/image/17.jpg" >'
-                +'<input type="hidden" class="tximg">'
-                +'</div>'
+                +'<input type="file" class="tximg" id="image" name="image">'
                 +'</td>'
                 +'</tr>'
                 +'<tr>'
@@ -164,7 +161,7 @@
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
                 area: ['550px', '600px'], //宽高
-                content: +'<form action="${request.contextPath}/reg/register" id="form1" name="form1" method="post">'
+                content: '<form action="${request.contextPath}/reg/register" id="form1" name="form1" method="">'
                 + '<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
                 + '<tr>'
                 + '<th height="40" colspan="2" bgcolor="#FFFFFF" class="f12b-red" style="font-size: 11px;">'
@@ -274,7 +271,7 @@
                 + '<td bgcolor="#FFFFFF">'
                 + ' &nbsp;'
                 + '  <input type="button" value="确定" onclick="reg()"/>'
-                + '<input type="button" class="layui-layer-close" value="取消" onclick="closeOpen()"/>'
+                + '<input type="button" class="layui-layer-close" id="close" value="取消" onclick="closeOpen()"/>'
                 + '</td>'
                 + ' </tr>'
                 + ' </table>'
@@ -340,11 +337,11 @@
                 });
                 return false;
             }
-            var data = $("#form2").serialize();
+            var data = new FormData(document.getElementById("form2"));
             console.log(data);
             $.ajax({
                 url:"${request.contextPath}/tea/reg",
-                type:"get",
+                type:"post",
                 data:data,
                 processData:false,
                 contentType:false,
@@ -375,9 +372,10 @@
                 });
                 return false;
             }
-            var data = $("from").serialize();
+            var data = $("#form1").serialize();
+            console.log(data);
             $.ajax({
-                url:"${request.contextPath}/tea/register",
+                url:"${request.contextPath}/reg/register",
                 type:"get",
                 data:data,
                 processData:false,

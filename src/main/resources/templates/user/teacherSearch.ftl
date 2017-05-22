@@ -8,7 +8,9 @@
     <meta http-equiv="description" content="This is my page" />
 
     <link href="${request.contextPath}/css/layout.css" type="text/css" rel="stylesheet" />
-
+    <link href="${request.contextPath}/css/page.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="${request.contextPath}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${request.contextPath}/js/page.js"></script>
     <script language="JavaScript" src="${request.contextPath}/js/public.js" type="text/javascript"></script>
     <script type="text/javascript">
 
@@ -34,30 +36,43 @@
                             <td width="30%">可辅导科目</td>
                             <td width="10%">详细信息</td>
                         </tr>
-                        <#list list as l>
-                            <tr align='center' bgcolor="#FFFFFF" height="22">
-                                <td>${l.rname!}</td>
-                                <td>${l.sex!}</td>
-                                <td>${l.age!}</td>
-                                <td>${l.school!}</td>
-                                <td>${l.kecheng!}</td>
-                                <td><a href="${request.contextPath}/tea/teaDetail?id=${l.id!}">详细信息</a></td>
-                            </tr>
-                        </#list>
+                    <#list list as l>
+                        <tr align='center' bgcolor="#FFFFFF" height="22">
+                            <td>${l.rname!}</td>
+                            <td>${l.sex!}</td>
+                            <td>${l.age!}</td>
+                            <td>${l.school!}</td>
+                            <td>${l.kecheng!}</td>
+                            <td><a href="${request.contextPath}/tea/teaDetail?id=${l.id!}">详细信息</a></td>
+                        </tr>
+                    </#list>
+                        <ul class="page" maxshowpageitem="5" pagelistcount="10"  id="page"></ul>
+                        <script type="text/javascript">
+                            function tt(dd){
+                                alert(dd);
+                            }
+
+                            $(function(){
+                                function tt(dd){
+                                    alert(dd);
+                                }
+                                $("#page").initPage(71,1,tt);
+                            });
+                        </script>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- 右边的用户登录。留言。投票 -->
     <div class="page_other_msg right">
-        <div class="left_row">
+        <div class="left_row
+">
             <div class="list">
                 <div class="list_bar">用户登录</div>
                 <div class="list_content">
                     <div id="div">
-                        <#include "login.ftl">
+                    <#include "login.ftl">
                     </div>
                 </div>
             </div>
@@ -67,7 +82,7 @@
                 <div class="list_bar">网站公告</div>
                 <div class="list_content">
                     <div id="div">
-                       <!-- <s:action name="gonggaoQian5" executeResult="true" flush="true"></s:action> -->
+
                     </div>
                 </div>
             </div>
@@ -85,7 +100,8 @@
 </div>
 
 <div class="foot">
-    <#include "incFoot.ftl">
+<#include "incFoot.ftl">
 </div>
+
 </body>
 </html>

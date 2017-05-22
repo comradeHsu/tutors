@@ -22,4 +22,6 @@ public interface TeacherService {
     Teacher getDetail(Long id);
 
     Teacher update(Teacher teacher);
+
+    List<Teacher> search(String kecheng);
 }

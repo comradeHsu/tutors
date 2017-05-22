@@ -14,20 +14,6 @@
     <script type="text/javascript">
         function yuyue_jiaoyuan(jiaoyuan_id)
         {
-        <#--<c:if test="${sessionScope.userType==null}">-->
-                <#--alert("请先登录");-->
-        <#--</c:if>-->
-        <#--<c:if test="${sessionScope.userType==1}">-->
-                <#--alert("很抱歉，您是教员，不能预约教员~");-->
-        <#--</c:if>-->
-        <#--<c:if test="${sessionScope.userType==2}">-->
-            <#--var url="/jjw/qiantai/yuyue/yuyue_jiaoyuan.jsp?jiaoyuan_id="+jiaoyuan_id;-->
-            <#--var pop=new Popup({ contentType:1,isReloadOnClose:false,width:450,height:440});-->
-            <#--pop.setContent("contentUrl",url);-->
-            <#--pop.setContent("title","预约教员");-->
-            <#--pop.build();-->
-            <#--pop.show();-->
-        <#--</c:if>-->
             var type = '${Session["type"]!""}';
             if(type=="" || type == null){
                 layer.alert("您还没有登录",{

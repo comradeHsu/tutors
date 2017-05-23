@@ -36,7 +36,7 @@
     <div class="topsearch">
         <div class="title"></div>
         <div id="page_search_left">
-            按科目搜索教员：<input class="inputText" id="" size="16" onkeypress="if(event.keyCode==13){searchFormSubmit();return false;}" name="kecheng" type="text" />
+            按科目搜索教员：<input class="inputText" id="search" size="16" onkeypress="if(event.keyCode==13){searchFormSubmit();return false;}" name="kecheng" type="text" value="${search!}"/>
         </div>
         <div id="page_search_btn">
             <input type="submit" value="搜索">

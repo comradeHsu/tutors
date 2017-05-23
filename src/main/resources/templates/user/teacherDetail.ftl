@@ -40,7 +40,7 @@
                     +'</td>'
                     +'<td width="80%" bgcolor="#FFFFFF">'
                     +'   &nbsp;'
-                    +'<input type="text" name="jiaoyuan_id" readonly="readonly" value="<%=request.getParameter("jiaoyuan_id") %>"/>'
+                    +'<input type="text" name="jiaoyuan_id" readonly="readonly" value=""/>'
                     +'</td>'
                     +'</tr>'
                     +'<tr>'

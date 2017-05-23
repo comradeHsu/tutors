@@ -110,7 +110,19 @@ public class TeacherController {
     @RequestMapping("/search")
     public String search(Model model,String kecheng){
         List<Teacher> list = teacherService.search(kecheng);
+        int x = (int) Math.ceil(list.size()/10.0);
         model.addAttribute("list",list);
+        model.addAttribute("page",x);
+        model.addAttribute("search",kecheng);
         return "/user/teacherSearch";
+    }
+
+    @RequestMapping(value = "/page",method = RequestMethod.POST)
+    @ResponseBody
+    public List<Teacher> page(int curr,String kecheng){
+        List<Teacher> list = teacherService.search(kecheng);
+        int end = curr*10 > list.size() ? list.size() : curr*10;
+        List<Teacher> lt = list.subList((curr-1)*10,end);
+        return lt;
     }
 }

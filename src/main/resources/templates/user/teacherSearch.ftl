@@ -8,9 +8,9 @@
     <meta http-equiv="description" content="This is my page" />
 
     <link href="${request.contextPath}/css/layout.css" type="text/css" rel="stylesheet" />
-    <link href="${request.contextPath}/css/page.css" type="text/css" rel="stylesheet"/>
+    <link href="${request.contextPath}/css/layui.css" type="text/css" rel="stylesheet"/>
     <script type="text/javascript" src="${request.contextPath}/js/jquery.min.js"></script>
-    <script type="text/javascript" src="${request.contextPath}/js/page.js"></script>
+    <script type="text/javascript" src="${request.contextPath}/js/layui.all.js"></script>
     <script language="JavaScript" src="${request.contextPath}/js/public.js" type="text/javascript"></script>
     <script type="text/javascript">
 
@@ -36,6 +36,7 @@
                             <td width="30%">可辅导科目</td>
                             <td width="10%">详细信息</td>
                         </tr>
+                        <div id="sis">
                     <#list list as l>
                         <tr align='center' bgcolor="#FFFFFF" height="22">
                             <td>${l.rname!}</td>
@@ -46,24 +47,52 @@
                             <td><a href="${request.contextPath}/tea/teaDetail?id=${l.id!}">详细信息</a></td>
                         </tr>
                     </#list>
-                        <ul class="page" maxshowpageitem="5" pagelistcount="10"  id="page"></ul>
-                        <script type="text/javascript">
-                            function tt(dd){
-                                alert(dd);
-                            }
-
-                            $(function(){
-                                function tt(dd){
-                                    alert(dd);
-                                }
-                                $("#page").initPage(71,1,tt);
-                            });
-                        </script>
+                        </div>
                     </table>
                 </div>
+                <div id="demo4" style="text-align:center;"></div>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        ;!function(){
+            //当使用了 layui.all.js，无需再执行layui.use()方法
+            var laypage = layui.laypage
+                    ,layer = layui.layer;
+
+            laypage({
+                cont: 'demo4'
+                ,pages: ${page!}
+                ,first: false
+                ,last: false
+                ,jump: function(obj, first){
+                    var curr = obj.curr;
+                    var kecheng = $("#search").val();
+                    $.ajax({
+                       url:"${request.contextPath}/tea/page",
+                        data:{curr:curr,kecheng:kecheng},
+                        datatype:"json",
+                        type:"post",
+                        success:function (data) {
+                            var yz = '';
+                            for(var i = 0;i<data.length;i++){
+                                var html = '<tr align="center" bgcolor="#FFFFFF" height="22">'
+                                +'<td>'+data[i].name+'</td>'
+                                +'<td>'+data[i].sex+'</td>'
+                                +'<td>'+data[i].age+'</td>'
+                                +'<td>'+data[i].school+'</td>'
+                                +'<td>'+data[i].kecheng+'</td>'
+                                +'<td><a href="${request.contextPath}/tea/teaDetail?id='+data[i].id+'">详细信息</a></td>'
+                                +'</tr>';
+                                yz += html;
+                            }
+                            $("#sis").html(yz);
+                        }
+                    });
+                }
+            });
+        }();
+    </script>
     <!-- 右边的用户登录。留言。投票 -->
     <div class="page_other_msg right">
         <div class="left_row

@@ -12,6 +12,13 @@ import java.util.List;
 public interface StudentService {
 
     boolean login(HttpServletRequest request, String name, String pwd);
+
     List<Student> findAllStudent();
+
     Page<Student> getFive();
+
+    Student update(Student student);
+
+    Student getDetail(Long id);
+
 }

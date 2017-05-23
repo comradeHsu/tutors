@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -50,7 +52,38 @@ public class StudentController {
     @RequestMapping("/allStu")
     public String allStu(Model model){
         List<Student> list = studentService.findAllStudent();
+        int x = (int) Math.ceil(list.size()/10.0);
         model.addAttribute("list",list);
+        model.addAttribute("page",x);
         return "/user/allStudent";
+    }
+
+    @RequestMapping("/edit")
+    @ResponseBody
+    public String edit(Student student){
+        String msg = "";
+        try {
+            studentService.update(student);
+            msg = "修改成功";
+        } catch (Exception e) {
+            msg = "修改失败";
+        }
+        return msg;
+    }
+    @RequestMapping("/stuDetail")
+    public ModelAndView detail(Long id){
+        ModelAndView view = new ModelAndView();
+        Student student = studentService.getDetail(id);
+        view.addObject("student",student);
+        view.setViewName("/user/studentDetail");
+        return view;
+    }
+    @RequestMapping(value="/page",method =RequestMethod.POST)
+    @ResponseBody
+    public List<Student> page(int curr){
+        List<Student> list = studentService.findAllStudent();
+        int end = curr*10 > list.size() ? list.size() : curr*10;
+        List<Student> lt = list.subList((curr-1)*10,end);
+        return lt;
     }
 }

@@ -12,7 +12,7 @@
     <script language="JavaScript" src="${request.contextPath}/js/public.js" type="text/javascript"></script>
     <script type="text/javascript" src="${request.contextPath}/js/popup_shuaxin_no.js"></script>
     <script type="text/javascript">
-        function yuyue_jiaoyuan(jiaoyuan_id)
+        function yuyue_jiaoyuan(id)
         {
             var type = '${Session["type"]!""}';
             if(type=="" || type == null){
@@ -32,7 +32,7 @@
                     type: 1,
                     skin: 'layui-layer-rim', //加上边框
                     area: ['350px', '200px'], //宽高
-                    content: '<form action="/jjw/yuyue_jiaoyuan_add.action" name="form1" method="post">'
+                    content: '<form action="" name="form1" id="form1" method="get">'
                     +'<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
                     +'<tr>'
                     +'<td width="20%" height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
@@ -40,7 +40,7 @@
                     +'</td>'
                     +'<td width="80%" bgcolor="#FFFFFF">'
                     +'   &nbsp;'
-                    +'<input type="text" name="jiaoyuan_id" readonly="readonly" value=""/>'
+                    +'<input type="text" name="teacherId" readonly="readonly" value="'+id+'"/>'
                     +'</td>'
                     +'</tr>'
                     +'<tr>'
@@ -49,7 +49,7 @@
                     +'</td>'
                     +'<td width="80%" bgcolor="#FFFFFF">'
                     +'    &nbsp;'
-                    +'<input type="text" name="yuyuezhe_tel" maxlength="50"/>'
+                    +'<input type="text" name="phone" maxlength="50"/>'
                     +'    </td>'
                     +'    </tr>'
                     +'    <tr>'
@@ -58,7 +58,7 @@
                     +'</td>'
                     +'<td bgcolor="#FFFFFF">'
                     +'    &nbsp;'
-                   +'<textarea ></textarea>'
+                   +'<textarea name="remark"></textarea>'
                     +'</td>'
                     +'</tr>'
                     +'<tr>'
@@ -67,15 +67,32 @@
                     +'</td>'
                     +'<td bgcolor="#FFFFFF">'
                     +'    &nbsp;'
-                    +'<input type="hidden" name="studentId" value="${(Session["user"].id)!}"/>'
-                    +'    <input type="button" value="确定"/>'
-                    +'<input type="button" class="layui-layer-close" value="取消"/>'
+                    +'<input type="hidden" name="stuId" value="${(Session["user"].id)!}"/>'
+                    +'    <input type="button" value="确定" onclick="yuyue();"/>'
+                    +'<input type="button" class="layui-layer-close" id="close" value="取消"/>'
                     +'    </td>'
                     +'    </tr>'
                     +'    </table>'
                     +'   </form>'
                 })
             }
+        }
+        function yuyue(){
+            var data = $("#form1").serialize();
+            $.ajax({
+                url:"${request.contextPath}/app/add",
+                data:data,
+                type:"get",
+                datatype:"json",
+                success:function(data) {
+                    layer.alert(data,{
+                        title:"提示",
+                    })
+                    if(data == "预约成功"){
+                        $('#close').click();
+                    }
+                }
+            });
         }
     </script>
 </head>

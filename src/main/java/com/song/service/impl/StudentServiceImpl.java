@@ -44,4 +44,14 @@ public class StudentServiceImpl implements StudentService{
     public Page<Student> getFive() {
         return studentRepository.findAll(new PageRequest(0,5));
     }
+
+    @Override
+    public Student update(Student student) {
+        return studentRepository.saveAndFlush(student);
+    }
+
+    @Override
+    public Student getDetail(Long id) {
+        return studentRepository.findOne(id);
+    }
 }

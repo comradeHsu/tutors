@@ -8,7 +8,9 @@
     <meta http-equiv="description" content="This is my page" />
 
     <link href="${request.contextPath}/css/layout.css" type="text/css" rel="stylesheet" />
-
+    <link href="${request.contextPath}/css/layui.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="${request.contextPath}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${request.contextPath}/js/layui.all.js"></script>
     <script language="JavaScript" src="${request.contextPath}/js/public.js" type="text/javascript"></script>
     <script type="text/javascript">
 
@@ -34,6 +36,7 @@
                             <td width="30%">要求辅导科目</td>
                             <td width="10%">详细信息</td>
                         </tr>
+                        <div id="yz">
                         <#list list as l>
                             <tr align='center' bgcolor="#FFFFFF" height="22">
                                 <td>${l.realName!}</td>
@@ -41,14 +44,54 @@
                                 <td>${l.age!}</td>
                                 <td>${l.address!}</td>
                                 <td>${l.kecheng!}</td>
-                                <td><a href="${request.contextPath}/xueyuanDetail_qian.action?id=<s:property value="#xueyuan.id"/>">详细信息</a></td>
+                                <td><a href="${request.contextPath}/stu/stuDetail?id=${l.id!}">详细信息</a></td>
                             </tr>
                         </#list>
+                        </div>
                     </table>
                 </div>
+                <div id="demo1" style="text-align:center;"></div>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        ;!function(){
+            //当使用了 layui.all.js，无需再执行layui.use()方法
+            var laypage = layui.laypage
+                    ,layer = layui.layer;
+
+            laypage({
+                cont: 'demo1'
+                ,pages: ${page!}
+                ,first: false
+                ,last: false
+                ,jump: function(obj, first){
+                    var curr = obj.curr;
+                    $.ajax({
+                        url:"${request.contextPath}/stu/page",
+                        data:{curr:curr},
+                        datatype:"json",
+                        type:"post",
+                        success:function (data) {
+                            var yz = '';
+                            for(var i = 0;i<data.length;i++){
+                                var html = '<tr align="center" bgcolor="#FFFFFF" height="22">'
+                                        +'<td>'+data[i].realName+'</td>'
+                                        +'<td>'+data[i].sex+'</td>'
+                                        +'<td>'+data[i].age+'</td>'
+                                        +'<td>'+data[i].address+'</td>'
+                                        +'<td>'+data[i].kecheng+'</td>'
+                                        +'<td><a href="${request.contextPath}/stu/stuDetail?id='+data[i].id+'">详细信息</a></td>'
+                                        +'</tr>';
+                                yz += html;
+                            }
+                            $("#yz").html(yz);
+                        }
+                    });
+                }
+            });
+        }();
+    </script>
 
     <!-- 右边的用户登录。留言。投票 -->
     <div class="page_other_msg right">
@@ -67,7 +110,7 @@
                 <div class="list_bar">网站公告</div>
                 <div class="list_content">
                     <div id="div">
-                        <s:action name="gonggaoQian5" executeResult="true" flush="true"></s:action>
+
                     </div>
                 </div>
             </div>

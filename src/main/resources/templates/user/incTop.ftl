@@ -242,7 +242,7 @@
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
                 area: ['550px', '600px'], //宽高
-                content: '<form action="${request.contextPath}/xueyuanEdit.action" id="form" name="form1" method="post">'
+                content: '<form action="" id="form1" name="form1" method="post">'
                 + '<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
                 + '        <tr>'
                 + '        <th height="40" colspan="2" bgcolor="#FFFFFF" class="f12b-red" style="font-size: 11px;">'
@@ -255,7 +255,7 @@
                 + '</td>'
                 + '<td width="80%" bgcolor="#FFFFFF">'
                 + '    &nbsp;'
-                + ' <input type="text" name="name" value="${(Session["user"].name)!}" readonly="readonly"/>'
+                + ' <input type="text" name="name" id="name" value="${(Session["user"].name)!}" readonly="readonly"/>'
                 + '    </td>'
                 + '    </tr>'
                 + '    <tr>'
@@ -264,7 +264,7 @@
                 + ' </td>'
                 + '<td bgcolor="#FFFFFF">'
                 + '    &nbsp;'
-                + '<input type="password" name="pwd" value="${(Session["user"].pwd)!}"/>'
+                + '<input type="password" name="pwd" id="pwd" value="${(Session["user"].pwd)!}"/>'
                 + '   </td>'
                 + '    </tr>'
                 + '    <tr>'
@@ -348,7 +348,7 @@
                 + ' <td bgcolor="#FFFFFF">'
                 + '    &nbsp;'
                 + '<input type="hidden" name="id" value="${(Session["user"].id)!}"/>'
-                + '    <input type="button" value="确定修改" onclick="check1();"/>'
+                + '    <input type="button" value="确定修改" onclick="stu();"/>'
                 + '    <input type="button" class="layui-layer-close" id="close"value="取消" onclick="closeOpen()"/>'
                 + '    </td>'
                 + '    </tr>'
@@ -399,6 +399,41 @@
         $.ajax({
             url:"${request.contextPath}/tea/edit",
             type:"post",
+            data:data,
+            processData:false,
+            contentType:false,
+            success:function(data){
+                layer.alert(data,{
+                    title:"提示",
+                })
+                if(data == "修改成功"){
+                    $('#close').click();
+                }
+            },
+        });
+    }
+    function stu() {
+        var name = $("#name").val();
+        var pwd = $("#pwd").val();
+        if(name == "" || name == null)
+        {
+            layer.alert("请输入用户名",{
+                title:"提示"
+            });
+            return false;
+        }
+        if(pwd =="" || pwd == null)
+        {
+            layer.alert("请输入密码",{
+                title:"提示"
+            });
+            return false;
+        }
+        var data = $("#form1").serialize();
+        console.log(data);
+        $.ajax({
+            url:"${request.contextPath}/stu/edit",
+            type:"get",
             data:data,
             processData:false,
             contentType:false,

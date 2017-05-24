@@ -11,23 +11,71 @@
 
     <script language="JavaScript" src="${request.contextPath}/js/public.js" type="text/javascript"></script>
     <script type="text/javascript">
-        function yuyue_xueyuan(xueyuan_id)
+        function yuyue_xueyuan(id)
         {
 
-        <#--<c:if test="${sessionScope.userType==null}">-->
-                <#--alert("请先登录");-->
-        <#--</c:if>-->
-        <#--<c:if test="${sessionScope.userType==2}">-->
-                <#--alert("很抱歉，您是学员，不能预约学员~");-->
-        <#--</c:if>-->
-        <#--<c:if test="${sessionScope.userType==1}">-->
-            <#--var url="/jjw/qiantai/yuyue/yuyue_xueyuan.jsp?xueyuan_id="+xueyuan_id;-->
-            <#--var pop=new Popup({ contentType:1,isReloadOnClose:false,width:450,height:440});-->
-            <#--pop.setContent("contentUrl",url);-->
-            <#--pop.setContent("title","预约学员");-->
-            <#--pop.build();-->
-            <#--pop.show();-->
-        <#--</c:if>-->
+            var type = '${Session["type"]!""}';
+            if(type=="" || type == null){
+                layer.alert("您还没有登录",{
+                    title:"提示",
+                })
+                return;
+            }
+            if(type == "2"){
+                layer.alert("很抱歉，您是学员，不能预约学员",{
+                    title:"提示",
+                })
+                return;
+            }
+            if(type == "1") {
+                layer.open({
+                    type: 1,
+                    skin: 'layui-layer-rim', //加上边框
+                    area: ['350px', '200px'], //宽高
+                    content: '<form action="/jjw/yuyue_xueyuan_add.action" name="form1" method="post">'
+                    + '<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
+                    + '<tr>'
+                    + '<td width="20%" height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                    + '预约学员ID：'
+                    + '</td>'
+                    + '<td width="80%" bgcolor="#FFFFFF">'
+                    + '    &nbsp;'
+                    + '<input type="text" name="stuId" readonly="readonly" value="' + id + '"/>'
+                    + '</td>'
+                    + '</tr>'
+                    + '<tr>'
+                    + '<td width="20%" height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                    + '    你的联系方式：'
+                    + '</td>'
+                    + '<td width="80%" bgcolor="#FFFFFF">'
+                    + '    &nbsp;'
+                    + '<input type="text" name="yuyuezhe_tel" maxlength="50"/>'
+                    + '    </td>'
+                    + '    </tr>'
+                    + '    <tr>'
+                    + '    <td height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
+                    + '   预约说明：'
+                    + '</td>'
+                    + '<td bgcolor="#FFFFFF">'
+                    + '    &nbsp;'
+                    + '<textarea name="remark"></textarea>'
+                    + '</td>'
+                    + '</tr>'
+                    + '<tr>'
+                    + '<td height="30" align="right" bgcolor="#F9F9F9">'
+                    + '    &nbsp;'
+                    + '</td>'
+                    + '<td bgcolor="#FFFFFF">'
+                    + '    &nbsp;'
+                    + '<input type="hidden" name="teacherId" value="${(Session["user"].id)!}"/>'
+                    + '   <input type="submit" value="确定"/>'
+                    + '<input type="button" class="layui-layer-close" id="close" value="取消"/>'
+                    + '    </td>'
+                    + '   </tr>'
+                    + '    </table>'
+                    + '    </form>'
+                });
+            }
         }
     </script>
 </head>

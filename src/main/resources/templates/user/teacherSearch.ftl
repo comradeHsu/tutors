@@ -27,7 +27,9 @@
                     <span style="float:left">教员</span>
                 </div>
                 <div id="tw" class="list_content" style="height: 500px;">
+                    <div id="sis">
                     <table width="99%" border="0" cellpadding="2" cellspacing="1" bgcolor="#FFFFFF" align="center" style="margin-top:8px">
+
                         <tr align="center" bgcolor="#FAFAF1" height="22">
                             <td width="10%">姓名</td>
                             <td width="10%">性别</td>
@@ -36,9 +38,9 @@
                             <td width="30%">可辅导科目</td>
                             <td width="10%">详细信息</td>
                         </tr>
-                        <div id="sis">
+
                     <#list list as l>
-                        <tr align='center' bgcolor="#FFFFFF" height="22">
+                        <tr align='center' bgcolor="#FFFFFF" height="44">
                             <td>${l.rname!}</td>
                             <td>${l.sex!}</td>
                             <td>${l.age!}</td>
@@ -47,8 +49,9 @@
                             <td><a href="${request.contextPath}/tea/teaDetail?id=${l.id!}">详细信息</a></td>
                         </tr>
                     </#list>
-                        </div>
+
                     </table>
+                </div>
                 </div>
                 <div id="demo4" style="text-align:center;"></div>
             </div>
@@ -68,27 +71,38 @@
                 ,jump: function(obj, first){
                     var curr = obj.curr;
                     var kecheng = $("#search").val();
-                    $.ajax({
-                       url:"${request.contextPath}/tea/page",
-                        data:{curr:curr,kecheng:kecheng},
-                        datatype:"json",
-                        type:"post",
-                        success:function (data) {
-                            var yz = '';
-                            for(var i = 0;i<data.length;i++){
-                                var html = '<tr align="center" bgcolor="#FFFFFF" height="22">'
-                                +'<td>'+data[i].name+'</td>'
-                                +'<td>'+data[i].sex+'</td>'
-                                +'<td>'+data[i].age+'</td>'
-                                +'<td>'+data[i].school+'</td>'
-                                +'<td>'+data[i].kecheng+'</td>'
-                                +'<td><a href="${request.contextPath}/tea/teaDetail?id='+data[i].id+'">详细信息</a></td>'
-                                +'</tr>';
-                                yz += html;
+                    if(!first){
+                        $.ajax({
+                           url:"${request.contextPath}/tea/page",
+                            data:{curr:curr,kecheng:kecheng},
+                            datatype:"json",
+                            type:"post",
+                            success:function (data) {
+                                var yz ='<table width="99%" border="0" cellpadding="2" cellspacing="1" bgcolor="#FFFFFF" align="center" style="margin-top:8px">'
+                                        +' <tr align="center" bgcolor="#FAFAF1" height="22">'
+                                        +'<td width="10%">姓名</td>'
+                                        +'<td width="10%">性别</td>'
+                                        +'<td width="10%">年龄</td>'
+                                        +' <td width="10%">学历</td>'
+                                        +'<td width="30%">可辅导科目</td>'
+                                        +'<td width="10%">详细信息</td>'
+                                        +'</tr>';
+                                for(var i = 0;i<data.length;i++){
+                                    var html = '<tr align="center" bgcolor="#FFFFFF" height="22">'
+                                    +'<td>'+data[i].name+'</td>'
+                                    +'<td>'+data[i].sex+'</td>'
+                                    +'<td>'+data[i].age+'</td>'
+                                    +'<td>'+data[i].school+'</td>'
+                                    +'<td>'+data[i].kecheng+'</td>'
+                                    +'<td><a href="${request.contextPath}/tea/teaDetail?id='+data[i].id+'">详细信息</a></td>'
+                                    +'</tr>';
+                                    yz += html;
+                                }
+                                yz += '</table></div>';
+                                $("#sis").html(yz);
                             }
-                            $("#sis").html(yz);
-                        }
-                    });
+                        });
+                    }
                 }
             });
         }();

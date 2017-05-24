@@ -27,7 +27,9 @@
                     <span style="float:left">学员</span>
                 </div>
                 <div id="tw" class="list_content" style="height: 500px;">
+                    <div id="yz">
                     <table width="99%" border="0" cellpadding="2" cellspacing="1" bgcolor="#FFFFFF" align="center" style="margin-top:8px">
+
                         <tr align="center" bgcolor="#FAFAF1" height="22">
                             <td width="10%">姓名</td>
                             <td width="10%">性别</td>
@@ -36,9 +38,9 @@
                             <td width="30%">要求辅导科目</td>
                             <td width="10%">详细信息</td>
                         </tr>
-                        <div id="yz">
+
                         <#list list as l>
-                            <tr align='center' bgcolor="#FFFFFF" height="22">
+                            <tr align='center' bgcolor="#FFFFFF" height="40">
                                 <td>${l.realName!}</td>
                                 <td>${l.sex!}</td>
                                 <td>${l.age!}</td>
@@ -47,8 +49,9 @@
                                 <td><a href="${request.contextPath}/stu/stuDetail?id=${l.id!}">详细信息</a></td>
                             </tr>
                         </#list>
-                        </div>
+
                     </table>
+                    </div>
                 </div>
                 <div id="demo1" style="text-align:center;"></div>
             </div>
@@ -67,15 +70,25 @@
                 ,last: false
                 ,jump: function(obj, first){
                     var curr = obj.curr;
+                    if(!first){
+
                     $.ajax({
                         url:"${request.contextPath}/stu/page",
                         data:{curr:curr},
                         datatype:"json",
                         type:"post",
                         success:function (data) {
-                            var yz = '';
+                            var yz = '<table width="99%" border="0" cellpadding="2" cellspacing="1" bgcolor="#FFFFFF" align="center" style="margin-top:8px">'
+                                    +'<tr align="center" bgcolor="#FAFAF1" height="22">'
+                                    +'<td width="10%">姓名</td>'
+                                    +'<td width="10%">性别</td>'
+                                    +'<td width="10%">年龄</td>'
+                                    +'<td width="10%">住址</td>'
+                                    +'<td width="30%">要求辅导科目</td>'
+                                    +'<td width="10%">详细信息</td>'
+                                    +'</tr>'
                             for(var i = 0;i<data.length;i++){
-                                var html = '<tr align="center" bgcolor="#FFFFFF" height="22">'
+                                var html = '<tr align="center" bgcolor="#FFFFFF" height="40">'
                                         +'<td>'+data[i].realName+'</td>'
                                         +'<td>'+data[i].sex+'</td>'
                                         +'<td>'+data[i].age+'</td>'
@@ -85,9 +98,11 @@
                                         +'</tr>';
                                 yz += html;
                             }
+                            yz += '</table></div>';
                             $("#yz").html(yz);
                         }
                     });
+                    }
                 }
             });
         }();

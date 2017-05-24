@@ -74,7 +74,7 @@
                                 <td>${x.age!}</td>
                                 <td>${x.address!}</td>
                                 <td>${x.required!}</td>
-                                <td><a href="${request.contextPath}/stu/stuDetail?id=${l.id!}">详细信息</a></td>
+                                <td><a href="${request.contextPath}/stu/stuDetail?id=${x.id!}">详细信息</a></td>
                             </tr>
                         <!--</s:iterator>-->
                         </#list>

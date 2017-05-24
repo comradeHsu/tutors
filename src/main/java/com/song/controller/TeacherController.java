@@ -35,7 +35,8 @@ public class TeacherController {
     @RequestMapping("/allTea")
     public String allTea(Model model){
         List<Teacher> list = teacherService.findAllTeacher();
-        model.addAttribute("list",list);
+        int end = list.size() > 10 ? 10 : list.size();
+        model.addAttribute("list",list.subList(0,end));
         return "/user/allTeacher";
     }
 

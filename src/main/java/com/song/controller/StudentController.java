@@ -53,7 +53,8 @@ public class StudentController {
     public String allStu(Model model){
         List<Student> list = studentService.findAllStudent();
         int x = (int) Math.ceil(list.size()/10.0);
-        model.addAttribute("list",list);
+        int end = list.size() > 10 ? 10 : list.size();
+        model.addAttribute("list",list.subList(0,end));
         model.addAttribute("page",x);
         return "/user/allStudent";
     }

@@ -32,7 +32,7 @@
                     type: 1,
                     skin: 'layui-layer-rim', //加上边框
                     area: ['350px', '200px'], //宽高
-                    content: '<form action="/jjw/yuyue_xueyuan_add.action" name="form1" method="post">'
+                    content: '<form action="" name="form1" id="form1"method="post">'
                     + '<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
                     + '<tr>'
                     + '<td width="20%" height="30" align="right" bgcolor="#F9F9F9" style="font-size: 11px;">'
@@ -68,7 +68,7 @@
                     + '<td bgcolor="#FFFFFF">'
                     + '    &nbsp;'
                     + '<input type="hidden" name="teacherId" value="${(Session["user"].id)!}"/>'
-                    + '   <input type="submit" value="确定"/>'
+                    + '   <input type="submit" value="确定"  onclick="yuyue();"/>'
                     + '<input type="button" class="layui-layer-close" id="close" value="取消"/>'
                     + '    </td>'
                     + '   </tr>'
@@ -76,6 +76,23 @@
                     + '    </form>'
                 });
             }
+        }
+        function yuyue(){
+            var data = $("#form1").serialize();
+            $.ajax({
+                url:"${request.contextPath}/app/add",
+                data:data,
+                type:"get",
+                datatype:"json",
+                success:function(data) {
+                    layer.alert(data,{
+                        title:"提示",
+                    })
+                    if(data == "预约成功"){
+                        $('#close').click();
+                    }
+                }
+            });
         }
     </script>
 </head>

@@ -39,7 +39,7 @@
                         </tr>
                         <#list list as l>
                             <tr align='center' bgcolor="#FFFFFF" height="22">
-                                <td>${l.name!}</td>
+                                <td>${l.rname!}</td>
                                 <td>${l.sex!}</td>
                                 <td>${l.age!}</td>
                                 <td>${l.school!}</td>
@@ -69,7 +69,7 @@
                         <#list stu as x>
                        <!-- <s:iterator value="#request.xueyuanList" id="xueyuan">-->
                             <tr align='center' bgcolor="#FFFFFF" height="22">
-                                <td>${x.name!}</td>
+                                <td>${x.realName!}</td>
                                 <td>${x.sex!}</td>
                                 <td>${x.age!}</td>
                                 <td>${x.address!}</td>

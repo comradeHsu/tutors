@@ -18,7 +18,7 @@ public class Appointment {
     private String phone;
     private Date time;
     private String remark;
-    private String type;//0代表未处理
+    private String type;//0代表预约老师，1代表预约学生
 
     public String getPhone() {
         return phone;

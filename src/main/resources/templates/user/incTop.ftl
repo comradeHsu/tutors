@@ -85,12 +85,6 @@
             return;
         }
         if(type == "1"){
-            <#--var url="${request.contextPath}/tea/teaInfo";-->
-            <#--var n="";-->
-            <#--var w="550px";-->
-            <#--var h="600px";-->
-            <#--var s="resizable:no;help:no;status:no;scroll:yes";-->
-            <#--openWin(url,n,w,h,s);-->
             layer.open({
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
@@ -363,7 +357,61 @@
         $(".tximg").click();
     }
     function wodeyuyue(){
-
+        var type = '${Session["type"]!""}';
+        if(type=="" || type == null){
+            layer.alert("您还没有登录",{
+                title:"提示",
+            })
+            return;
+        }
+        if(type == "1") {
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['550px', '600px'], //宽高
+                content: '<body leftmargin="2" topmargin="2" background='${request.contextPath}/img/allbg.gif'>'
+                    +'<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">'
+                    +'<tr bgcolor="#E7E7E7">'
+                    +'<td height="14" colspan="5" background="${request.contextPath}/img/tbg.gif">&nbsp;我的预约&nbsp;</td>'
+                    +'</tr>'
+                    +'<tr align="center" bgcolor="#FAFAF1" height="22">'
+                    +'<td width="20%">教员</td>'
+                    +'<td width="20%">被约学员</td>'
+                    +'<td width="20%">所留联系方式</td>'
+                    +'<td width="20%">预约说明</td>'
+                    +'<td width="20%">时间</td>'
+                    +'</tr>'
+                    +'<s:iterator value="#request.yuyueList" id="yuyue">'
+                    +'<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">'
+                    +'<td bgcolor="#FFFFFF" align="center">'
+                    +'<s:property value="#yuyue.jiaoyuan.name"/>'
+                    +'</td>'
+                    +'<td bgcolor="#FFFFFF" align="center">'
+                    +'<s:property value="#yuyue.xueyuan.name"/>'
+                    +'</td>'
+                    +'<td bgcolor="#FFFFFF" align="center">'
+                    +'<s:property value="#yuyue.yuyuezhe_tel"/>'
+                    +'</td>'
+                    +' <td bgcolor="#FFFFFF" align="center">'
+                    +' <s:property value="#yuyue.beizhu" escape="false"/>'
+                    +'</td>'
+                    +'<td bgcolor="#FFFFFF" align="center">'
+                    +'<s:property value="#yuyue.shijian"/>'
+                    +'</td>'
+                    +' </tr>'
+                    +'</s:iterator>'
+                    +'</table>'
+                    +'</body>';
+            });
+        }
+        if(type == "2") {
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['550px', '600px'], //宽高
+                content: '<form action="${request.contextPath}/jiaoyuanEdit.action" name'
+            })
+        }
     }
     function yuyuewode(){
 

@@ -27,7 +27,7 @@
                     <span style="float:left">最新注册教员</span>
                     <span style="float:right"><a href="${request.contextPath}/tea/allTea">更多>></a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 </div>
-                <div id="tw" class="list_content" style="height: 200px;">
+                <div id="tw" class="list_content" style="...">
                     <table width="99%" border="0" cellpadding="2" cellspacing="1" bgcolor="#FFFFFF" align="center" style="margin-top:8px">
                         <tr align="center" bgcolor="#FAFAF1" height="22">
                             <td width="10%">姓名</td>

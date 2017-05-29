@@ -24,7 +24,7 @@
             <A href="#" onclick="myxinxi()">我的信息</A>
         </li>
         <li class="thisclass">
-            <A href="#" onclick="wodeyuyue()">我的预约</A>
+            <A href="#" onclick="myyuyue()">我的预约</A>
         </li>
         <li class="thisclass">
             <A href="#" onclick="yuyuewode()">预约我的</A>
@@ -356,7 +356,7 @@
         $(".sis").html(input);
         $(".tximg").click();
     }
-    function wodeyuyue(){
+    function myyuyue(){
         var type = '${Session["type"]!""}';
         if(type=="" || type == null){
             layer.alert("您还没有登录",{
@@ -369,7 +369,7 @@
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
                 area: ['550px', '600px'], //宽高
-                content: '<body leftmargin="2" topmargin="2" background='${request.contextPath}/img/allbg.gif'>'
+                content: '<body leftmargin="2" topmargin="2" background="${request.contextPath}/img/allbg.gif">'
                     +'<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">'
                     +'<tr bgcolor="#E7E7E7">'
                     +'<td height="14" colspan="5" background="${request.contextPath}/img/tbg.gif">&nbsp;我的预约&nbsp;</td>'
@@ -381,27 +381,28 @@
                     +'<td width="20%">预约说明</td>'
                     +'<td width="20%">时间</td>'
                     +'</tr>'
-                    +'<s:iterator value="#request.yuyueList" id="yuyue">'
-                    +'<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">'
+                    +'<#list app as a>'
+                    +'<tr align="center" bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor="red";" onMouseOut="javascript:this.bgColor="#FFFFFF";" height="22">'
                     +'<td bgcolor="#FFFFFF" align="center">'
-                    +'<s:property value="#yuyue.jiaoyuan.name"/>'
+                    +'${(a.teacher.rname)!}'
                     +'</td>'
                     +'<td bgcolor="#FFFFFF" align="center">'
-                    +'<s:property value="#yuyue.xueyuan.name"/>'
+                    +'${(a.student.realName)!}'
                     +'</td>'
                     +'<td bgcolor="#FFFFFF" align="center">'
-                    +'<s:property value="#yuyue.yuyuezhe_tel"/>'
+                    +'${(a.phone)!}'
                     +'</td>'
                     +' <td bgcolor="#FFFFFF" align="center">'
-                    +' <s:property value="#yuyue.beizhu" escape="false"/>'
+                    +'${a.remark!}'
                     +'</td>'
                     +'<td bgcolor="#FFFFFF" align="center">'
-                    +'<s:property value="#yuyue.shijian"/>'
+                    +'${(a.time)!}'
                     +'</td>'
                     +' </tr>'
-                    +'</s:iterator>'
+                    +'</#list>'
                     +'</table>'
-                    +'</body>';
+                    + '<input type="button" class="layui-layer-close" id="close"value="关闭" />'
+                    +'</body>'
             });
         }
         if(type == "2") {
@@ -409,12 +410,57 @@
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
                 area: ['550px', '600px'], //宽高
-                content: '<form action="${request.contextPath}/jiaoyuanEdit.action" name'
+                content: '<body leftmargin="2" topmargin="2" background="${request.contextPath}/img/allbg.gif">'
+                    +'<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">'
+                    +'<tr bgcolor="#E7E7E7">'
+                    +'<td height="14" colspan="5" background="${request.contextPath}/img/tbg.gif">&nbsp;我的预约&nbsp;</td>'
+                    +'</tr>'
+                    +'<tr align="center" bgcolor="#FAFAF1" height="22">'
+                    +'<td width="20%">学员</td>'
+                    +'<td width="20%">被约教员</td>'
+                    +'<td width="20%">所留联系方式</td>'
+                    +'<td width="20%">预约说明</td>'
+                    +'<td width="20%">时间</td>'
+                    +'</tr>'
+                    +'<#list app as b>'
+                    +'<tr align="center" bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor="red";" onMouseOut="javascript:this.bgColor="#FFFFFF";" height="22">'
+                    +'<td bgcolor="#FFFFFF" align="center">'
+                    +' ${(b.student.realName)!}'
+                    +'</td>'
+                    +' <td bgcolor="#FFFFFF" align="center">'
+                    +' ${(b.teacher.rname)!}'
+                    +' </td>'
+                    +' <td bgcolor="#FFFFFF" align="center">'
+                    +'${(b.phone)!}'
+                    +'</td>'
+                    +'<td bgcolor="#FFFFFF" align="center">'
+                    +' ${(b.remark)!}'
+                    +' </td>'
+                    +' <td bgcolor="#FFFFFF" align="center">'
+                    +'${(b.time)!}'
+                    +' </td>'
+                    +' </tr>'
+                    +'</#list>'
+                    +'</table>'
+                    + '<input type="button" class="layui-layer-close" id="close"value="关闭" />'
+                    +'</body>'
             })
         }
     }
     function yuyuewode(){
-
+        var type = '${Session["type"]!""}';
+        if(type=="" || type == null){
+            layer.alert("您还没有登录",{
+                title:"提示",
+            })
+            return;
+        }
+        if(type == "1") {
+            location.href="${request.contextPath}/tea/yuYueMe";
+        }
+        if(type == "2") {
+            location.href="${request.contextPath}/stu/yuYueMe";
+        }
     }
     $(function(){
         var sex = '${(Session["user"].sex)!}';
@@ -495,78 +541,6 @@
             },
         });
     }
-    <#--{-->
-    <#--<c:if test="${sessionScope.userType==null}">-->
-    <#--alert("请先登录");-->
-    <#--</c:if>-->
-    <#--<c:if test="${sessionScope.userType==1}">-->
-    <#--var url="${request.contextPath}/qiantai/userinfo/xinxi_jiaoyuan.jsp";-->
-    <#--var n="";-->
-    <#--var w="550px";-->
-    <#--var h="600px";-->
-    <#--var s="resizable:no;help:no;status:no;scroll:yes";-->
-    <#--openWin(url,n,w,h,s);-->
-    <#--</c:if>-->
-    <#--<c:if test="${sessionScope.userType==2}">-->
-    <#--var url="${request.contextPath}/qiantai/userinfo/xinxi_xueyuan.jsp";-->
-    <#--var n="";-->
-    <#--var w="550px";-->
-    <#--var h="600px";-->
-    <#--var s="resizable:no;help:no;status:no;scroll:yes";-->
-    <#--openWin(url,n,w,h,s);-->
-    <#--</c:if>-->
-    <#--}-->
-
-    <#--function wodeyuyue()-->
-    <#--{-->
-    <#--<c:if test="${sessionScope.userType==null}">-->
-    <#--alert("请先登录");-->
-    <#--</c:if>-->
-
-    <#--<c:if test="${sessionScope.userType==1}">//教员-->
-    <#--var url="/jjw/wodeyuyue_jiaoyuan.action?jiaoyuan_id=${sessionScope.jiaoyuan.id}&type=toxueyuan";//我的预约-->
-    <#--var pop=new Popup({ contentType:1,isReloadOnClose:false,width:650,height:400});-->
-    <#--pop.setContent("contentUrl",url);-->
-    <#--pop.setContent("title","我的预约");-->
-    <#--pop.build();-->
-    <#--pop.show();-->
-    <#--</c:if>-->
-    <#--<c:if test="${sessionScope.userType==2}">//学员-->
-    <#--var url="/jjw/wodeyuyue_xueyuan.action?xueyuan_id=${sessionScope.xueyuan.id}&type=tojiaoyuan";//我的预约-->
-    <#--var pop=new Popup({ contentType:1,isReloadOnClose:false,width:650,height:400});-->
-    <#--pop.setContent("contentUrl",url);-->
-    <#--pop.setContent("title","我的预约");-->
-    <#--pop.build();-->
-    <#--pop.show();-->
-    <#--</c:if>-->
-    <#--}-->
-
-
-
-    <#--function yuyuewode()-->
-    <#--{-->
-    <#--<c:if test="${sessionScope.userType==null}">-->
-    <#--alert("请先登录");-->
-    <#--</c:if>-->
-
-    <#--<c:if test="${sessionScope.userType==1}">//教员-->
-    <#--var url="/jjw/yuyuewode_jiaoyuan.action?jiaoyuan_id=${sessionScope.jiaoyuan.id}&type=tojiaoyuan";//我的预约-->
-    <#--var pop=new Popup({ contentType:1,isReloadOnClose:false,width:650,height:400});-->
-    <#--pop.setContent("contentUrl",url);-->
-    <#--pop.setContent("title","我的预约");-->
-    <#--pop.build();-->
-    <#--pop.show();-->
-    <#--</c:if>-->
-    <#--<c:if test="${sessionScope.userType==2}">//学员-->
-    <#--var url="/jjw/yuyuewode_xueyuan.action?xueyuan_id=${sessionScope.xueyuan.id}&type=toxueyuan";//我的预约-->
-    <#--var pop=new Popup({ contentType:1,isReloadOnClose:false,width:650,height:400});-->
-    <#--pop.setContent("contentUrl",url);-->
-    <#--pop.setContent("title","我的预约");-->
-    <#--pop.build();-->
-    <#--pop.show();-->
-    <#--</c:if>-->
-    <#--}-->
-
 </script>
 </body>
 </html>

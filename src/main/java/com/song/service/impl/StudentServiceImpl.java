@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +47,7 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
+    @Transactional
     public Student update(Student student) {
         return studentRepository.saveAndFlush(student);
     }

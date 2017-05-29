@@ -68,6 +68,7 @@
                     + '<td bgcolor="#FFFFFF">'
                     + '    &nbsp;'
                     + '<input type="hidden" name="teacherId" value="${(Session["user"].id)!}"/>'
+                    + '<input type="hidden" name="type" value="1"/>'
                     + '   <input type="submit" value="确定"  onclick="yuyue();"/>'
                     + '<input type="button" class="layui-layer-close" id="close" value="取消"/>'
                     + '    </td>'

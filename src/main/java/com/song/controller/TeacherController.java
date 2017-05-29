@@ -1,8 +1,10 @@
 package com.song.controller;
 
 import com.song.exception.ServiceException;
+import com.song.model.Appointment;
 import com.song.model.Student;
 import com.song.model.Teacher;
+import com.song.service.AppointmentService;
 import com.song.service.StudentService;
 import com.song.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class TeacherController {
 
     @Autowired
     StudentService studentService;
+
+    @Autowired
+    AppointmentService appointmentService;
 
     @RequestMapping("/allTea")
     public String allTea(Model model){
@@ -72,8 +77,11 @@ public class TeacherController {
         boolean rs = teacherService.login(request,name,pwd);
         Page<Student> stu = studentService.getFive();
         Page<Teacher> list = teacherService.getFive();
+        Teacher teacher = (Teacher) request.getSession().getAttribute("user");
+        List<Appointment> app = appointmentService.finds(teacher.getId(),"1");
         if(rs) {
             model.addAttribute("student", request.getSession().getAttribute("user"));
+            model.addAttribute("app",app);
         }else {
             model.addAttribute("msg", "账号或密码不正确！");
         }
@@ -125,5 +133,13 @@ public class TeacherController {
         int end = curr*10 > list.size() ? list.size() : curr*10;
         List<Teacher> lt = list.subList((curr-1)*10,end);
         return lt;
+    }
+
+    @RequestMapping("/yuYueMe")
+    public String yuYueMe(Model model,HttpServletRequest request){
+        Teacher teacher = (Teacher) request.getSession().getAttribute("user");
+        List<Appointment> app = appointmentService.finds(teacher.getId(),"0");
+        model.addAttribute("app",app);
+        return "/user/myYuYue_t";
     }
 }

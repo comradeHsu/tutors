@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 
 /**
  * Created by Administrator on 2017/5/12.
@@ -32,6 +33,7 @@ public class IndexController {
         Page<Student> stu = studentRepository.findAll(new PageRequest(0,5));
         model.addAttribute("list",list.getContent());
         model.addAttribute("stu",stu.getContent());
+        model.addAttribute("app", Collections.EMPTY_LIST);
         return "/user/index";
     }
 

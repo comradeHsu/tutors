@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +31,7 @@ public class TeacherServiceImpl implements TeacherService{
     }
 
     @Override
+    @Transactional
     public Teacher register(Teacher user) throws ServiceException {
         String userName = user.getName();
         Teacher t = teacherRepoditory.findByName(userName);

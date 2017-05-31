@@ -12,7 +12,7 @@
     许可协议-
     设为首页 -
     加入收藏 -
-    <a target="_blank" href="${request.contextPath}/login.ftl">管理登录</a>
+    <a target="_blank" href="${request.contextPath}/admin/toLogin">管理登录</a>
     <br />
     电话：****-******** ************** 传真：****-*******
     <br />

@@ -1,5 +1,6 @@
 package com.song.service.impl;
 import com.song.dao.AdminRepository;
+import com.song.exception.ServiceException;
 import com.song.model.Admin;
 import com.song.service.AdminService;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,15 @@ public class AdminServiceImpl implements AdminService{
         HttpSession session = request.getSession();
         session.setAttribute("user", admin);
         return rs;
+    }
+
+    @Override
+    public Admin logins(String userName,String password) throws ServiceException {
+        Admin admin = adminRepository.findByUserName(userName);
+        if(admin == null || !password.equals(admin.getPassword())) {
+            throw new ServiceException(1, "账户或密码不正确");
+        }
+        return admin;
     }
 }
 

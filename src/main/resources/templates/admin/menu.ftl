@@ -31,7 +31,7 @@
         }
 
         dl.bitem dt {
-            background:url(<%=path %>/img/menubg.gif);
+            background:url(${request.contextPath}/img/menubg.gif);
             height:26px;
             line-height:26px;
             text-align:center;
@@ -59,13 +59,13 @@
         div.items
         {
             line-height:22px;
-            background:url(<%=path %>/img/arr4.gif) no-repeat 10px 9px;
+            background:url(${request.contextPath}/img/arr4.gif) no-repeat 10px 9px;
         }
 
         span.items
         {
             padding:10px 0px 10px 22px;
-            background:url(<%=path %>/img/arr4.gif) no-repeat 10px 12px;
+            background:url(${request.contextPath}/img/arr4.gif) no-repeat 10px 12px;
         }
 
         ul {
@@ -79,11 +79,11 @@
         .sitemu li {
             padding:0px 0px 0px 22px;
             line-height:24px;
-            background:url(<%=path %>/img/arr4.gif) no-repeat 10px 9px;
+            background:url(${request.contextPath}/img/arr4.gif) no-repeat 10px 9px;
         }
     </style>
     <script language='javascript'>var curopenItem = '1';</script>
-    <script language="javascript" type="text/javascript" src="<%=path %>/js/menu.js"></script>
+    <script language="javascript" type="text/javascript" src="${request.contextPath}/js/menu.js"></script>
     <base target="main" />
 </head>
 
@@ -96,7 +96,7 @@
                 <dt onClick='showHide("items1_1")'><b>修改个人密码</b></dt>
                 <dd style='display:block' class='sitem' id='items1_1'>
                     <ul class='sitemu'>
-                        <li><a href='<%=path %>/admin/index/userinfo.jsp' target='main'>修改个人密码</a> </li>
+                        <li><a href='${request.contextPath}/admin/index/userinfo.jsp' target='main'>修改个人密码</a> </li>
                     </ul>
                 </dd>
             </dl>
@@ -106,8 +106,8 @@
                 <dt onClick='showHide("items2_1")'><b>教员学员管理</b></dt>
                 <dd style='display:block' class='sitem' id='items2_1'>
                     <ul class='sitemu'>
-                        <li><a href='<%=path %>/jiaoyuanMana.action' target='main'>教员信息管理</a> </li>
-                        <li><a href='<%=path %>/xueyuanMana.action' target='main'>学员信息管理</a> </li>
+                        <li><a href='${request.contextPath}/jiaoyuanMana.action' target='main'>教员信息管理</a> </li>
+                        <li><a href='${request.contextPath}/xueyuanMana.action' target='main'>学员信息管理</a> </li>
                     </ul>
                 </dd>
             </dl>
@@ -128,7 +128,7 @@
                 <dt onClick='showHide("items99_1")'><b>安全退出系统</b></dt>
                 <dd style='display:block' class='sitem' id='items99_1'>
                     <ul class='sitemu'>
-                        <li><a href='#' onclick='javascript:window.parent.location="<%=path %>/login.jsp"'>安全退出系统</a></li>
+                        <li><a href='#' onclick='javascript:window.parent.location="${request.contextPath}/login.jsp"'>安全退出系统</a></li>
                     </ul>
                 </dd>
             </dl>

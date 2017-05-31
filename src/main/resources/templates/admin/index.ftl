@@ -17,10 +17,10 @@
     </style>
 </head>
 <frameset rows="60,*" cols="*" frameborder="no" border="0" framespacing="0">
-    <frame src="<%=path %>/admin/top.jsp" name="topFrame" scrolling="no">
+    <frame src="${request.contextPath}/admin/top" name="topFrame" scrolling="no">
     <frameset cols="180,*" name="btFrame" frameborder="NO" border="0" framespacing="0">
-        <frame src="<%=path %>/admin/menu.jsp" noresize name="menu" scrolling="yes">
-        <frame src="<%=path %>/admin/index/sysPro.jsp" noresize name="main" scrolling="auto">
+        <frame src="${request.contextPath}/admin/menu" noresize name="menu" scrolling="yes">
+        <frame src="${request.contextPath}/admin/sysPro" noresize name="main" scrolling="auto">
     </frameset>
 </frameset>
 <noframes>

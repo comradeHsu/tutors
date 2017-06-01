@@ -1,6 +1,7 @@
 package com.song.service.impl;
 
 import com.song.dao.StudentRepository;
+import com.song.exception.ServiceException;
 import com.song.model.Student;
 import com.song.service.StudentService;
 import org.springframework.data.domain.Page;
@@ -24,16 +25,14 @@ public class StudentServiceImpl implements StudentService{
     StudentRepository studentRepository;
 
     @Override
-    public boolean login(HttpServletRequest request, String name, String pwd) {
-        boolean rs = false;
+    public Student login(HttpServletRequest request, String name, String pwd) throws ServiceException {
         Student student = studentRepository.findByName(name);
         if(student == null || !pwd.equals(student.getPwd()))
-            return rs;
-        rs = true;
+            throw new ServiceException(1,"账号或密码不对");
         HttpSession session = request.getSession();
         session.setAttribute("user", student);
         session.setAttribute("type", "2");
-        return rs;
+        return student;
     }
 
     @Override

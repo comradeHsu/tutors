@@ -1,5 +1,6 @@
 package com.song.controller;
 
+import com.song.exception.ServiceException;
 import com.song.model.Appointment;
 import com.song.model.Student;
 import com.song.model.Teacher;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -36,20 +38,32 @@ public class StudentController {
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String  login(Model model,String name,String pwd, HttpServletRequest request){
-        boolean rs = studentService.login(request,name,pwd);
+        Student student = null;
         Page<Student> stu = studentService.getFive();
         Page<Teacher> list = teacherService.getFive();
-        Student student = (Student) request.getSession().getAttribute("user");
-        List<Appointment> app = appointmentService.find(student.getId(),"0");
-        if(rs) {
+        try {
+            student = studentService.login(request,name,pwd);
+            //Student student = (Student) request.getSession().getAttribute("user");
+            System.out.println(student);
+            List<Appointment> app = appointmentService.find(student.getId(),"0");
+            app = app.size() == 0 ? Collections.EMPTY_LIST : app;
             model.addAttribute("student", student);
             model.addAttribute("app",app);
-        } else {
-            model.addAttribute("msg", "账号或密码不正确！");
+        } catch (ServiceException e) {
+            model.addAttribute("msg", e.getMessage());
         }
         model.addAttribute("list",list.getContent());
         model.addAttribute("stu",stu.getContent());
         return "/user/index";
+    }
+
+    @RequestMapping("/yuYue")
+    public String yuYue(Model model,HttpServletRequest request){
+        Student student = (Student) request.getSession().getAttribute("user");
+        System.out.println(student);
+        List<Appointment> app = appointmentService.find(student.getId(),"0");
+        model.addAttribute("app",app);
+        return "/user/s_yuyue";
     }
 
     @RequestMapping("/stuInfo")

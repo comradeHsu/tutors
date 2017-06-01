@@ -107,4 +107,9 @@ public class AdminController {
         request.getSession().invalidate();
         return "/admin/login";
     }
+
+    @RequestMapping("/teacherMana")
+    public String teacherMana(){
+        return "/admin/teacherMana";
+    }
 }

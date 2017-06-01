@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Administrator on 2017/5/13 0013.
  */
@@ -72,5 +76,35 @@ public class AdminController {
     @RequestMapping("/sysPro")
     public String sysPro(){
         return "/admin/sysPro";
+    }
+
+    @RequestMapping("/userInfo")
+    public String userInfo(HttpServletRequest request,Model model){
+        Admin admin = (Admin) request.getSession().getAttribute("admin");
+        model.addAttribute("admin",admin);
+        return "/admin/userInfo";
+    }
+
+    @RequestMapping(value = "/edit",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,String> edit(String userName, String password, String newPassword, HttpSession session){
+        System.out.println(userName+"  "+password+"  "+newPassword);
+        String msg = "";
+        try {
+            Admin admin = adminService.edit(userName, password, newPassword);
+            session.setAttribute("admin",admin);
+            msg = "修改成功";
+        } catch (ServiceException e) {
+            msg = e.getMessage();
+        }
+        Map<String,String> map = new HashMap<>();
+        map.put("msg",msg);
+        return map;
+    }
+
+    @RequestMapping("/loginOut")
+    public String loginOut(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "/admin/login";
     }
 }

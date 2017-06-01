@@ -38,7 +38,7 @@
         {
             if(confirm("确定要退出本系统吗??"))
             {
-                window.parent.location="${request.contextPath}/login.jsp";
+                window.parent.location="${request.contextPath}/admin/loginOut";
             }
         }
     </script>

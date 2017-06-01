@@ -96,7 +96,7 @@
                 <dt onClick='showHide("items1_1")'><b>修改个人密码</b></dt>
                 <dd style='display:block' class='sitem' id='items1_1'>
                     <ul class='sitemu'>
-                        <li><a href='${request.contextPath}/admin/index/userinfo.jsp' target='main'>修改个人密码</a> </li>
+                        <li><a href='${request.contextPath}/admin/userInfo' target='main'>修改个人密码</a> </li>
                     </ul>
                 </dd>
             </dl>
@@ -128,7 +128,7 @@
                 <dt onClick='showHide("items99_1")'><b>安全退出系统</b></dt>
                 <dd style='display:block' class='sitem' id='items99_1'>
                     <ul class='sitemu'>
-                        <li><a href='#' onclick='javascript:window.parent.location="${request.contextPath}/login.jsp"'>安全退出系统</a></li>
+                        <li><a href='#' onclick='javascript:window.parent.location="${request.contextPath}/admin/loginOut"'>安全退出系统</a></li>
                     </ul>
                 </dd>
             </dl>

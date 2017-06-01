@@ -10,4 +10,5 @@ public interface AdminService {
 
     boolean login(HttpServletRequest request, String name, String pwd);
     Admin logins(String userName, String password) throws ServiceException;
+    Admin edit(String userName, String password,String newPassword) throws ServiceException;
 }

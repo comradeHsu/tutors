@@ -34,4 +34,10 @@ public class AppointmentServiceImpl implements AppointmentService {
     public List<Appointment> finds(Long teacherId, String type) {
         return appointmentRepository.findByTeacherIdAndType(teacherId,type);
     }
+
+    @Override
+    @Transactional
+    public int updateStatus(Long id, String status) {
+        return appointmentRepository.updateWithQuery(id ,status);
+    }
 }

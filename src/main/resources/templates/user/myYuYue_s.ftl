@@ -53,8 +53,16 @@
                             ${(a.time)!}
                             </td>
                             <td bgcolor="#FFFFFF" align="center">
-                                <a href="#" onclick="xueyuanDetail(${a.id!})" class="pn-loperator">同意</a>
-                                <a href="#" onclick="xueyuanDel(${a.id!})" class="pn-loperator">拒绝</a>
+                                <#if a.status == "3">
+                                    <a href="#" onclick="agree(${a.id!})" class="pn-loperator"><span style="color:forestgreen">同意</span></a>
+                                    <a href="#" onclick="refuse(${a.id!})" class="pn-loperator"><span style="color:forestgreen">拒绝</span></a>
+                                </#if>
+                                <#if a.status == "0">
+                                    <span>已同意</span>
+                                </#if>
+                                <#if a.status == "1">
+                                    <span>已拒绝</span>
+                                </#if>
                             </td>
                         </tr>
                     </#list>
@@ -63,6 +71,37 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function agree(id){
+            $.ajax({
+                url:"${request.contextPath}/app/agree",
+                type:"post",
+                data:{id:id},
+                dataType:"json",
+                success:function(data){
+                    console.log(data.msg)
+                    layer.alert(data.msg,{
+                        title:"提示",
+                    })
+                },
+            });
+        }
+
+        function refuse(id){
+            $.ajax({
+                url:"${request.contextPath}/app/refuse",
+                type:"post",
+                data:{id:id},
+                dataType:"json",
+                success:function(data){
+                    console.log(data.msg)
+                    layer.alert(data.msg,{
+                        title:"提示",
+                    })
+                },
+            });
+        }
+    </script>
 
     <!-- 右边的用户登录。留言。投票 -->
     <div class="page_other_msg right">

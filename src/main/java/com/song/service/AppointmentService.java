@@ -13,4 +13,6 @@ public interface AppointmentService {
     List<Appointment> find(Long stuId,String type);
 
     List<Appointment> finds(Long teacherId,String type);
+
+    int updateStatus(Long id,String status);
 }

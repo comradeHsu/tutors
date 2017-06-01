@@ -26,7 +26,7 @@ public class Appointment {
         this.status = status;
     }
 
-    private String status;//0同意，1拒绝
+    private String status="3";//0同意，1拒绝
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")

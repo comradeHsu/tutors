@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/5/13.
@@ -117,4 +118,5 @@ public class StudentController {
         model.addAttribute("app",app);
         return "/user/myYuYue_s";
     }
+
 }

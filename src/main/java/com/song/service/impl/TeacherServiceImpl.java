@@ -63,6 +63,7 @@ public class TeacherServiceImpl implements TeacherService{
         return teacherRepoditory.findOne(id);
     }
     @Override
+    @Transactional
     public Teacher update(Teacher teacher){
         return teacherRepoditory.saveAndFlush(teacher);
     }
@@ -78,6 +79,7 @@ public class TeacherServiceImpl implements TeacherService{
     }
 
     @Override
+    @Transactional
     public int updateStatus(Long id) {
         return teacherRepoditory.updateWithQuery(id,"1");
     }

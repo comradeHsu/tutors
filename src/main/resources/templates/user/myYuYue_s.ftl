@@ -36,6 +36,7 @@
                             <td width="20%">所留联系方式</td>
                             <td width="20%">预约说明</td>
                             <td width="20%">时间</td>
+                            <td width="20%">操作</td>
                         </tr>
                     <#list app as a>
                         <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
@@ -50,6 +51,10 @@
                             </td>
                             <td bgcolor="#FFFFFF" align="center">
                             ${(a.time)!}
+                            </td>
+                            <td bgcolor="#FFFFFF" align="center">
+                                <a href="#" onclick="xueyuanDetail(${a.id!})" class="pn-loperator">同意</a>
+                                <a href="#" onclick="xueyuanDel(${a.id!})" class="pn-loperator">拒绝</a>
                             </td>
                         </tr>
                     </#list>

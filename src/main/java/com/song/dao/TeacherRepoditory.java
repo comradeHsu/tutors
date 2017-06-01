@@ -17,8 +17,8 @@ public interface TeacherRepoditory extends JpaRepository<Teacher,Long> {
     List<Teacher> findByKechengLike(String kecheng);
 
     @Modifying(clearAutomatically = true)
-    @Query("update teacher set status = '1' where id = :id")
-    int setFixedFirstNameFor(@Param("id") long id);
+    @Query("update Teacher t set t.status = :status where t.id = :id")
+    int updateWithQuery(@Param("id") long id,@Param("status") String status);
 
     boolean deleteById(Long id);
 }

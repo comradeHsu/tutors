@@ -18,6 +18,16 @@ public class Appointment {
     private String remark;
     private String type;//0代表预约老师，1代表预约学生
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    private String status;//0同意，1拒绝
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
     private Student student;

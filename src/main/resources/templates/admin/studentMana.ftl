@@ -55,10 +55,10 @@
     </script>
 </head>
 
-<body leftmargin="2" topmargin="2" background='<%=path %>/img/allbg.gif'>
+<body leftmargin="2" topmargin="2" background='${request.contextPath}/img/allbg.gif'>
 <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
     <tr bgcolor="#E7E7E7">
-        <td height="14" colspan="12" background="<%=path %>/img/tbg.gif">&nbsp;学员管理&nbsp;</td>
+        <td height="14" colspan="12" background="${request.contextPath}/img/tbg.gif">&nbsp;学员管理&nbsp;</td>
     </tr>
     <tr align="center" bgcolor="#FAFAF1" height="22">
         <td width="10%">用户名</td>
@@ -68,7 +68,6 @@
         <td width="10%">年龄</td>
         <td width="10%">联系方式</td>
         <td width="10%">辅导科目</td>
-        <td width="10%">状态</td>
 
         <td width="10%">操作</td>
     </tr>

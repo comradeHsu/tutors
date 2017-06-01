@@ -79,7 +79,7 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Override
     public int updateStatus(Long id) {
-        return teacherRepoditory.setFixedFirstNameFor(id);
+        return teacherRepoditory.updateWithQuery(id,"1");
     }
     @Override
     public boolean delete(Long id) {

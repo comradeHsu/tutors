@@ -107,7 +107,7 @@
                 <dd style='display:block' class='sitem' id='items2_1'>
                     <ul class='sitemu'>
                         <li><a href='${request.contextPath}/admin/teacherMana' target='main'>教员信息管理</a> </li>
-                        <li><a href='${request.contextPath}/xueyuanMana.action' target='main'>学员信息管理</a> </li>
+                        <li><a href='${request.contextPath}/admin/studentMana' target='main'>学员信息管理</a> </li>
                     </ul>
                 </dd>
             </dl>

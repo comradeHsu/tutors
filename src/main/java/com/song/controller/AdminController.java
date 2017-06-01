@@ -2,8 +2,13 @@ package com.song.controller;
 
 import com.song.exception.ServiceException;
 import com.song.model.Admin;
+import com.song.model.Student;
+import com.song.model.Teacher;
 import com.song.service.AdminService;
+import com.song.service.StudentService;
+import com.song.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +28,12 @@ import java.util.Map;
 public class AdminController {
     @Autowired
     AdminService adminService;//
+
+    @Autowired
+    TeacherService teacherService;
+
+    @Autowired
+    StudentService studentService;
 
     @RequestMapping(value = "/adminlogin", method = RequestMethod.POST)
     public String login(Model model, String name, String pwd, HttpServletRequest request) {
@@ -109,7 +120,46 @@ public class AdminController {
     }
 
     @RequestMapping("/teacherMana")
-    public String teacherMana(){
+    public String teacherMana(Model model){
+        Page<Teacher> page = teacherService.getTen();
+        model.addAttribute("list",page.getContent());
         return "/admin/teacherMana";
+    }
+
+    @RequestMapping(value = "/shenhe",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,String> shenhe(Long id){
+        int i = teacherService.updateStatus(id);
+        String msg = "修改成功";
+        Map<String,String> map = new HashMap<>();
+        map.put("msg",msg);
+        return map;
+    }
+
+    @RequestMapping(value = "/del",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,String> del(Long id){
+        boolean bool = teacherService.delete(id);
+        String msg = "删除成功";
+        Map<String,String> map = new HashMap<>();
+        map.put("msg",msg);
+        return map;
+    }
+
+    @RequestMapping("/studentMana")
+    public String studentMana(Model model){
+        Page<Student> page = studentService.getTen();
+        model.addAttribute("list",page.getContent());
+        return "/admin/studentMana";
+    }
+
+    @RequestMapping(value = "/delStu",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,String> delStu(Long id){
+        studentService.delete(id);
+        String msg = "删除成功";
+        Map<String,String> map = new HashMap<>();
+        map.put("msg",msg);
+        return map;
     }
 }

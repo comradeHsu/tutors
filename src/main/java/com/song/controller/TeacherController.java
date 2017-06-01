@@ -142,4 +142,13 @@ public class TeacherController {
         model.addAttribute("app",app);
         return "/user/myYuYue_t";
     }
+
+    @RequestMapping("/yuYue")
+    public String yuYue(Model model,HttpServletRequest request){
+        Teacher teacher = (Teacher) request.getSession().getAttribute("user");
+        System.out.println(teacher);
+        List<Appointment> app = appointmentService.finds(teacher.getId(),"1");
+        model.addAttribute("app",app);
+        return "/user/t_yuyue";
+    }
 }

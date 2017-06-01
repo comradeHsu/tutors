@@ -22,4 +22,8 @@ public interface StudentService {
 
     Student getDetail(Long id);
 
+    Page<Student> getTen();
+
+    void delete(Long id);
+
 }

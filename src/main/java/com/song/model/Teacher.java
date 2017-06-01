@@ -27,6 +27,16 @@ public class Teacher {
     private String address;
     private String school;
     private String shenfen;
+    private String status = "0";//是否审核
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 
     public String getPhoto() {
         return photo;

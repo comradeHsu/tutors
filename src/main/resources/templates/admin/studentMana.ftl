@@ -9,13 +9,27 @@
 
     <link rel="stylesheet" type="text/css" href="${request.contextPath}/css/base.css" />
     <script type="text/javascript" src="<%=path %>/js/popup_shuaxin.js"></script>
+    <script language="JavaScript" src="${request.contextPath}/js/jquery.min.js" type="text/javascript"></script>
+    <script language="JavaScript" src="${request.contextPath}/js/layer.js" type="text/javascript"></script>
+    <script language="JavaScript" src="${request.contextPath}/js/layer_1.1.js" type="text/javascript"></script>
 
     <script language="javascript">
         function xueyuanDel(id)
         {
             if(confirm('您确定删除吗？'))
             {
-                window.location.href="<%=path %>/xueyuanDel.action?id="+id;
+                $.ajax({
+                    url:"${request.contextPath}/admin/delStu",
+                    type:"post",
+                    data:{id:id},
+                    dataType:"json",
+                    success:function(data){
+                        layer.alert(data.msg,{
+                            title:"提示",
+                        })
+
+                    },
+                });
             }
         }
 
@@ -48,7 +62,6 @@
     </tr>
     <tr align="center" bgcolor="#FAFAF1" height="22">
         <td width="10%">用户名</td>
-        <td width="10%">密码</td>
         <td width="10%">姓名</td>
         <td width="10%">性别</td>
 
@@ -59,46 +72,36 @@
 
         <td width="10%">操作</td>
     </tr>
-    <s:iterator value="#request.xueyuanList" id="xueyuan">
+    <#list list as l>
         <tr align='center' bgcolor="#FFFFFF" height="22">
             <td bgcolor="#FFFFFF" align="center">
-                <s:property value="#xueyuan.loginname"/>
+                ${l.name!}
             </td>
             <td bgcolor="#FFFFFF" align="center">
-                <s:property value="#xueyuan.loginpw"/>
+               ${l.realName!}
             </td>
             <td bgcolor="#FFFFFF" align="center">
-                <s:property value="#xueyuan.name"/>
-            </td>
-            <td bgcolor="#FFFFFF" align="center">
-                <s:property value="#xueyuan.sex"/>
+                ${l.sex!}
             </td>
 
 
             <td bgcolor="#FFFFFF" align="center">
-                <s:property value="#xueyuan.age"/>
+               ${l.age!}
             </td>
             <td bgcolor="#FFFFFF" align="center">
-                <s:property value="#xueyuan.tel"/>
+                ${l.phone!}
             </td>
             <td bgcolor="#FFFFFF" align="center">
-                <s:property value="#xueyuan.fudaokemu"/>
+                ${l.kecheng!}
             </td>
-            <td bgcolor="#FFFFFF" align="center">
-                <s:if test="#xueyuan.del=='shenhezhong'">
-                    <a style="color: red" href="#" onclick="xueyuanShenhe(<s:property value="#xueyuan.id"/>)">待审核</a>
-                </s:if>
-                <s:if test="#xueyuan.del=='no'">
-                    正常
-                </s:if>
-            </td>
+
 
             <td  bgcolor="#FFFFFF" align="center">
-                <a href="#" onclick="xueyuanDetail(<s:property value="#xueyuan.id"/>)" class="pn-loperator">详细信息</a>
-                <a href="#" onclick="xueyuanDel(<s:property value="#xueyuan.id"/>)" class="pn-loperator">删除</a>
+                <a href="#" onclick="xueyuanDetail(${l.id!})" class="pn-loperator">详细信息</a>
+                <a href="#" onclick="xueyuanDel(${l.id!})" class="pn-loperator">删除</a>
             </td>
         </tr>
-    </s:iterator>
+    </#list>
 </table>
 </body>
 </html>

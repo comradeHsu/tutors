@@ -24,4 +24,10 @@ public interface TeacherService {
     Teacher update(Teacher teacher);
 
     List<Teacher> search(String kecheng);
+
+    Page<Teacher> getTen();
+
+    int updateStatus(Long id);
+
+    boolean delete(Long id);
 }

@@ -9,13 +9,27 @@
 
     <link rel="stylesheet" type="text/css" href="${request.contextPath}/css/base.css" />
     <script type="text/javascript" src="<%=path %>/js/popup_shuaxin.js"></script>
+    <script language="JavaScript" src="${request.contextPath}/js/jquery.min.js" type="text/javascript"></script>
+    <script language="JavaScript" src="${request.contextPath}/js/layer.js" type="text/javascript"></script>
+    <script language="JavaScript" src="${request.contextPath}/js/layer_1.1.js" type="text/javascript"></script>
 
     <script language="javascript">
         function jiaoyuanDel(id)
         {
             if(confirm('您确定删除吗？'))
             {
-                window.location.href="<%=path %>/jiaoyuanDel.action?id="+id;
+                $.ajax({
+                    url:"${request.contextPath}/admin/del",
+                    type:"post",
+                    data:{id:id},
+                    dataType:"json",
+                    success:function(data){
+                        layer.alert(data.msg,{
+                            title:"提示",
+                        })
+
+                    },
+                });
             }
         }
 
@@ -31,12 +45,18 @@
 
         function jiaoyuanShenhe(id)
         {
-            var url="<%=path %>/jiaoyuanShenhe.action?id="+id;
-            var pop=new Popup({ contentType:1,isReloadOnClose:false,width:200,height:100});
-            pop.setContent("contentUrl",url);
-            pop.setContent("title","教员审核");
-            pop.build();
-            pop.show();
+            $.ajax({
+                url:"${request.contextPath}/admin/shenhe",
+                type:"post",
+                data:{id:id},
+                dataType:"json",
+                success:function(data){
+                    layer.alert(data.msg,{
+                        title:"提示",
+                    })
+
+                },
+            });
         }
     </script>
 </head>
@@ -48,7 +68,6 @@
     </tr>
     <tr align="center" bgcolor="#FAFAF1" height="22">
         <td width="10%">用户名</td>
-        <td width="10%">密码</td>
         <td width="10%">姓名</td>
         <td width="10%">性别</td>
 
@@ -59,47 +78,44 @@
 
         <td width="10%">操作</td>
     </tr>
-    <s:iterator value="#request.jiaoyuanList" id="jiaoyuan">
+    <#list list as l>
         <tr align='center' bgcolor="#FFFFFF" height="22">
             <td bgcolor="#FFFFFF" align="center">
-                <s:property value="#jiaoyuan.loginname"/>
+                ${l.name!}
             </td>
             <td bgcolor="#FFFFFF" align="center">
-                <s:property value="#jiaoyuan.loginpw"/>
+                ${l.rname!}
             </td>
             <td bgcolor="#FFFFFF" align="center">
-                <s:property value="#jiaoyuan.name"/>
-            </td>
-            <td bgcolor="#FFFFFF" align="center">
-                <s:property value="#jiaoyuan.sex"/>
+                ${l.sex!}
             </td>
 
 
             <td bgcolor="#FFFFFF" align="center">
-                <s:property value="#jiaoyuan.age"/>
+                ${l.age!}
             </td>
             <td bgcolor="#FFFFFF" align="center">
-                <s:property value="#jiaoyuan.tel"/>
+                ${l.phone!}
             </td>
             <td bgcolor="#FFFFFF" align="center">
-                <s:if test="#jiaoyuan.shenfen=='daxuesheng'">在校大学生(研究生)</s:if>
-                <s:if test="#jiaoyuan.shenfen=='laoshi'">教师(在职/进修/离职/退休)</s:if>
+                <#if l.shenfen == "学生">在校大学生(研究生)</#if>
+                <#if l.shenfen == "老师">教师(在职/进修/离职/退休)</#if>
             </td>
             <td bgcolor="#FFFFFF" align="center">
-                <s:if test="#jiaoyuan.del=='shenhezhong'">
-                    <a style="color: red" href="#" onclick="jiaoyuanShenhe(<s:property value="#jiaoyuan.id"/>)">待审核</a>
-                </s:if>
-                <s:if test="#jiaoyuan.del=='no'">
+                <#if l.status == "0">
+                    <a style="color: red" href="#" onclick="jiaoyuanShenhe(${l.id!})">待审核</a>
+                </#if>
+                <#if l.status == "1">
                     正常
-                </s:if>
+                </#if>
             </td>
 
             <td  bgcolor="#FFFFFF" align="center">
-                <a href="#" onclick="jiaoyuanDetail(<s:property value="#jiaoyuan.id"/>)" class="pn-loperator">详细信息</a>
-                <a href="#" onclick="jiaoyuanDel(<s:property value="#jiaoyuan.id"/>)" class="pn-loperator">删除</a>
+                <a href="#" onclick="jiaoyuanDetail(${l.id!})" class="pn-loperator">详细信息</a>
+                <a href="#" onclick="jiaoyuanDel(${l.id!})" class="pn-loperator">删除</a>
             </td>
         </tr>
-    </s:iterator>
+    </#list>
 </table>
 </body>
 </html>

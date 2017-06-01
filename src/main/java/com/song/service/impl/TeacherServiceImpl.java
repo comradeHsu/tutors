@@ -72,4 +72,17 @@ public class TeacherServiceImpl implements TeacherService{
         return teacherRepoditory.findByKechengLike(kecheng);
     }
 
+    @Override
+    public Page<Teacher> getTen() {
+        return teacherRepoditory.findAll(new PageRequest(0,10));
+    }
+
+    @Override
+    public int updateStatus(Long id) {
+        return teacherRepoditory.setFixedFirstNameFor(id);
+    }
+    @Override
+    public boolean delete(Long id) {
+        return teacherRepoditory.deleteById(id);
+    }
 }

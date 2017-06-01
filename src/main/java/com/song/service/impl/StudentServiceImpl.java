@@ -55,4 +55,14 @@ public class StudentServiceImpl implements StudentService{
     public Student getDetail(Long id) {
         return studentRepository.findOne(id);
     }
+
+    @Override
+    public Page<Student> getTen() {
+        return studentRepository.findAll(new PageRequest(0,10));
+    }
+
+    @Override
+    public void delete(Long id) {
+        studentRepository.delete(id);
+    }
 }

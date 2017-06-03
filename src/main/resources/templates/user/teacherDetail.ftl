@@ -49,7 +49,7 @@
                     +'</td>'
                     +'<td width="80%" bgcolor="#FFFFFF">'
                     +'    &nbsp;'
-                    +'<input type="text" name="phone" maxlength="50"/>'
+                    +'<input type="text" name="tel" maxlength="50"/>'
                     +'    </td>'
                     +'    </tr>'
                     +'    <tr>'

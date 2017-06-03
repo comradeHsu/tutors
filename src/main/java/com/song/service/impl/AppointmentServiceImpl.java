@@ -27,12 +27,12 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public List<Appointment> find(Long stuId, String type) {
-        return appointmentRepository.findByStuIdAndType(stuId, type);
+        return appointmentRepository.findByStudent_IdAndType(stuId, type);
     }
 
     @Override
     public List<Appointment> finds(Long teacherId, String type) {
-        return appointmentRepository.findByTeacherIdAndType(teacherId,type);
+        return appointmentRepository.findByTeacher_IdAndType(teacherId,type);
     }
 
     @Override

@@ -11,25 +11,17 @@ public class Appointment {
     @Id
     @GeneratedValue
     private Long id;
-    private Long stuId;
-    private Long teacherId;
-    private String phone;
+//    private Long stuId;
+//    private Long teacherId;
+    private String tel;
     private Date time;
     private String remark;
     private String type;//0代表预约老师，1代表预约学生
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     private String status="3";//0同意，1拒绝
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="stuId")
     private Student student;
 
     public Student getStudent() {
@@ -49,15 +41,15 @@ public class Appointment {
     }
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "teacherId")
     private Teacher teacher;
 
-    public String getPhone() {
-        return phone;
+    public String getTel() {
+        return tel;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public Date getTime() {
@@ -92,21 +84,28 @@ public class Appointment {
         this.id = id;
     }
 
-    public Long getStuId() {
-        return stuId;
+//    public Long getStuId() {
+//        return stuId;
+//    }
+//
+//    public void setStuId(Long stuId) {
+//        this.stuId = stuId;
+//    }
+
+//    public Long getTeacherId() {
+//        return teacherId;
+//    }
+//
+//    public void setTeacherId(Long teacherId) {
+//        this.teacherId = teacherId;
+//    }
+
+    public String getStatus() {
+        return status;
     }
 
-    public void setStuId(Long stuId) {
-        this.stuId = stuId;
+    public void setStatus(String status) {
+        this.status = status;
     }
-
-    public Long getTeacherId() {
-        return teacherId;
-    }
-
-    public void setTeacherId(Long teacherId) {
-        this.teacherId = teacherId;
-    }
-
 
 }

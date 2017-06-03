@@ -36,6 +36,7 @@
                             <td width="20%">所留联系方式</td>
                             <td width="20%">预约说明</td>
                             <td width="20%">时间</td>
+                            <td width="20%">操作</td>
                         </tr>
                         <#list app as a>
                             <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
@@ -43,13 +44,25 @@
                                     ${(a.student.realName)!}
                                 </td>
                                 <td bgcolor="#FFFFFF" align="center">
-                                    ${(a.phone)!}
+                                    ${(a.tel)!}
                                 </td>
                                 <td bgcolor="#FFFFFF" align="center">
                                     ${(a.remark)!}
                                 </td>
                                 <td bgcolor="#FFFFFF" align="center">
                                     ${(a.time)!}
+                                </td>
+                                <td bgcolor="#FFFFFF" align="center">
+                                    <#if a.status == "3">
+                                        <a href="#" onclick="agree(${a.id!})" class="pn-loperator"><span style="color:forestgreen">同意</span></a>
+                                        <a href="#" onclick="refuse(${a.id!})" class="pn-loperator"><span style="color:forestgreen">拒绝</span></a>
+                                    </#if>
+                                    <#if a.status == "0">
+                                        <span>已同意</span>
+                                    </#if>
+                                    <#if a.status == "1">
+                                        <span>已拒绝</span>
+                                    </#if>
                                 </td>
                             </tr>
                         </#list>
@@ -58,6 +71,37 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function agree(id){
+            $.ajax({
+                url:"${request.contextPath}/app/agree",
+                type:"post",
+                data:{id:id},
+                dataType:"json",
+                success:function(data){
+                    console.log(data.msg)
+                    layer.alert(data.msg,{
+                        title:"提示",
+                    })
+                },
+            });
+        }
+
+        function refuse(id){
+            $.ajax({
+                url:"${request.contextPath}/app/refuse",
+                type:"post",
+                data:{id:id},
+                dataType:"json",
+                success:function(data){
+                    console.log(data.msg)
+                    layer.alert(data.msg,{
+                        title:"提示",
+                    })
+                },
+            });
+        }
+    </script>
 
     <!-- 右边的用户登录。留言。投票 -->
     <div class="page_other_msg right">

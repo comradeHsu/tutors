@@ -12,9 +12,9 @@ import java.util.List;
  * Created by Administrator on 2017/5/12.
  */
 public interface AppointmentRepository extends JpaRepository<Appointment,Long> {
-    List<Appointment> findByStuIdAndType(Long stuId, String type);
+    List<Appointment> findByStudent_IdAndType(Long stuId, String type);
 
-    List<Appointment> findByTeacherIdAndType(Long teacherId, String type);
+    List<Appointment> findByTeacher_IdAndType(Long teacherId, String type);
 
     @Modifying(clearAutomatically = true)
     @Query("update Appointment a set a.status = :status where a.id = :id")

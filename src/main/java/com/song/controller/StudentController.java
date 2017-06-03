@@ -114,7 +114,7 @@ public class StudentController {
     @RequestMapping("/yuYueMe")
     public String yuYueMe(Model model,HttpServletRequest request){
         Student student = (Student) request.getSession().getAttribute("user");
-        List<Appointment> app = appointmentService.finds(student.getId(),"0");
+        List<Appointment> app = appointmentService.finds(student.getId(),"1");
         model.addAttribute("app",app);
         return "/user/myYuYue_s";
     }

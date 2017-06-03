@@ -44,7 +44,7 @@
                             ${(a.student.realName)!}
                         </td>
                         <td bgcolor="#FFFFFF" align="center">
-                            ${(a.phone)!}
+                            ${(a.tel)!}
                         </td>
                         <td bgcolor="#FFFFFF" align="center">
                             ${a.remark!}

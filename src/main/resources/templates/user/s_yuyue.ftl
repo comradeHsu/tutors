@@ -37,6 +37,7 @@
                         <td width="20%">所留联系方式</td>
                         <td width="20%">预约说明</td>
                         <td width="20%">时间</td>
+                        <td width="20%">状态</td>
                         </tr>
                     <#if app?? && (app?size > 0) >
                     <#list app as b>
@@ -55,6 +56,9 @@
                         </td>
                         <td bgcolor="#FFFFFF" align="center">
                             ${(b.time)!}
+                        </td>
+                        <td bgcolor="#FFFFFF" align="center">
+
                         </td>
                         </tr>
                     </#list>

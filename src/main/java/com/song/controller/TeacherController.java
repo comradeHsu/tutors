@@ -146,8 +146,8 @@ public class TeacherController {
     @RequestMapping("/yuYue")
     public String yuYue(Model model,HttpServletRequest request){
         Teacher teacher = (Teacher) request.getSession().getAttribute("user");
-        System.out.println(teacher);
         List<Appointment> app = appointmentService.finds(teacher.getId(),"1");
+        System.out.println(app.get(0).getStudent());
         model.addAttribute("app",app);
         return "/user/t_yuyue";
     }

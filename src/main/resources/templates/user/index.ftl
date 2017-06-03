@@ -17,7 +17,7 @@
     </script>
 </head>
 
-<body>
+<body stype="background:url(img/img.jpg)">
 <#include "incTop.ftl">
 <div class="page_row">
     <div class="page_main_msg left">

@@ -58,7 +58,15 @@
                             ${(b.time)!}
                         </td>
                         <td bgcolor="#FFFFFF" align="center">
-
+                            <#if b.status == "3">
+                                待处理
+                            </#if>
+                            <#if b.status == "0">
+                                已同意
+                            </#if>
+                            <#if b.status == "1">
+                                已拒绝
+                            </#if>
                         </td>
                         </tr>
                     </#list>
@@ -96,7 +104,7 @@
             <div class="list">
                 <div class="list_bar">天气</div>
                 <div class="list_content">
-                    <iframe width="300" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=5"></iframe>
+                    <iframe width="300" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe>
                 </div>
             </div>
         </div>

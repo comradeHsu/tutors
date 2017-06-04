@@ -36,6 +36,7 @@
                         <td width="20%">所留联系方式</td>
                         <td width="20%">预约说明</td>
                         <td width="20%">时间</td>
+                        <td width="20%">状态</td>
                     </tr>
                     <#if app?? && (app?size > 0) >
                     <#list app as a>
@@ -51,6 +52,17 @@
                         </td>
                         <td bgcolor="#FFFFFF" align="center">
                             ${(a.time)!}
+                        </td>
+                        <td bgcolor="#FFFFFF" align="center">
+                            <#if a.status == "3">
+                                待处理
+                            </#if>
+                            <#if a.status == "0">
+                                已同意
+                            </#if>
+                            <#if a.status == "1">
+                                已拒绝
+                            </#if>
                         </td>
                         </tr>
                         </#list>
@@ -88,7 +100,8 @@
             <div class="list">
                 <div class="list_bar">天气</div>
                 <div class="list_content">
-                    <iframe width="300" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=5"></iframe>
+                    <iframe width="255" scrolling="no" height="20" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=11&icon=1&num=1"></iframe>
+                    <iframe width="258" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe>
                 </div>
             </div>
         </div>

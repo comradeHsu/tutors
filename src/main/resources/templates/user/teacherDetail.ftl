@@ -141,7 +141,7 @@
                             <td align="left">可辅导科目：${teacher.kecheng!}</td>
                         </tr>
                         <tr>
-                            <td align="left">自我介绍：${teacher.jieshao!}</td>
+                            <td align="left">自我介绍：${teacher.jianjie!}</td>
                         </tr>
                         <tr>
                             <td align="center">

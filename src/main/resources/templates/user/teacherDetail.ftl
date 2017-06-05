@@ -171,7 +171,7 @@
                 <div class="list_bar">网站公告</div>
                 <div class="list_content">
                     <div id="div">
-                        <s:action name="gonggaoQian5" executeResult="true" flush="true"></s:action>
+                    <#include "gonggao.ftl">
                     </div>
                 </div>
             </div>

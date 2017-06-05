@@ -17,62 +17,16 @@
     </script>
 </head>
 
-<body>
+<body stype="background:url(img/img.jpg)">
 <#include "incTop.ftl">
 <div class="page_row">
     <div class="page_main_msg left">
         <div class="left_row">
             <div class="list pic_news">
-                <div class="list_bar">
-                    <span style="float:left">我的预约</span>
-                </div>
-                <div id="tw" class="list_content" style="height: 400px;">
-                    <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
-                    <tr bgcolor="#E7E7E7">
-                        <td height="14" colspan="5" background="${request.contextPath}/img/tbg.gif">&nbsp;我的预约&nbsp;</td>
-                        </tr>
-                    <tr align="center" bgcolor="#FAFAF1" height="22">
-                        <td width="10%">学员</td>
-                        <td width="20%">被约教员</td>
-                        <td width="20%">所留联系方式</td>
-                        <td width="20%">预约说明</td>
-                        <td width="20%">时间</td>
-                        <td width="10%">状态</td>
-                        </tr>
-                    <#if app?? && (app?size > 0) >
-                    <#list app as b>
-                        <tr align="center" bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor="red";" onMouseOut="javascript:this.bgColor="#FFFFFF";" height="22">
-                        <td bgcolor="#FFFFFF" align="center">
-                            ${(b.student.realName)!}
-                        </td>
-                        <td bgcolor="#FFFFFF" align="center">
-                            ${(b.teacher.rname)!}
-                        </td>
-                        <td bgcolor="#FFFFFF" align="center">
-                            ${(b.tel)!}
-                        </td>
-                        <td bgcolor="#FFFFFF" align="center">
-                            ${(b.remark)!}
-                        </td>
-                        <td bgcolor="#FFFFFF" align="center">
-                            ${(b.time)!}
-                        </td>
-                        <td bgcolor="#FFFFFF" align="center">
-                            <#if b.status == "3">
-                                待处理
-                            </#if>
-                            <#if b.status == "0">
-                                已同意
-                            </#if>
-                            <#if b.status == "1">
-                                已拒绝
-                            </#if>
-                        </td>
-                        </tr>
-                    </#list>
-                    </#if>
-                    </table>
-                </div>
+                <div class="list_bar">&nbsp;导航</div>
+                <div class="ctitle ctitle1">${info.title!}</div>
+                <div class="pbox">${info.content!}</div>
+
             </div>
         </div>
     </div>

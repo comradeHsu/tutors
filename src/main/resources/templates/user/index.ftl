@@ -102,7 +102,7 @@
                 <div class="list_bar">网站公告</div>
                 <div class="list_content">
                     <div id="div">
-
+                        <#include "gonggao.ftl">
                     </div>
                 </div>
             </div>

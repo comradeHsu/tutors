@@ -2,8 +2,10 @@ package com.song.controller;
 
 import com.song.dao.StudentRepository;
 import com.song.dao.TeacherRepoditory;
+import com.song.model.Infomation;
 import com.song.model.Student;
 import com.song.model.Teacher;
+import com.song.service.InformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,6 +29,9 @@ public class IndexController {
     @Autowired
     StudentRepository studentRepository;
 
+    @Autowired
+    InformationService informationService;
+
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(Model model){
         Page<Teacher> list = teacherRepoditory.findAll(new PageRequest(0,5));
@@ -34,6 +39,8 @@ public class IndexController {
         model.addAttribute("list",list.getContent());
         model.addAttribute("stu",stu.getContent());
         model.addAttribute("app", Collections.EMPTY_LIST);
+        Page<Infomation> info = informationService.find();
+        model.addAttribute("gg",info.getContent());
         return "/user/index";
     }
 

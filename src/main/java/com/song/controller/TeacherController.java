@@ -2,9 +2,11 @@ package com.song.controller;
 
 import com.song.exception.ServiceException;
 import com.song.model.Appointment;
+import com.song.model.Infomation;
 import com.song.model.Student;
 import com.song.model.Teacher;
 import com.song.service.AppointmentService;
+import com.song.service.InformationService;
 import com.song.service.StudentService;
 import com.song.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +39,15 @@ public class TeacherController {
     @Autowired
     AppointmentService appointmentService;
 
+    @Autowired
+    InformationService informationService;
+
     @RequestMapping("/allTea")
     public String allTea(Model model){
         List<Teacher> list = teacherService.findAllTeacher();
         int end = list.size() > 10 ? 10 : list.size();
+        Page<Infomation> info = informationService.find();
+        model.addAttribute("gg",info.getContent());
         model.addAttribute("list",list.subList(0,end));
         return "/user/allTeacher";
     }
@@ -79,6 +86,8 @@ public class TeacherController {
         Page<Teacher> list = teacherService.getFive();
         Teacher teacher = (Teacher) request.getSession().getAttribute("user");
         List<Appointment> app = appointmentService.finds(teacher.getId(),"1");
+        Page<Infomation> info = informationService.find();
+        model.addAttribute("gg",info.getContent());
         if(rs) {
             model.addAttribute("student", request.getSession().getAttribute("user"));
             model.addAttribute("app",app);
@@ -94,6 +103,8 @@ public class TeacherController {
     public String teacherDetail(Model model,long id){
         Teacher teacher = teacherService.getDetail(id);
         model.addAttribute("teacher",teacher);
+        Page<Infomation> info = informationService.find();
+        model.addAttribute("gg",info.getContent());
         return "/user/teacherDetail";
     }
 
@@ -123,6 +134,8 @@ public class TeacherController {
         model.addAttribute("list",list);
         model.addAttribute("page",x);
         model.addAttribute("search",kecheng);
+        Page<Infomation> info = informationService.find();
+        model.addAttribute("gg",info.getContent());
         return "/user/teacherSearch";
     }
 
@@ -140,6 +153,8 @@ public class TeacherController {
         Teacher teacher = (Teacher) request.getSession().getAttribute("user");
         List<Appointment> app = appointmentService.finds(teacher.getId(),"0");
         model.addAttribute("app",app);
+        Page<Infomation> info = informationService.find();
+        model.addAttribute("gg",info.getContent());
         return "/user/myYuYue_t";
     }
 
@@ -149,6 +164,8 @@ public class TeacherController {
         List<Appointment> app = appointmentService.finds(teacher.getId(),"1");
         System.out.println(app.get(0).getStudent());
         model.addAttribute("app",app);
+        Page<Infomation> info = informationService.find();
+        model.addAttribute("gg",info.getContent());
         return "/user/t_yuyue";
     }
 }

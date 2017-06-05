@@ -12,7 +12,7 @@
 <div class="topmenu cbody1">
     <ul>
         <li class="thisclass">
-            <A href="${request.contextPath}/qiantai/default.jsp">网站首页</A>
+            <A href="${request.contextPath}/index">网站首页</A>
         </li>
         <li class="thisclass">
             <A href="${request.contextPath}/tea/allTea">我要请家教</A>

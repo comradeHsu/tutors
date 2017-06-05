@@ -2,9 +2,11 @@ package com.song.controller;
 
 import com.song.exception.ServiceException;
 import com.song.model.Appointment;
+import com.song.model.Infomation;
 import com.song.model.Student;
 import com.song.model.Teacher;
 import com.song.service.AppointmentService;
+import com.song.service.InformationService;
 import com.song.service.StudentService;
 import com.song.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +39,16 @@ public class StudentController {
     @Autowired
     AppointmentService appointmentService;
 
+    @Autowired
+    InformationService informationService;
+
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String  login(Model model,String name,String pwd, HttpServletRequest request){
         Student student = null;
         Page<Student> stu = studentService.getFive();
         Page<Teacher> list = teacherService.getFive();
+        Page<Infomation> info = informationService.find();
+        model.addAttribute("gg",info.getContent());
         try {
             student = studentService.login(request,name,pwd);
             //Student student = (Student) request.getSession().getAttribute("user");
@@ -62,6 +69,8 @@ public class StudentController {
     public String yuYue(Model model,HttpServletRequest request){
         Student student = (Student) request.getSession().getAttribute("user");
         System.out.println(student);
+        Page<Infomation> info = informationService.find();
+        model.addAttribute("gg",info.getContent());
         List<Appointment> app = appointmentService.find(student.getId(),"0");
         model.addAttribute("app",app);
         return "/user/s_yuyue";
@@ -77,6 +86,8 @@ public class StudentController {
         List<Student> list = studentService.findAllStudent();
         int x = (int) Math.ceil(list.size()/10.0);
         int end = list.size() > 10 ? 10 : list.size();
+        Page<Infomation> info = informationService.find();
+        model.addAttribute("gg",info.getContent());
         model.addAttribute("list",list.subList(0,end));
         model.addAttribute("page",x);
         return "/user/allStudent";
@@ -98,6 +109,8 @@ public class StudentController {
     public ModelAndView detail(Long id){
         ModelAndView view = new ModelAndView();
         Student student = studentService.getDetail(id);
+        Page<Infomation> info = informationService.find();
+        view.addObject("gg",info.getContent());
         view.addObject("student",student);
         view.setViewName("/user/studentDetail");
         return view;
@@ -116,6 +129,8 @@ public class StudentController {
         Student student = (Student) request.getSession().getAttribute("user");
         List<Appointment> app = appointmentService.finds(student.getId(),"1");
         model.addAttribute("app",app);
+        Page<Infomation> info = informationService.find();
+        model.addAttribute("gg",info.getContent());
         return "/user/myYuYue_s";
     }
 

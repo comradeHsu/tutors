@@ -5,7 +5,7 @@
 
 <body>
 <div class="foot_pic"></div>
-<div class="left foot_msg">
+<div class="left foot_msg"><!--还有悲伤-->
     关于我们-
     联系我们- 诚聘英才 - 友情链接 -
     程序下载- 合作服务 -

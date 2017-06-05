@@ -89,7 +89,7 @@
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框
                 area: ['550px', '600px'], //宽高
-                content:'<form action="${request.contextPath}/jiaoyuanEdit.action" name="form1" id="form" method="post" enctype="multipart/form-data">'
+                content:'<form action="" name="form1" id="form" method="post" enctype="multipart/form-data">'
                 +'<table width="98%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">'
                 +'       <tr>'
                 +'       <th height="40" colspan="2" bgcolor="#FFFFFF" class="f12b-red" style="font-size: 11px;">'

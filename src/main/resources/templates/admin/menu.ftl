@@ -117,8 +117,8 @@
                 <dt onClick='showHide("items3_1")'><b>公告信息管理</b></dt>
                 <dd style='display:block' class='sitem' id='items3_1'>
                     <ul class='sitemu'>
-                        <li><a href='${request.contextPath}/gonggaoMana.action' target='main'>公告信息管理</a> </li>
-                        <li><a href='${request.contextPath}/admin/gonggao/gonggaoAdd.jsp' target='main'>公告信息录入</a> </li>
+                        <li><a href='${request.contextPath}/info/mana' target='main'>公告信息管理</a> </li>
+                        <li><a href='${request.contextPath}/info/add' target='main'>公告信息录入</a> </li>
                     </ul>
                 </dd>
             </dl>

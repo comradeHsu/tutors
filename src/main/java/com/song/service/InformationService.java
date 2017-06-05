@@ -13,4 +13,10 @@ public interface InformationService {
     Page<Infomation> find();
 
     Infomation findOne(Long id);
+
+    List<Infomation> findAll();
+
+    void delete(Long id);
+
+    Infomation save(Infomation info);
 }

@@ -15,12 +15,7 @@
     <script type="text/javascript">
         function reg_jiaoyuan()
         {
-            <#--var url="${request.contextPath}/reg/regStudent";-->
-            <#--var n="center";-->
-            <#--var w="550px";-->
-            <#--var h="600px";-->
-            <#--var s="resizable:no;help:no;status:no;scroll:yes";-->
-            <#--window.open(url,n,w,h,s);-->
+            //总是会想起那天的痛苦和绝望
             layer.open({
                 type: 1,
                 skin: 'layui-layer-rim', //加上边框

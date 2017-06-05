@@ -6,11 +6,13 @@
     <meta http-equiv="expires" content="0">
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
+    <script language="JavaScript" src="${request.contextPath}/js/layer.js" type="text/javascript"></script>
     <script language="JavaScript" src="${request.contextPath}/js/jquery.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="${request.contextPath}/js/layui.all.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="${request.contextPath}/css/style.css">
     <link href="${request.contextPath}/css/layout.css" type="text/css" rel="stylesheet" />
     <link href="${request.contextPath}/css/layui.css" type="text/css" rel="stylesheet"/>
+    <link href="${request.contextPath}/css/layer.css" type="text/css" rel="stylesheet" />
     <style type="text/css">
         body
         {
@@ -109,6 +111,14 @@
                 },
             });
         }
+        $(function(){
+            var msg = '${msg!""}';
+            if(msg != ""){
+                layer.alert(msg,{
+                    title:"提示",
+                })
+            }
+        })
     </script>
 </head>
 <body>
@@ -137,7 +147,6 @@
                         <td width="356" valign="bottom">
                             <input name="userName" id="username" type="text" class="input2" onMouseOver="this.style.background='#F0DAF3';" onMouseOut="this.style.background='#FFFFFF'">
                         </td>
-                        <td><span>${msg!}</span></td>
                     </tr>
                     <tr>
                         <td height="10" colspan="2" valign="bottom"></td>

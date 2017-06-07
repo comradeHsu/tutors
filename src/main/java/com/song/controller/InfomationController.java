@@ -45,7 +45,7 @@ public class InfomationController {
         Map<String,String> map = new HashMap<>();
         informationService.delete(id);
         map.put("msg","删除成功");
-        return "/admin/infoMana";
+        return "redirect:/info/mana";
     }
 
     @RequestMapping("/add")
@@ -57,6 +57,6 @@ public class InfomationController {
     public String addInfo(Model model,Infomation infomation){
         infomation.setTimes(new Date());
         informationService.save(infomation);
-        return "redirect:/mana";
+        return "redirect:/info/mana";
     }
 }

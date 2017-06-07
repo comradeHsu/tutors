@@ -20,7 +20,7 @@
 </head>
 
 <body leftmargin="2" topmargin="9" background='${request.contextPath}/img/allbg.gif'>
-<form action="${request.contextPath}/gonggaoAdd.action" name="formAdd" method="post">
+<form action="${request.contextPath}/info/addInfo" name="formAdd" method="post">
     <table width="98%" align="center" border="0" cellpadding="4" cellspacing="1" bgcolor="#CBD8AC" style="margin-bottom:8px">
         <tr bgcolor="#EEF4EA">
             <td colspan="3" background="${request.contextPath}/img/wbg.gif" class='title'><span>公告添加</span></td>

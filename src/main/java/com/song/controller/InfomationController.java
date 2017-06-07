@@ -57,6 +57,6 @@ public class InfomationController {
     public String addInfo(Model model,Infomation infomation){
         infomation.setTimes(new Date());
         informationService.save(infomation);
-        return "redirect:/info/mana";
+        return "redirect:/mana";
     }
 }

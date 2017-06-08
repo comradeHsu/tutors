@@ -70,7 +70,7 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Override
     public List<Teacher> search(String kecheng) {
-        return teacherRepoditory.findByKechengLike(kecheng);
+        return teacherRepoditory.findByKechengLikeAndStatus(kecheng,"1");
     }
 
     @Override
@@ -84,7 +84,8 @@ public class TeacherServiceImpl implements TeacherService{
         return teacherRepoditory.updateWithQuery(id,"1");
     }
     @Override
-    public boolean delete(Long id) {
+    @Transactional
+    public int delete(Long id) {
         return teacherRepoditory.deleteById(id);
     }
 }

@@ -69,7 +69,6 @@
         <td width="10%">联系方式</td>
         <td width="10%">辅导科目</td>
 
-        <td width="10%">操作</td>
     </tr>
     <#list list as l>
         <tr align='center' bgcolor="#FFFFFF" height="22">
@@ -95,10 +94,6 @@
             </td>
 
 
-            <td  bgcolor="#FFFFFF" align="center">
-                <a href="#" onclick="xueyuanDetail(${l.id!})" class="pn-loperator">详细信息</a>
-                <a href="#" onclick="xueyuanDel(${l.id!})" class="pn-loperator">删除</a>
-            </td>
         </tr>
     </#list>
 </table>

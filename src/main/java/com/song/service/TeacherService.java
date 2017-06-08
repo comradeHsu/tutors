@@ -29,5 +29,5 @@ public interface TeacherService {
 
     int updateStatus(Long id);
 
-    boolean delete(Long id);
+    int delete(Long id);
 }

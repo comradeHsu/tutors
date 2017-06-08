@@ -76,7 +76,6 @@
         <td width="20%">身份</td>
         <td width="10%">状态</td>
 
-        <td width="10%">操作</td>
     </tr>
     <#list list as l>
         <tr align='center' bgcolor="#FFFFFF" height="22">
@@ -110,10 +109,6 @@
                 </#if>
             </td>
 
-            <td  bgcolor="#FFFFFF" align="center">
-                <a href="#" onclick="jiaoyuanDetail(${l.id!})" class="pn-loperator">详细信息</a>
-                <a href="#" onclick="jiaoyuanDel(${l.id!})" class="pn-loperator">删除</a>
-            </td>
         </tr>
     </#list>
 </table>

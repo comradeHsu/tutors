@@ -139,7 +139,7 @@ public class AdminController {
     @RequestMapping(value = "/del",method = RequestMethod.POST)
     @ResponseBody
     public Map<String,String> del(Long id){
-        boolean bool = teacherService.delete(id);
+        int bool = teacherService.delete(id);
         String msg = "删除成功";
         Map<String,String> map = new HashMap<>();
         map.put("msg",msg);

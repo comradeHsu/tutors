@@ -14,11 +14,11 @@ import java.util.List;
 public interface TeacherRepoditory extends JpaRepository<Teacher,Long> {
     Teacher findByName(String name);
 
-    List<Teacher> findByKechengLike(String kecheng);
+    List<Teacher> findByKechengLikeAndStatus(String kecheng,String status);
 
     @Modifying(clearAutomatically = true)
     @Query("update Teacher t set t.status = :status where t.id = :id")
     int updateWithQuery(@Param("id") long id,@Param("status") String status);
 
-    boolean deleteById(Long id);
+    int deleteById(Long id);
 }
